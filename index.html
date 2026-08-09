@@ -1,0 +1,2024 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<title>Human Circulatory System — Science Learning Suite</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root, [data-theme="light"] {
+    --system-bg: #F2F2F7;
+    --system-bg-secondary: #FFFFFF;
+    --system-grouped-bg: #E5E5EA;
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    --glass-border: rgba(0, 0, 0, 0.08);
+    --text-primary: #1C1C1E;
+    --text-secondary: #8E8E93;
+    --text-tertiary: #C7C7CC;
+    
+    /* Blue Scheme Replacing Green Accent */
+    --apple-blue: #007AFF;
+    --apple-blue-deep: #0056B3;
+    --apple-blue-soft: rgba(0, 122, 255, 0.12);
+    --success: #007AFF;
+    --success-deep: #0056B3;
+    --success-soft: rgba(0, 122, 255, 0.12);
+    --apple-red: #FF3B30;
+    --apple-red-deep: #C42B1C;
+    --apple-red-soft: rgba(255, 59, 48, 0.12);
+    --apple-orange: #FF9500;
+    --apple-indigo: #5856D6;
+
+    --card-bg: #FFFFFF;
+    --card-border: rgba(0, 0, 0, 0.06);
+    --shadow-subtle: 0 4px 16px rgba(0, 0, 0, 0.04);
+    --shadow-elevated: 0 12px 32px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+    --shadow-modal: 0 24px 48px rgba(0, 0, 0, 0.18);
+    
+    --radius-xl: 22px;
+    --radius-lg: 16px;
+    --radius-md: 12px;
+    --radius-pill: 999px;
+    --vh: 1vh;
+  }
+
+  [data-theme="dark"] {
+    --system-bg: #000000;
+    --system-bg-secondary: #1C1C1E;
+    --system-grouped-bg: #2C2C2E;
+    --glass-bg: rgba(28, 28, 30, 0.85);
+    --glass-border: rgba(255, 255, 255, 0.12);
+    --text-primary: #F2F2F7;
+    --text-secondary: #8E8E93;
+    --text-tertiary: #48484A;
+
+    --apple-blue: #0A84FF;
+    --apple-blue-deep: #409CFF;
+    --apple-blue-soft: rgba(10, 132, 255, 0.2);
+    --success: #0A84FF;
+    --success-deep: #409CFF;
+    --success-soft: rgba(10, 132, 255, 0.2);
+    --apple-red: #FF453A;
+    --apple-red-deep: #FF6961;
+    --apple-red-soft: rgba(255, 69, 58, 0.2);
+    --apple-orange: #FF9F0A;
+    --apple-indigo: #5E5CE6;
+
+    --card-bg: #1C1C1E;
+    --card-border: rgba(255, 255, 255, 0.1);
+    --shadow-subtle: 0 4px 16px rgba(0, 0, 0, 0.4);
+    --shadow-elevated: 0 12px 32px rgba(0, 0, 0, 0.6);
+    --shadow-modal: 0 24px 48px rgba(0, 0, 0, 0.8);
+  }
+
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; user-select: none; }
+  html, body { height: 100%; margin: 0; padding: 0; background-color: var(--system-bg); color: var(--text-primary); }
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    height: calc(var(--vh, 1vh) * 100);
+    overflow: hidden;
+    position: fixed; inset: 0; width: 100%;
+    display: flex; justify-content: center; align-items: center;
+    transition: background-color 0.35s ease, color 0.35s ease;
+  }
+
+  input, textarea { user-select: text; font-family: inherit; }
+  button { font-family: inherit; border: none; background: none; cursor: pointer; padding: 0; color: inherit; }
+
+  .app {
+    display: flex; flex-direction: column;
+    height: 100%; width: 100%; max-width: 480px; margin: 0 auto;
+    position: relative; background: var(--system-bg);
+    box-shadow: var(--shadow-elevated); overflow: hidden;
+  }
+
+  /* Top Navigation Bar */
+  .topbar {
+    padding: calc(10px + env(safe-area-inset-top, 0px)) 16px 10px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(28px) saturate(1.8);
+    -webkit-backdrop-filter: blur(28px) saturate(1.8);
+    border-bottom: 0.5px solid var(--glass-border);
+    position: relative; z-index: 30;
+  }
+  .topbar-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .topbar-title-wrap { flex: 1; min-width: 0; }
+  .app-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--apple-blue); margin: 0 0 2px; }
+  .app-title { font-size: 16px; font-weight: 700; letter-spacing: -0.022em; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  .icon-group { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+  .icon-btn {
+    width: 34px; height: 34px; border-radius: var(--radius-pill);
+    background: var(--apple-blue-soft); color: var(--apple-blue);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: transform 0.15s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.2s;
+  }
+  .icon-btn:active { transform: scale(0.92); opacity: 0.8; }
+  .icon-btn svg { width: 17px; height: 17px; stroke: currentColor; stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* Gamified HUD & Timer Bar (Active Default) */
+  .stat-row { display: flex; gap: 6px; margin-top: 10px; }
+  .stat {
+    flex: 1; display: flex; align-items: center; justify-content: center; gap: 4px;
+    background: var(--card-bg); border: 0.5px solid var(--card-border);
+    border-radius: var(--radius-pill); padding: 5px 8px; box-shadow: var(--shadow-subtle);
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s;
+  }
+  .stat-icon { font-size: 13px; line-height: 1; }
+  .stat span:last-child { font-weight: 700; font-size: 12.5px; font-family: 'JetBrains Mono', monospace; color: var(--text-primary); }
+  .stat.streak.hot { border-color: var(--apple-orange); background: rgba(255, 149, 0, 0.08); }
+  .stat.streak.hot .stat-icon { animation: flamePulse 1.2s infinite ease-in-out alternate; }
+  @keyframes flamePulse { 0% { transform: scale(1); } 100% { transform: scale(1.22); } }
+  
+  /* Top Timer Default Active */
+  .stat.timer-stat { border-color: var(--apple-blue); background: var(--apple-blue-soft); display: flex; }
+  .stat.timer-stat.warning { border-color: var(--apple-red); background: var(--apple-red-soft); animation: timerPulse 0.8s infinite ease-in-out alternate; }
+  @keyframes timerPulse { 0% { transform: scale(1); } 100% { transform: scale(1.05); } }
+  .stat.power.usable { border-color: var(--apple-indigo); background: rgba(88, 86, 214, 0.08); cursor: pointer; }
+  .stat.power.usable:active { transform: scale(0.94); }
+  .stat.power:not(.usable) { opacity: 0.55; }
+  .opt.power-removed { opacity: 0.35; text-decoration: line-through; pointer-events: none; }
+
+  .progress-track { margin-top: 10px; height: 4px; border-radius: var(--radius-pill); background: var(--system-grouped-bg); overflow: hidden; }
+  .progress-fill { height: 100%; width: 0%; background: var(--apple-blue); border-radius: var(--radius-pill); transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+
+  /* Main Interactive Stage with Vertical/Horizontal Gestures */
+  .stage {
+    flex: 1; position: relative; padding: 10px 10px 4px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden;
+    touch-action: none;
+  }
+  .card-slot { position: relative; width: 100%; height: 100%; display: flex; flex-direction: column; }
+
+  .card {
+    position: absolute; inset: 0;
+    background: var(--card-bg); border-radius: var(--radius-xl);
+    border: 0.5px solid var(--card-border); box-shadow: var(--shadow-elevated);
+    padding: 14px 16px; display: flex; flex-direction: column;
+    will-change: transform; overflow: hidden;
+  }
+  .card.behind {
+    z-index: 1; pointer-events: none;
+    transform: scale(0.95) translateY(-8px); opacity: 0.45;
+  }
+  .card.active { z-index: 2; transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s; }
+
+  .card-header-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; flex-shrink: 0; }
+  .card-tag {
+    font-size: 10.5px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
+    color: var(--text-secondary); display: flex; align-items: center; gap: 6px;
+  }
+  .card-tag .tag-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+  
+  .play-pause-btn {
+    width: 32px; height: 32px; border-radius: var(--radius-pill);
+    background: var(--apple-blue-soft); color: var(--apple-blue);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: transform 0.15s, background 0.2s, color 0.2s;
+  }
+  .play-pause-btn:active { transform: scale(0.92); }
+  .play-pause-btn.playing { background: var(--apple-blue); color: #FFFFFF; }
+  .play-pause-btn svg { width: 14px; height: 14px; fill: currentColor; }
+
+  .card-qtext { font-size: 15px; font-weight: 700; line-height: 1.35; letter-spacing: -0.015em; color: var(--text-primary); margin: 0 0 8px; flex-shrink: 0; }
+  .card-body { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 5px; overflow-y: auto; padding-right: 2px; }
+
+  /* Options Buttons - Pure Blue Accents */
+  .opt-wrap { display: flex; flex-direction: column; gap: 3px; width: 100%; }
+  .opt {
+    border: 0.5px solid var(--card-border); background: var(--system-bg); text-align: left; padding: 8px 10px;
+    border-radius: var(--radius-lg); cursor: pointer; font-size: 13px; font-weight: 500;
+    color: var(--text-primary); width: 100%; display: flex; align-items: center; gap: 8px;
+    transition: transform 0.15s, border-color 0.2s, background 0.2s;
+  }
+  .opt:hover { border-color: var(--apple-blue); }
+  .opt-letter {
+    width: 20px; height: 20px; border-radius: var(--radius-pill); background: var(--system-grouped-bg); color: var(--text-secondary);
+    font-weight: 700; font-size: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .opt:active { transform: scale(0.98); }
+  .opt.correct { background: var(--apple-blue-soft); border-color: var(--apple-blue); color: var(--apple-blue-deep); font-weight: 700; }
+  .opt.correct .opt-letter { background: var(--apple-blue); color: #FFFFFF; }
+  .opt.wrong { background: var(--apple-red-soft); border-color: var(--apple-red); color: var(--apple-red-deep); font-weight: 700; }
+  .opt.wrong .opt-letter { background: var(--apple-red); color: #FFFFFF; }
+  .opt:disabled, .opt.locked { pointer-events: none; }
+
+  .wrong-ans-hint {
+    font-size: 12px; line-height: 1.4; color: var(--apple-blue-deep); background: var(--apple-blue-soft);
+    border: 0.5px solid var(--apple-blue); border-radius: var(--radius-md); padding: 8px 10px; margin-top: 4px;
+    display: flex; align-items: flex-start; gap: 8px;
+  }
+  .wrong-ans-hint .wah-icon {
+    flex-shrink: 0; width: 16px; height: 16px; border-radius: 50%; background: var(--apple-blue); color: #FFFFFF;
+    display: flex; align-items: center; justify-content: center; margin-top: 1px;
+  }
+  .wrong-ans-hint .wah-icon svg { width: 10px; height: 10px; stroke: currentColor; stroke-width: 3; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .wrong-ans-hint .wah-text { flex: 1; min-width: 0; }
+  .wrong-ans-hint .wah-label { display: block; font-weight: 600; font-size: 10px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--apple-blue-deep); opacity: 0.8; margin-bottom: 1px; }
+  .wrong-ans-hint .wah-answer { font-weight: 700; }
+
+  .tf-grid { display: flex; gap: 8px; margin-top: 2px; }
+  .tf-wrap { flex: 1; display: flex; flex-direction: column; gap: 3px; }
+  .tf-opt { width: 100%; padding: 10px 8px; border-radius: var(--radius-lg); border: 0.5px solid var(--card-border); background: var(--system-bg); font-weight: 600; font-size: 13px; color: var(--text-primary); cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 3px; }
+  .tf-opt span.tf-emoji { font-size: 15px; }
+  .tf-opt:active { transform: scale(0.97); }
+  .tf-opt.correct { background: var(--apple-blue-soft); border-color: var(--apple-blue); color: var(--apple-blue-deep); }
+  .tf-opt.wrong { background: var(--apple-red-soft); border-color: var(--apple-red); color: var(--apple-red-deep); }
+
+  .fill-input-container { position: relative; width: 100%; display: flex; align-items: center; }
+  .fill-input {
+    border: 1px solid var(--card-border); border-radius: var(--radius-md); background: var(--system-bg); font-size: 13px;
+    padding: 9px 36px 9px 10px; color: var(--text-primary); outline: none; width: 100%; transition: border-color 0.2s;
+  }
+  .fill-input:focus { border-color: var(--apple-blue); background: var(--card-bg); }
+  .fill-input.correct { border-color: var(--apple-blue); background: var(--apple-blue-soft); color: var(--apple-blue-deep); font-weight: 600; }
+  .fill-input.wrong { border-color: var(--apple-red); background: var(--apple-red-soft); color: var(--apple-red-deep); font-weight: 600; }
+  
+  .input-mic-btn {
+    position: absolute; right: 6px; width: 26px; height: 26px; border-radius: 50%;
+    background: var(--apple-blue-soft); color: var(--apple-blue);
+    display: flex; align-items: center; justify-content: center; cursor: pointer;
+    transition: transform 0.15s, background 0.2s, color 0.2s;
+  }
+  .input-mic-btn:active { transform: scale(0.9); }
+  .input-mic-btn.recording { background: var(--apple-red); color: #FFFFFF; animation: micPulse 1.1s ease-in-out infinite; }
+  @keyframes micPulse { 0% { transform: scale(1); } 50% { transform: scale(1.15); } 100% { transform: scale(1); } }
+
+  .fill-check-btn {
+    background: var(--apple-blue); color: #FFFFFF; border: none; font-weight: 600; font-size: 13px;
+    padding: 9px; border-radius: var(--radius-md); cursor: pointer; transition: background 0.2s; margin-top: 4px;
+  }
+  .fill-check-btn:active { opacity: 0.88; }
+
+  .opt.match-opt { padding: 8px 10px; font-size: 12px; border-radius: var(--radius-md); }
+
+  /* Short Answers - Digitally Viable Interactive Bullet Selection Chips */
+  .sa-select-container { display: flex; flex-direction: column; gap: 8px; width: 100%; margin-top: 4px; }
+  .sa-instruction { font-size: 11.5px; font-weight: 700; color: var(--apple-blue); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 2px; }
+  .sa-chip {
+    border: 1px solid var(--card-border); background: var(--system-bg); padding: 10px 12px;
+    border-radius: var(--radius-md); cursor: pointer; font-size: 12.5px; line-height: 1.4;
+    color: var(--text-primary); display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    transition: border-color 0.2s, background 0.2s, transform 0.12s;
+  }
+  .sa-chip:active { transform: scale(0.98); }
+  .sa-chip.selected { border-color: var(--apple-blue); background: var(--apple-blue-soft); color: var(--apple-blue-deep); font-weight: 600; }
+  .sa-chip-icon {
+    width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid var(--text-tertiary);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: var(--card-bg);
+  }
+  .sa-chip.selected .sa-chip-icon { border-color: var(--apple-blue); background: var(--apple-blue); color: #FFFFFF; }
+  .sa-chip-icon svg { width: 12px; height: 12px; stroke: currentColor; stroke-width: 3; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* Writing Pad Floating ICON ONLY Trigger */
+  .floating-pad-trigger {
+    position: absolute; right: 16px; bottom: 74px; z-index: 25;
+    background: var(--apple-indigo); color: #FFFFFF; width: 44px; height: 44px;
+    border-radius: 50%; box-shadow: var(--shadow-elevated);
+    display: flex; align-items: center; justify-content: center; cursor: pointer;
+    transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s;
+  }
+  .floating-pad-trigger:active { transform: scale(0.92); }
+  .floating-pad-trigger svg { width: 20px; height: 20px; stroke: currentColor; stroke-width: 2.2; fill: none; }
+
+  /* Navigation & Bottom Tab Bar */
+  .bottom-controls {
+    flex-shrink: 0; display: flex; flex-direction: column;
+    background: var(--glass-bg);
+    backdrop-filter: blur(28px) saturate(1.8); -webkit-backdrop-filter: blur(28px) saturate(1.8);
+    border-top: 0.5px solid var(--glass-border);
+    position: relative; z-index: 40;
+  }
+  .navbar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 6px 16px 2px;
+  }
+  .nav-fab {
+    width: 36px; height: 36px; border-radius: var(--radius-pill); background: var(--card-bg);
+    color: var(--text-primary); display: flex; align-items: center; justify-content: center;
+    cursor: pointer; border: 0.5px solid var(--card-border); flex-shrink: 0;
+    box-shadow: var(--shadow-subtle); transition: transform 0.15s, background 0.15s, color 0.15s;
+  }
+  .nav-fab svg { width: 16px; height: 16px; }
+  .nav-fab:active { transform: scale(0.92); }
+  .nav-fab.next.ready { background: var(--apple-blue); color: #FFFFFF; border-color: var(--apple-blue); box-shadow: 0 4px 14px rgba(0, 122, 255, 0.32); }
+  .nav-fab.locked { opacity: 0.35; pointer-events: none; }
+  .qcounter {
+    font-weight: 700; font-size: 11.5px; color: var(--text-primary);
+    background: var(--card-bg); border: 0.5px solid var(--card-border); border-radius: var(--radius-pill);
+    padding: 4px 12px; box-shadow: var(--shadow-subtle); font-family: 'JetBrains Mono', monospace;
+  }
+
+  .tabbar {
+    display: flex; align-items: center; justify-content: space-around;
+    padding: 4px 6px calc(6px + env(safe-area-inset-bottom, 0px));
+  }
+  .tab-btn {
+    border: none; background: none; color: var(--text-secondary); cursor: pointer;
+    padding: 6px 16px; border-radius: 12px; display: flex; flex-direction: column; align-items: center; gap: 2px;
+    font-size: 10px; font-weight: 600; transition: color 0.15s, transform 0.15s; min-width: 68px;
+  }
+  .tab-btn svg { width: 18px; height: 18px; stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .tab-btn:active { transform: scale(0.92); }
+  .tab-btn.active { color: var(--apple-blue); }
+
+  /* Toast Notification Overlay */
+  .toast {
+    position: fixed; left: 50%; bottom: 95px; transform: translateX(-50%) translateY(10px);
+    background: var(--text-primary); color: var(--system-bg); font-size: 12px; font-weight: 600;
+    padding: 8px 16px; border-radius: var(--radius-pill); box-shadow: var(--shadow-modal);
+    opacity: 0; pointer-events: none; z-index: 90; max-width: 84%; text-align: center;
+    transition: opacity 0.25s, transform 0.25s;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  #floatLayer { position: fixed; inset: 0; pointer-events: none; z-index: 95; }
+  .float-pt { position: absolute; font-weight: 800; font-size: 14px; animation: floatUp 0.9s ease forwards; }
+  @keyframes floatUp { 0% { opacity: 0; transform: translateY(6px) scale(0.8); } 15% { opacity: 1; transform: translateY(0) scale(1); } 100% { opacity: 0; transform: translateY(-34px) scale(1); } }
+
+  /* Settings Sheet Modal */
+  .sheet-backdrop { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.4); opacity: 0; pointer-events: none; transition: opacity 0.25s; z-index: 98; }
+  .sheet-backdrop.show { opacity: 1; pointer-events: auto; }
+  .settings-sheet {
+    position: fixed; left: 50%; bottom: 0; transform: translate(-50%, 100%);
+    width: 100%; max-width: 480px; background: var(--card-bg); color: var(--text-primary);
+    border-radius: 28px 28px 0 0; padding: 12px 20px calc(24px + env(safe-area-inset-bottom, 0px));
+    z-index: 99; transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    max-height: 85vh; overflow-y: auto; box-shadow: var(--shadow-modal);
+  }
+  .settings-sheet.show { transform: translate(-50%, 0); }
+  .sheet-handle { width: 36px; height: 5px; background: var(--text-tertiary); border-radius: var(--radius-pill); margin: 6px auto 16px; }
+  .sheet-title { font-weight: 700; font-size: 18px; margin: 0 0 2px; }
+  .sheet-sub { font-size: 12px; color: var(--text-secondary); margin: 0 0 16px; }
+
+  .settings-group {
+    background: var(--system-bg); border-radius: var(--radius-lg); border: 0.5px solid var(--card-border);
+    padding: 4px 14px; margin-bottom: 12px;
+  }
+  .settings-group-title { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-secondary); margin: 10px 0 4px; }
+  
+  .setting-row {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    padding: 10px 0; border-bottom: 0.5px solid var(--card-border);
+  }
+  .setting-row:last-of-type { border-bottom: none; }
+  .setting-label { font-weight: 600; font-size: 13.5px; color: var(--text-primary); display: flex; align-items: center; gap: 8px; }
+  .setting-desc { font-size: 11px; color: var(--text-secondary); margin-top: 2px; line-height: 1.3; }
+
+  .toggle {
+    width: 46px; height: 26px; border-radius: var(--radius-pill); background: var(--system-grouped-bg); position: relative; cursor: pointer; flex-shrink: 0; border: none; transition: background 0.25s;
+  }
+  .toggle::after { content: ''; position: absolute; top: 2px; left: 2px; width: 22px; height: 22px; border-radius: 50%; background: #FFFFFF; box-shadow: 0 2px 4px rgba(0,0,0,0.2); transition: left 0.2s cubic-bezier(0.16, 1, 0.3, 1); }
+  .toggle.on { background: var(--apple-blue); }
+  .toggle.on::after { left: 22px; }
+
+  .voice-select {
+    width: 100%; margin-top: 6px; border: 1px solid var(--card-border); border-radius: var(--radius-md); background: var(--card-bg);
+    color: var(--text-primary); font-size: 12.5px; padding: 8px; outline: none;
+  }
+
+  .theme-row { display: flex; gap: 8px; margin: 6px 0 8px; }
+  .theme-opt {
+    flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 8px;
+    border: 1px solid var(--card-border); border-radius: var(--radius-md); background: var(--card-bg); cursor: pointer;
+    font-weight: 600; font-size: 12.5px; color: var(--text-secondary); transition: all 0.2s;
+  }
+  .theme-opt svg { width: 15px; height: 15px; stroke: currentColor; stroke-width: 2; fill: none; }
+  .theme-opt.active { border-color: var(--apple-blue); color: var(--apple-blue); background: var(--apple-blue-soft); }
+
+  .reset-btn {
+    width: 100%; margin-top: 4px; background: none; border: 1px dashed var(--apple-red); color: var(--apple-red);
+    font-weight: 700; font-size: 13.5px; padding: 10px; border-radius: var(--radius-lg); cursor: pointer; transition: background 0.2s;
+  }
+  .reset-btn:active { background: var(--apple-red-soft); }
+
+  /* Modals */
+  .modal-backdrop { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(8px); opacity: 0; pointer-events: none; transition: opacity 0.25s; z-index: 100; display: flex; align-items: center; justify-content: center; padding: 20px; }
+  .modal-backdrop.show { opacity: 1; pointer-events: auto; }
+  .modal-card { background: var(--card-bg); color: var(--text-primary); border-radius: 22px; width: 100%; max-width: 380px; padding: 20px; box-shadow: var(--shadow-modal); border: 0.5px solid var(--card-border); }
+  .modal-title { font-weight: 700; font-size: 17px; margin: 0 0 4px; }
+  .modal-desc { font-size: 12.5px; color: var(--text-secondary); margin: 0 0 16px; line-height: 1.4; }
+  .modal-btn-group { display: flex; flex-direction: column; gap: 8px; }
+  .modal-btn {
+    width: 100%; padding: 12px; border-radius: var(--radius-md); font-weight: 600; font-size: 13.5px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .modal-btn.primary { background: var(--apple-blue); color: #FFFFFF; }
+  .modal-btn.secondary { background: var(--system-bg); color: var(--text-primary); border: 0.5px solid var(--card-border); }
+  .modal-btn.danger { background: var(--apple-red); color: #FFFFFF; }
+  .modal-btn.cancel { background: none; color: var(--text-secondary); }
+
+  /* Deck Completion Screen */
+  .complete-screen {
+    position: fixed; inset: 0; z-index: 80; display: none; align-items: center; justify-content: center;
+    background: var(--system-bg); padding: 30px 24px; text-align: center; overflow: hidden;
+  }
+  .complete-screen.show { display: flex; }
+  .complete-inner { max-width: 380px; width: 100%; position: relative; z-index: 2; }
+  .complete-emoji { font-size: 44px; margin-bottom: 4px; }
+  .complete-title { font-weight: 800; font-size: 22px; letter-spacing: -0.02em; color: var(--text-primary); margin: 0 0 4px; }
+  .complete-sub { font-size: 13.5px; color: var(--text-secondary); margin: 0 0 20px; }
+  .complete-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+  .complete-stat { background: var(--card-bg); border: 0.5px solid var(--card-border); border-radius: var(--radius-lg); padding: 12px 10px; box-shadow: var(--shadow-subtle); }
+  .complete-stat .cs-val { font-weight: 700; font-size: 18px; color: var(--apple-blue); font-family: 'JetBrains Mono', monospace; }
+  .complete-stat .cs-label { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-secondary); margin-top: 2px; }
+  .replay-btn {
+    background: var(--apple-blue); color: #FFFFFF; border: none; font-weight: 700; font-size: 14.5px;
+    padding: 13px 26px; border-radius: var(--radius-pill); cursor: pointer; box-shadow: 0 4px 16px rgba(0, 122, 255, 0.32);
+  }
+
+  /* Revision Screen */
+  .review-screen {
+    position: fixed; inset: 0; z-index: 70; background: var(--system-bg);
+    display: none; flex-direction: column; max-width: 480px; margin: 0 auto;
+  }
+  .review-screen.show { display: flex; }
+  .rev-toolbar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 8px 16px; background: var(--glass-bg); backdrop-filter: blur(28px); border-bottom: 0.5px solid var(--glass-border);
+  }
+  .rev-toggle-btn {
+    display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600;
+    padding: 6px 12px; border-radius: var(--radius-pill); border: 0.5px solid var(--card-border);
+    background: var(--card-bg); color: var(--text-primary); cursor: pointer;
+    transition: background 0.15s, transform 0.12s;
+  }
+  .rev-toggle-btn:active { transform: scale(0.95); }
+  .rev-toggle-btn.hidden-mode { background: var(--apple-red-soft); border-color: var(--apple-red); color: var(--apple-red-deep); }
+
+  .review-body { flex: 1; overflow-y: auto; padding: 14px 14px 24px; }
+  .review-body.answers-hidden .ri-ans { display: none; }
+  .review-item.revealed .ri-ans { display: flex !important; }
+  .ri-reveal-hint {
+    display: none; font-size: 11.5px; font-weight: 600; color: var(--apple-blue); cursor: pointer;
+    padding: 6px 10px; background: var(--apple-blue-soft); border-radius: var(--radius-md); margin-top: 6px; text-align: center;
+  }
+  .review-body.answers-hidden .ri-reveal-hint { display: block; }
+  .review-item.revealed .ri-reveal-hint { display: none; }
+
+  .review-item {
+    background: var(--card-bg); border-radius: var(--radius-lg); padding: 12px 14px; margin-bottom: 10px; color: var(--text-primary);
+    border: 0.5px solid var(--card-border); box-shadow: var(--shadow-subtle);
+  }
+  .review-item .ri-q { font-weight: 600; font-size: 13.5px; line-height: 1.38; margin: 0 0 6px; display: flex; gap: 8px; align-items: flex-start; }
+  .review-item .ri-num {
+    flex-shrink: 0; width: 20px; height: 20px; border-radius: 6px; background: var(--system-grouped-bg); color: var(--text-secondary);
+    font-size: 10.5px; font-weight: 700; display: flex; align-items: center; justify-content: center;
+  }
+  .review-item .ri-ans {
+    font-size: 12.5px; line-height: 1.4; background: var(--apple-blue-soft); border-left: 3px solid var(--apple-blue); border-radius: var(--radius-md);
+    padding: 8px 10px; color: var(--apple-blue-deep); display: flex; flex-direction: column; gap: 4px;
+  }
+
+  /* FULL-SCREEN HANDWRITING PAD OVERLAY */
+  .hw-overlay {
+    position: fixed; inset: 0; z-index: 150; background: var(--system-bg);
+    display: flex; flex-direction: column; opacity: 0; pointer-events: none; transition: opacity 0.25s ease;
+  }
+  .hw-overlay.show { opacity: 1; pointer-events: auto; }
+  .hw-panel {
+    width: 100%; height: 100%; background: var(--card-bg); border-radius: 0; overflow: hidden;
+    display: flex; flex-direction: column; padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  .hw-head { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; border-bottom: 0.5px solid var(--card-border); background: var(--glass-bg); backdrop-filter: blur(20px); }
+  .hw-title { font-weight: 800; font-size: 17px; color: var(--text-primary); display: flex; align-items: center; gap: 8px; }
+  .hw-icon-btn {
+    width: 36px; height: 36px; border-radius: 50%; border: 0.5px solid var(--card-border);
+    background: var(--system-bg); color: var(--text-primary); display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: transform 0.12s, background 0.15s; flex-shrink: 0;
+  }
+  .hw-icon-btn:active { transform: scale(0.9); }
+  .hw-icon-btn.primary { background: var(--apple-blue); color: #FFFFFF; border-color: var(--apple-blue); }
+  .hw-icon-btn svg { width: 18px; height: 18px; stroke: currentColor; stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
+  .hw-canvas-wrap {
+    flex: 1; position: relative; background:
+      repeating-linear-gradient(var(--card-bg), var(--card-bg) 31px, var(--card-border) 32px);
+    touch-action: none; overflow: hidden;
+  }
+  .hw-canvas-container { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .hw-canvas-container canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; cursor: crosshair; touch-action: none; }
+  
+  .hw-tools { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 20px calc(12px + env(safe-area-inset-bottom, 0px)); border-top: 0.5px solid var(--card-border); background: var(--glass-bg); backdrop-filter: blur(20px); }
+  .hw-colors { display: flex; gap: 10px; }
+  .hw-color { width: 28px; height: 28px; border-radius: 50%; border: 2.5px solid transparent; cursor: pointer; padding: 0; }
+  .hw-color.active { border-color: var(--text-primary); transform: scale(1.1); }
+  .hw-actions { display: flex; gap: 10px; align-items: center; }
+
+  /* Printable Sheet Styles (Explicit Match to HTML Titles) */
+  .print-sheet { display: none; }
+  @media print {
+    body { background: #FFFFFF !important; color: #000000 !important; position: static !important; height: auto !important; overflow: visible !important; }
+    body > * { display: none !important; }
+    body > .print-sheet { display: block !important; }
+    .print-sheet { max-width: 720px; margin: 0 auto; padding: 20px; font-family: sans-serif; color: #111111; }
+    .ps-title { font-weight: 800; font-size: 22px; margin: 0 0 4px; text-transform: uppercase; letter-spacing: -0.01em; }
+    .ps-sub { font-weight: 700; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #007AFF; margin: 0 0 24px; border-bottom: 2px solid #007AFF; padding-bottom: 6px; }
+    .ps-section-head { font-weight: 700; font-size: 14px; margin: 18px 0 8px; color: #1C1C1E; background: #F2F2F7; padding: 6px 10px; border-radius: 6px; }
+    .ps-item { break-inside: avoid; margin-bottom: 12px; }
+    .ps-q { font-weight: 600; font-size: 13px; line-height: 1.4; margin: 0; }
+    .ps-num { color: #007AFF; font-weight: 700; margin-right: 4px; }
+    .ps-ans { font-size: 12px; color: #0056B3; margin-top: 4px; font-weight: 600; }
+    .ps-ans ul { margin: 2px 0; padding-left: 18px; }
+    .ps-line { font-size: 12px; color: #8E8E93; margin-top: 6px; }
+    .ps-options { margin-top: 4px; padding-left: 14px; font-size: 12px; color: #444; }
+  }
+</style>
+</head>
+<body>
+
+<div class="app" id="appQuizView">
+
+  <header class="topbar">
+    <div class="topbar-row">
+      <div class="topbar-title-wrap">
+        <p class="app-eyebrow">Theme 1 · The Human Body</p>
+        <div class="app-title">Human Circulatory System</div>
+      </div>
+      <div class="icon-group">
+        <button class="icon-btn" id="topPrintBtn" aria-label="Print Worksheet">
+          <svg viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+        </button>
+        <button class="icon-btn" id="topThemeBtn" aria-label="Toggle Theme">
+          <svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+        <button class="icon-btn" id="topSettingsBtn" aria-label="Settings">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Gamified HUD & Timer Bar (Active Default) -->
+    <div class="stat-row">
+      <div class="stat streak" id="streakStat"><span class="stat-icon">🔥</span><span id="streakVal">0</span></div>
+      <div class="stat points" id="pointsStat"><span class="stat-icon">⭐</span><span id="pointsVal">0</span></div>
+      <div class="stat power" id="powerStat" role="button" aria-label="Use power-up to remove a wrong option" tabindex="0"><span class="stat-icon">⚡</span><span id="powerVal">0</span></div>
+      <div class="stat timer-stat" id="timerStat"><span class="stat-icon">⏱️</span><span id="timerVal">30s</span></div>
+    </div>
+
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  </header>
+
+  <main class="stage" id="stage">
+    <div class="card-slot" id="cardSlot"></div>
+    
+    <!-- Writing Pad ICON ONLY Floating Button -->
+    <button class="floating-pad-trigger" id="floatingPadBtn" aria-label="Open Full Screen Writing Pad">
+      <svg viewBox="0 0 24 24"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+    </button>
+  </main>
+
+  <div class="bottom-controls">
+    <div class="navbar">
+      <button class="nav-fab prev" id="prevBtn" aria-label="Previous question">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg>
+      </button>
+      <div class="qcounter" id="qCounter">Q1 / 31</div>
+      <button class="nav-fab next" id="nextBtn" aria-label="Next question">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg>
+      </button>
+    </div>
+
+    <nav class="tabbar">
+      <button class="tab-btn active" id="tabQuiz" aria-label="Quiz Mode">
+        <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+        <span>Quiz</span>
+      </button>
+
+      <button class="tab-btn" id="tabRevision" aria-label="Revision Mode">
+        <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"></path><path d="M6 12v5c0 1.5 2.5 3 6 3s6-1.5 6-3v-5"></path></svg>
+        <span>Revision</span>
+      </button>
+
+      <button class="tab-btn" id="tabReset" aria-label="Reset Progress">
+        <svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+        <span>Reset</span>
+      </button>
+    </nav>
+  </div>
+</div>
+
+<!-- Revision Screen -->
+<div class="review-screen" id="reviewScreen">
+  <header class="topbar">
+    <div class="topbar-row">
+      <div class="topbar-title-wrap">
+        <p class="app-eyebrow">Revision Guide</p>
+        <div class="app-title">Revision &amp; Study</div>
+      </div>
+      <div class="icon-group">
+        <button class="icon-btn" id="reviewPrintBtn" aria-label="Print Worksheet">
+          <svg viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+        </button>
+        <button class="icon-btn" id="reviewThemeBtn" aria-label="Toggle Theme">
+          <svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+        <button class="icon-btn" id="reviewSettingsBtn" aria-label="Settings">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="rev-toolbar">
+    <button class="rev-toggle-btn" id="revAnsToggleBtn">
+      <svg id="revAnsIcon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+      <span id="revAnsText">Hide Answers</span>
+    </button>
+    <button class="rev-toggle-btn" id="rtabPlay">
+      <svg id="rplayIcon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+      <span id="rplayText">Listen All</span>
+    </button>
+  </div>
+
+  <div class="review-body" id="reviewBody"></div>
+
+  <nav class="tabbar">
+    <button class="tab-btn" id="rtabQuiz" aria-label="Quiz Mode">
+      <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+      <span>Quiz</span>
+    </button>
+
+    <button class="tab-btn active" id="rtabRevision" aria-label="Revision Mode">
+      <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"></path><path d="M6 12v5c0 1.5 2.5 3 6 3s6-1.5 6-3v-5"></path></svg>
+      <span>Revision</span>
+    </button>
+
+    <button class="tab-btn" id="rtabReset" aria-label="Reset Progress">
+      <svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+      <span>Reset</span>
+    </button>
+  </nav>
+</div>
+
+<div id="floatLayer"></div>
+<div class="toast" id="toast"></div>
+
+<!-- Settings Sheet -->
+<div class="sheet-backdrop" id="sheetBackdrop"></div>
+<div class="settings-sheet" id="settingsSheet" role="dialog" aria-label="Settings">
+  <div class="sheet-handle"></div>
+  <p class="sheet-title">Settings</p>
+  <p class="sheet-sub">Customize theme, speech, timer duration &amp; print options.</p>
+
+  <div class="settings-group">
+    <div class="settings-group-title">Appearance</div>
+    <div class="theme-row">
+      <button class="theme-opt" id="themeOptLight" data-theme-opt="light">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"></path></svg>
+        Bright
+      </button>
+      <button class="theme-opt" id="themeOptDark" data-theme-opt="dark">
+        <svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        Dark
+      </button>
+    </div>
+  </div>
+
+  <div class="settings-group">
+    <div class="settings-group-title">Timer &amp; Gameplay Controls</div>
+    <div class="setting-row">
+      <div>
+        <div class="setting-label">Top Timer (Default)</div>
+        <div class="setting-desc">Toggle top countdown timer display.</div>
+      </div>
+      <button class="toggle on" id="toggleTimer" role="switch" aria-checked="true"></button>
+    </div>
+    <div class="setting-row" id="timerSecRow">
+      <div>
+        <div class="setting-label">Timer Duration</div>
+        <div class="setting-desc">Set default countdown duration per card.</div>
+      </div>
+      <select class="voice-select" id="timerSecSelect" style="width:110px; margin:0;">
+        <option value="15">15 sec</option>
+        <option value="30" selected>30 sec</option>
+        <option value="60">60 sec</option>
+      </select>
+    </div>
+    <div class="setting-row">
+      <div>
+        <div class="setting-label">Backward Swipe / Navigation</div>
+        <div class="setting-desc">Revisit earlier answered cards.</div>
+      </div>
+      <button class="toggle on" id="toggleBack" role="switch" aria-checked="true"></button>
+    </div>
+  </div>
+
+  <div class="settings-group">
+    <div class="settings-group-title">Voice &amp; Audio</div>
+    <div class="setting-row">
+      <div>
+        <div class="setting-label">Audio Chimes &amp; SFX</div>
+        <div class="setting-desc">Play sound effects on quiz answers.</div>
+      </div>
+      <button class="toggle on" id="toggleSfx" role="switch" aria-checked="true"></button>
+    </div>
+    <div class="setting-row" style="border-bottom:none;">
+      <div>
+        <div class="setting-label">Automatic Card Reading</div>
+        <div class="setting-desc">Automatically read card prompt when shown.</div>
+      </div>
+      <button class="toggle" id="toggleSound" role="switch" aria-checked="false"></button>
+    </div>
+    <select class="voice-select" id="voiceSelect" aria-label="Speech Voice Selection"></select>
+  </div>
+
+  <div class="settings-group">
+    <div class="settings-group-title">Print Worksheet</div>
+    <div class="setting-row" style="border-bottom:none;">
+      <div>
+        <div class="setting-label">Generate Document</div>
+        <div class="setting-desc">Print practice sheet with exact HTML headers.</div>
+      </div>
+      <button class="sa-btn" id="openPrintBtnModal" style="width:auto; padding:6px 14px; margin:0;">Print</button>
+    </div>
+  </div>
+
+  <button class="reset-btn" id="resetBtn">Reset All Progress</button>
+</div>
+
+<!-- Reset Modal -->
+<div class="modal-backdrop" id="confirmModal">
+  <div class="modal-card">
+    <div class="modal-title">Reset Progress</div>
+    <div class="modal-desc">Are you sure you want to reset all your points, streaks, and saved answers?</div>
+    <div class="modal-btn-group">
+      <button class="modal-btn danger" id="btnConfirmReset">Yes, Reset Progress</button>
+      <button class="modal-btn secondary" id="btnCancelReset">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Print Modal -->
+<div class="modal-backdrop" id="printModal">
+  <div class="modal-card">
+    <div class="modal-title">Print Worksheet</div>
+    <div class="modal-desc">Choose your print layout format:</div>
+    <div class="modal-btn-group">
+      <button class="modal-btn primary" id="btnPrintWithAns">Print With Bulleted Answer Key</button>
+      <button class="modal-btn secondary" id="btnPrintBlank">Print Blank Practice Sheet</button>
+      <button class="modal-btn cancel" id="btnPrintCancel">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Deck Complete View -->
+<div class="complete-screen" id="completeScreen">
+  <div class="complete-inner">
+    <div class="complete-emoji" id="completeEmoji">🏆</div>
+    <h2 class="complete-title" id="completeTitle">Worksheet Complete!</h2>
+    <p class="complete-sub" id="completeSub">Fantastic performance on Human Circulation.</p>
+    <div class="complete-grid">
+      <div class="complete-stat"><div class="cs-val" id="csScore">0/26</div><div class="cs-label">Correct</div></div>
+      <div class="complete-stat"><div class="cs-val" id="csAccuracy">0%</div><div class="cs-label">Accuracy</div></div>
+      <div class="complete-stat"><div class="cs-val" id="csPoints">0</div><div class="cs-label">Points</div></div>
+      <div class="complete-stat"><div class="cs-val" id="csStreak">0</div><div class="cs-label">Best Streak</div></div>
+    </div>
+    <div class="complete-actions">
+      <button class="replay-btn" id="replayBtn">Play Again</button>
+    </div>
+  </div>
+</div>
+
+<!-- FULL SCREEN HANDWRITING PAD -->
+<div class="hw-overlay" id="hwOverlay">
+  <div class="hw-panel">
+    <div class="hw-head">
+      <div class="hw-title">
+        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.2" fill="none"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+        Writing Pad
+      </div>
+      <button class="hw-icon-btn" id="hwClose" aria-label="Close full screen writing pad">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    
+    <div class="hw-canvas-wrap" id="hwCanvasWrap">
+      <div class="hw-canvas-container">
+        <canvas id="hwCanvas"></canvas>
+      </div>
+    </div>
+
+    <div class="hw-tools">
+      <div class="hw-colors">
+        <button class="hw-color active" data-color="#1c1c1e" style="background:#1c1c1e" aria-label="Black ink"></button>
+        <button class="hw-color" data-color="#007aff" style="background:#007aff" aria-label="Blue ink"></button>
+        <button class="hw-color" data-color="#5856d6" style="background:#5856d6" aria-label="Indigo ink"></button>
+        <button class="hw-color" data-color="#ff3b30" style="background:#ff3b30" aria-label="Red ink"></button>
+      </div>
+      <div class="hw-actions">
+        <button class="hw-icon-btn primary" id="hwSave" aria-label="Save handwriting">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </button>
+        <button class="hw-icon-btn" id="hwUndo" aria-label="Undo stroke">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14L4 9l5-5"></path><path d="M4 9h10a6 6 0 0 1 6 6v0a6 6 0 0 1-6 6H11"></path></svg>
+        </button>
+        <button class="hw-icon-btn" id="hwRedo" aria-label="Redo stroke">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14l5-5-5-5"></path><path d="M20 9H10a6 6 0 0 0-6 6v0a6 6 0 0 0 6 6h1"></path></svg>
+        </button>
+        <button class="hw-icon-btn" id="hwClear" aria-label="Clear canvas">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="printSheet" class="print-sheet"></div>
+
+<script>
+(function(){
+  "use strict";
+
+  function setVh(){ document.documentElement.style.setProperty('--vh', (window.innerHeight*0.01)+'px'); }
+  setVh(); window.addEventListener('resize', setVh);
+
+  // MATCHING OPTIONS SPLIT INTO TWO CLEAN 5-OPTION SECTIONS
+  var MATCH_SECTION_1 = [
+    "Carries oxygen to all body cells",
+    "Fights germs and protects the body",
+    "Helps in blood clotting",
+    "Is the fluid part of blood",
+    "Tiny vessels connecting arteries and veins"
+  ];
+
+  var MATCH_SECTION_2 = [
+    "Receives deoxygenated blood from the body",
+    "Pumps deoxygenated blood to the lungs",
+    "Receives oxygenated blood from the lungs",
+    "Pumps oxygenated blood into the aorta",
+    "Main artery carrying oxygenated blood to body"
+  ];
+
+  var RAW = [];
+
+  // Section A: Tick the Correct Answer
+  var mcqA = [
+    ["Which of the following organs pumps blood?", ["Lungs","Heart","Artery","Vein"], 1],
+    ["Auricles and ventricles are:", ["Blood vessels","Blood cells","Heart chambers","Lung chambers"], 2],
+    ["Plasma is a:", ["Liquid","Solid","Muscle","Artery"], 0],
+    ["We can feel the pressure of the movement of blood through the:", ["Artery","Vein","Capillary","Skin"], 0],
+    ["In the circulatory system, the ______ carry oxygenated blood from the heart to the body, while the ______ carry deoxygenated blood back to the heart.", ["Arteries; Veins","Capillaries; Arteries","Veins; Arteries","Veins; Capillaries"], 0],
+    ["Rohan said arteries and veins are blood components. Parul said plasma and platelets. Monica said RBCs and WBCs. Abhay said plasma and antibodies. Who was correct?", ["Rohan and Parul","Monica and Abhay","Parul and Monica","Rohan and Abhay"], 2]
+  ];
+  mcqA.forEach(function(m,i){ RAW.push({type:'mcq', section:'Tick the Correct Answer', qNo:i+1, q:m[0], options:m[1], correct:m[2]}); });
+
+  // Section G: Odd One Out
+  var mcqG = [
+    ["Circle the odd one out: which of these is NOT a blood vessel?", ["Artery","WBCs","Vein","Capillaries"], 1],
+    ["Circle the odd one out: which of these is NOT a blood cell?", ["RBCs","WBCs","Capillaries","Platelets"], 2]
+  ];
+  mcqG.forEach(function(m,i){ RAW.push({type:'mcq', section:'Odd One Out', qNo:i+1, q:m[0], options:m[1], correct:m[2]}); });
+
+  // Section K: Case Study
+  var mcqK = [
+    ["Look at the blood circulation diagram: Which structure carries oxygen-rich blood from lungs to heart?", ["Pulmonary artery","Pulmonary vein","Vena cava","Aorta"], 1],
+    ["Which of the following brings impure (deoxygenated) blood to the right atrium?", ["Aorta","Pulmonary vein","Vena cava","Left ventricle"], 2],
+    ["Which blood vessel supplies oxygen-rich blood to the whole body?", ["Vena cava","Pulmonary artery","Aorta","Pulmonary vein"], 2],
+    ["The right ventricle receives blood through the:", ["Vena cava","Right atrium","Left ventricle","Aorta"], 1]
+  ];
+  mcqK.forEach(function(m,i){ RAW.push({type:'mcq', section:'Case Study', qNo:i+1, q:m[0], options:m[1], correct:m[2]}); });
+
+  // Section L: Assertion-Reason
+  var arOptions = ["Both A and R are correct, and R explains A","Both A and R are correct, but R does not explain A","A is correct, R is incorrect","A is incorrect, R is correct"];
+  var mcqL = [
+    ["Assertion (A): The rhythmic contraction and relaxation of heart muscles produces the sound called heartbeat.\nReason (R): Heartbeat is measured using a stethoscope.", arOptions, 1],
+    ["Assertion (A): Red blood cells are red in colour.\nReason (R): Red blood cells contain haemoglobin.", arOptions, 0]
+  ];
+  mcqL.forEach(function(m,i){ RAW.push({type:'mcq', section:'Assertion-Reason', qNo:i+1, q:m[0], options:m[1], correct:m[2]}); });
+
+  // Section B: Fill in the Blanks
+  var fillB = [
+    ["Arteries carry ______ blood from the heart to body parts.", "oxygenated"],
+    ["The circulatory system helps to regulate the body ______.", "temperature"],
+    ["______ help stop the loss of blood.", "platelets"],
+    ["Pulse rate is counted using an instrument called a ______.", "stethoscope"],
+    ["______ is the red-coloured pigment found in blood.", "haemoglobin"]
+  ];
+  fillB.forEach(function(f,i){ RAW.push({type:'fill', section:'Fill in the Blanks', qNo:i+1, q:f[0], answer:f[1]}); });
+
+  // Section H: Name the Structure
+  var fillH = [
+    ["Name this: a main artery that carries oxygenated blood from the heart to the whole body.", "aorta"],
+    ["Name this: a special feature in veins that lets blood flow only toward the heart and stops backward flow.", "valve"],
+    ["Name this: a blood component that protects our body from infection and germs.", "white blood cells"],
+    ["Name this: the chamber of the heart that receives oxygenated blood from the lungs.", "left atrium"],
+    ["Name this: a double-walled sac that encloses and protects the human heart.", "pericardium"]
+  ];
+  fillH.forEach(function(f,i){ RAW.push({type:'fill', section:'Name the Structure', qNo:i+1, q:f[0], answer:f[1]}); });
+
+  // Section J: Crossword Clues
+  var fillJ = [
+    ["Crossword clue: blood cells which help in clotting.", "platelets"],
+    ["Crossword clue: the four-chambered organ in the chest cavity.", "heart"],
+    ["Crossword clue: red-coloured fluid that flows in blood vessels.", "blood"],
+    ["Crossword clue: blood vessels which carry oxygenated blood from the heart.", "arteries"],
+    ["Crossword clue: the blood vessel which brings deoxygenated blood into the heart.", "vena cava"]
+  ];
+  fillJ.forEach(function(f,i){ RAW.push({type:'fill', section:'Crossword Clues', qNo:i+1, q:f[0], answer:f[1]}); });
+
+  // Section O: Maths Integration
+  var fillO = [
+    ["If your heart beats 75 times per minute, how many times does it beat in one day? (Write number only)", "108000"]
+  ];
+  fillO.forEach(function(f,i){ RAW.push({type:'fill', section:'Maths Integration', qNo:i+1, q:f[0], answer:f[1]}); });
+
+  // True or False
+  var tf = [
+    ["The heart is a muscular pumping organ.", true],
+    ["Blood cells float in the fluid part of blood called plasma.", true],
+    ["Arteries carry blood away from the heart.", true],
+    ["Veins have thick walls and carry blood under high pressure.", false],
+    ["Capillaries join arteries and veins.", true],
+    ["WBCs are the smallest blood cells.", false],
+    ["The human heart has four chambers.", true],
+    ["Doing yoga and deep breathing can help keep the heart healthy.", true],
+    ["The right side of the heart pumps oxygenated blood to the body.", false],
+    ["A resting adult heart usually beats 70-75 times a minute.", true]
+  ];
+  tf.forEach(function(t,i){ RAW.push({type:'tf', section:'True or False', qNo:i+1, q:t[0], answer:t[1]}); });
+
+  // Section F: MATCHING SECTION 1 (5 Options)
+  var matchF = [
+    ["Red Blood Cells (RBCs)", 0],
+    ["White Blood Cells (WBCs)", 1],
+    ["Platelets", 2],
+    ["Plasma", 3],
+    ["Capillaries", 4]
+  ];
+  matchF.forEach(function(m,i){ RAW.push({type:'match1', section:'Match Part 1 (Blood Components)', qNo:i+1, q:m[0], term:m[0], correct:m[1]}); });
+
+  // Section I: MATCHING SECTION 2 (5 Options)
+  var matchI = [
+    ["Right Atrium", 0],
+    ["Right Ventricle", 1],
+    ["Left Atrium", 2],
+    ["Left Ventricle", 3],
+    ["Aorta", 4]
+  ];
+  matchI.forEach(function(m,i){ RAW.push({type:'match2', section:'Match Part 2 (Heart & Circulation)', qNo:i+1, q:m[0], term:m[0], correct:m[1]}); });
+
+  // DIGITALLY VIABLE SHORT ANSWERS WITH INTERACTIVE SELECTABLE BULLET CHIPS
+  var saC = [
+    ["What are the different parts of the human circulatory system?", [
+      "🫀 Heart: Muscular organ that pumps blood",
+      "🩸 Blood Vessels: Arteries, veins, and capillaries",
+      "🔴 Blood: Liquid carrying oxygen and nutrients"
+    ]],
+    ["Name three types of blood vessels and describe their features.", [
+      "🔴 Arteries: Thick-walled; carry oxygenated blood away",
+      "🔵 Veins: Thin-walled with valves; carry blood back to heart",
+      "🟣 Capillaries: Extremely thin; connect arteries and veins"
+    ]],
+    ["Write the function of WBCs.", [
+      "🛡️ Fight Germs: Destroy invading pathogens",
+      "🦺 Body Protection: Shield against diseases"
+    ]],
+    ["Write the function of blood.", [
+      "🌬️ Transport: Delivers oxygen and nutrients to cells",
+      "🗑️ Waste Removal: Takes carbon dioxide to lungs",
+      "🌡️ Temperature: Regulates body heat balance",
+      "🩹 Clotting: Seals cuts using platelets"
+    ]],
+    ["Write the function of blood vessels.", [
+      "🛣️ Transport Network: Tubes carrying blood through body",
+      "➡️ Arteries: Direct blood away from heart",
+      "⬅️ Veins: Direct blood back to heart"
+    ]],
+    ["Describe the different chambers of the heart.", [
+      "🔼 2 Atria: Upper chambers that receive blood",
+      "🔽 2 Ventricles: Lower chambers that pump blood out",
+      "🧱 Septum: Muscular wall dividing left and right"
+    ]],
+    ["Discuss the circulation of blood in the human heart.", [
+      "1️⃣ Right Atrium: Receives deoxygenated blood",
+      "2️⃣ Right Ventricle: Pumps blood to lungs",
+      "3️⃣ Left Atrium: Receives oxygenated blood",
+      "4️⃣ Left Ventricle: Pumps blood to whole body"
+    ]]
+  ];
+  saC.forEach(function(s,i){ RAW.push({type:'sa', section:'Answer the Following', qNo:i+1, q:s[0], bullets:s[1]}); });
+
+  // Section E: Give Reasons
+  var saE = [
+    ["Why is the heart called a living pump?", [
+      "💓 Continuous Beat: Beats nonstop every minute",
+      "🔄 Blood Flow: Keeps circulation going for life"
+    ]],
+    ["Why does blood flow stop after some time when injured?", [
+      "🩹 Platelet Action: Cells gather at wound site",
+      "🔒 Mesh Plug: Creates clot to seal bleeding"
+    ]]
+  ];
+  saE.forEach(function(s,i){ RAW.push({type:'sa', section:'Give Reasons', qNo:i+1, q:s[0], bullets:s[1]}); });
+
+  // Section D: Rewrite Correctly
+  var saD = [
+    ["Rewrite correctly: Veins carry oxygenated blood from the heart to various parts of the body.", [
+      "✅ Arteries carry oxygenated blood away from the heart to body parts."
+    ]],
+    ["Rewrite correctly: Capillaries are thick vessels that join arteries and veins.", [
+      "✅ Capillaries are very thin vessels that join arteries and veins."
+    ]],
+    ["Rewrite correctly: The muscle that makes up the heart is called cartilage muscle.", [
+      "✅ The muscle that makes up the heart is called cardiac muscle."
+    ]],
+    ["Rewrite correctly: Haemoglobin is a vitamin molecule that carries oxygen from lungs to body cells.", [
+      "✅ Haemoglobin is a protein molecule that carries oxygen."
+    ]],
+    ["Rewrite correctly: The respiratory system is responsible for transporting nutrients and oxygen.", [
+      "✅ The circulatory system is responsible for transporting nutrients and oxygen."
+    ]]
+  ];
+  saD.forEach(function(s,i){ RAW.push({type:'sa', section:'Rewrite Correctly', qNo:i+1, q:s[0], bullets:s[1]}); });
+
+  // Section N: Life Skills
+  var saN = [
+    ["The heart keeps pumping blood all the time. Write a few ways to keep it healthy.", [
+      "🏃 Daily Exercise: Active play, running, or swimming",
+      "🥗 Balanced Diet: Eat fresh fruits and vegetables",
+      "🧘 Calming Habits: Practice deep breathing",
+      "😴 Restful Sleep: Sleep 8-9 hours every night"
+    ]]
+  ];
+  saN.forEach(function(s,i){ RAW.push({type:'sa', section:'Heart Health', qNo:i+1, q:s[0], bullets:s[1]}); });
+
+  var DECK = RAW;
+  var TOTAL = DECK.length;
+  var GRADED_TOTAL = DECK.filter(function(d){ return d.type!=='sa'; }).length;
+  var ACCENTS = { mcq:'var(--apple-blue)', fill:'var(--apple-blue)', tf:'var(--apple-red-deep)', match1:'var(--apple-indigo)', match2:'var(--apple-indigo)', sa:'var(--apple-blue)' };
+
+  var STORAGE_KEY = 'hcs_streak_state_v3';
+  var state = {
+    idx: 0,
+    resolved: new Array(TOTAL).fill(false),
+    answers: new Array(TOTAL).fill(null),
+    correctFlags: new Array(TOTAL).fill(null),
+    selectedBullets: new Array(TOTAL).fill([]),
+    points: 0,
+    powerPoints: 0,
+    streak: 0,
+    bestStreak: 0,
+    correctCount: 0,
+    settings: { allowBack:true, sound:false, sfx:true, theme:'light', voiceURI:'', timerEnabled:true, timerSec:30 }
+  };
+
+  function loadState(){
+    try{
+      var raw = window.localStorage.getItem(STORAGE_KEY);
+      if(!raw) return;
+      var s = JSON.parse(raw);
+      if(s && typeof s.idx === 'number' && s.resolved.length === TOTAL) state = s;
+    }catch(e){}
+  }
+  function saveState(){
+    try{ window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }catch(e){}
+  }
+  loadState();
+
+  var SUN_SVG = '<circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"></path>';
+  var MOON_SVG = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
+
+  var EYE_OPEN_SVG = '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>';
+  var EYE_OFF_SVG = '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line>';
+
+  var showRevisionAnswers = true;
+  var timerInterval = null;
+  var timerSecondsLeft = 0;
+  var lastSpokenIdx = -1;
+
+  document.getElementById('topPrintBtn').onclick = document.getElementById('reviewPrintBtn').onclick = function(){
+    document.getElementById('printModal').classList.add('show');
+  };
+
+  function applyTheme(){
+    var th = state.settings.theme === 'dark' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', th);
+    var iconSvg = th === 'dark' ? MOON_SVG : SUN_SVG;
+    document.getElementById('topThemeBtn').querySelector('svg').innerHTML = iconSvg;
+    document.getElementById('reviewThemeBtn').querySelector('svg').innerHTML = iconSvg;
+    document.getElementById('themeOptLight').classList.toggle('active', th==='light');
+    document.getElementById('themeOptDark').classList.toggle('active', th==='dark');
+  }
+  function setTheme(th){ state.settings.theme = th; applyTheme(); saveState(); }
+  document.getElementById('topThemeBtn').onclick = function(){ setTheme(state.settings.theme === 'dark' ? 'light' : 'dark'); };
+  document.getElementById('reviewThemeBtn').onclick = function(){ setTheme(state.settings.theme === 'dark' ? 'light' : 'dark'); };
+  document.getElementById('themeOptLight').onclick = function(){ setTheme('light'); };
+  document.getElementById('themeOptDark').onclick = function(){ setTheme('dark'); };
+  applyTheme();
+
+  var voicesList = [];
+  var isAudioPlaying = false;
+
+  function getActiveVoice(){
+    if(!('speechSynthesis' in window)) return null;
+    var voices = window.speechSynthesis.getVoices() || [];
+    if(state.settings.voiceURI){
+      var match = voices.find(function(v){ return v.voiceURI === state.settings.voiceURI; });
+      if(match) return match;
+    }
+    return voices.find(function(v){
+      return (v.name.includes('Google') || v.name.includes('US English')) && (v.lang === 'en-US' || v.lang === 'en_US');
+    }) || voices[0] || null;
+  }
+
+  function populateVoices(){
+    if(!('speechSynthesis' in window)) return;
+    voicesList = window.speechSynthesis.getVoices() || [];
+    var sel = document.getElementById('voiceSelect');
+    sel.innerHTML = '<option value="">Default Voice</option>';
+    voicesList.forEach(function(v){
+      var opt = document.createElement('option');
+      opt.value = v.voiceURI;
+      opt.textContent = v.name + ' (' + v.lang + ')';
+      sel.appendChild(opt);
+    });
+    if(state.settings.voiceURI) sel.value = state.settings.voiceURI;
+  }
+  if('speechSynthesis' in window){
+    populateVoices();
+    window.speechSynthesis.onvoiceschanged = populateVoices;
+  }
+
+  document.getElementById('voiceSelect').onchange = function(){
+    state.settings.voiceURI = this.value; saveState();
+  };
+
+  function togglePlayPauseText(text, buttonEl){
+    if(!('speechSynthesis' in window)) return;
+    if(isAudioPlaying){
+      window.speechSynthesis.cancel();
+      isAudioPlaying = false;
+      if(buttonEl) {
+        buttonEl.classList.remove('playing');
+        buttonEl.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>';
+      }
+    } else {
+      window.speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(text);
+      var activeV = getActiveVoice();
+      if(activeV) u.voice = activeV;
+      u.onend = u.onerror = function(){
+        isAudioPlaying = false;
+        if(buttonEl) {
+          buttonEl.classList.remove('playing');
+          buttonEl.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>';
+        }
+      };
+      isAudioPlaying = true;
+      if(buttonEl) {
+        buttonEl.classList.add('playing');
+        buttonEl.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>';
+      }
+      window.speechSynthesis.speak(u);
+    }
+  }
+
+  function speakAuto(text){
+    if(!state.settings.sound || !('speechSynthesis' in window)) return;
+    window.speechSynthesis.cancel();
+    var u = new SpeechSynthesisUtterance(text);
+    var activeV = getActiveVoice();
+    if(activeV) u.voice = activeV;
+    window.speechSynthesis.speak(u);
+  }
+
+  function playTone(freq, duration, type){
+    if(!state.settings.sfx) return;
+    try{
+      var ctx = new (window.AudioContext || window.webkitAudioContext)();
+      var osc = ctx.createOscillator();
+      var gain = ctx.createGain();
+      osc.type = type || 'sine';
+      osc.frequency.value = freq;
+      gain.gain.setValueAtTime(0.08, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+      osc.connect(gain); gain.connect(ctx.destination);
+      osc.start(); osc.stop(ctx.currentTime + duration);
+    }catch(e){}
+  }
+
+  function startVoiceRecognition(callback, onEndCallback){
+    var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if(!SR){ showToast('Voice input is not supported in this browser.'); return; }
+    var rec = new SR(); rec.lang = 'en-US'; rec.interimResults = false;
+    rec.onresult = function(e){ callback(e.results[0][0].transcript); };
+    if(onEndCallback) rec.onend = onEndCallback;
+    rec.start();
+  }
+
+  function triggerInputMicVoice(inputEl, micBtnEl){
+    micBtnEl.classList.add('recording');
+    showToast('🎙️ Listening for input...');
+    startVoiceRecognition(function(transcript){
+      inputEl.value = transcript;
+      micBtnEl.classList.remove('recording');
+      showToast('Recorded: "' + transcript + '"');
+    }, function(){
+      micBtnEl.classList.remove('recording');
+    });
+  }
+
+  /* Default Timer Countdown Logic */
+  function startCardTimer(){
+    clearInterval(timerInterval);
+    var timerStatEl = document.getElementById('timerStat');
+    var timerValEl = document.getElementById('timerVal');
+    
+    if(!state.settings.timerEnabled || state.resolved[state.idx]){
+      timerStatEl.style.display = 'none';
+      return;
+    }
+
+    timerStatEl.style.display = 'flex';
+    timerStatEl.classList.remove('warning');
+    timerSecondsLeft = parseInt(state.settings.timerSec, 10) || 30;
+    timerValEl.textContent = timerSecondsLeft + 's';
+
+    timerInterval = setInterval(function(){
+      timerSecondsLeft--;
+      timerValEl.textContent = timerSecondsLeft + 's';
+      if(timerSecondsLeft <= 5){ timerStatEl.classList.add('warning'); }
+      if(timerSecondsLeft <= 0){
+        clearInterval(timerInterval);
+        showToast('⏳ Time is up!');
+        registerGraded(state.idx, false, 'Time Expired');
+        render();
+      }
+    }, 1000);
+  }
+
+  var toastTimer = null;
+  function showToast(msg){
+    var toastEl = document.getElementById('toast');
+    toastEl.textContent = msg; toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toastEl.classList.remove('show'); }, 2200);
+  }
+
+  function floatText(text, anchorEl){
+    var rect = anchorEl.getBoundingClientRect();
+    var span = document.createElement('span');
+    span.className = 'float-pt'; span.textContent = text;
+    span.style.color = 'var(--apple-blue)';
+    span.style.left = (rect.left + rect.width/2 - 12) + 'px';
+    span.style.top = (rect.top - 4) + 'px';
+    document.getElementById('floatLayer').appendChild(span);
+    setTimeout(function(){ span.remove(); }, 900);
+  }
+
+  function updateStatsUI(){
+    document.getElementById('streakVal').textContent = state.streak;
+    document.getElementById('pointsVal').textContent = state.points;
+    document.getElementById('powerVal').textContent = state.powerPoints;
+    document.getElementById('progressFill').style.width = Math.round((state.resolved.filter(Boolean).length/TOTAL)*100) + '%';
+    document.getElementById('qCounter').textContent = 'Q' + (state.idx+1) + ' / ' + TOTAL;
+    document.getElementById('prevBtn').classList.toggle('locked', state.idx === 0 || !state.settings.allowBack);
+    document.getElementById('nextBtn').classList.toggle('ready', !!state.resolved[state.idx]);
+    document.getElementById('streakStat').classList.toggle('hot', state.streak >= 3);
+    document.getElementById('powerStat').classList.toggle('usable', state.powerPoints > 0 && canUsePower());
+  }
+
+  function canUsePower(){
+    var item = DECK[state.idx];
+    return item && !state.resolved[state.idx] && (item.type === 'mcq' || item.type.startsWith('match'));
+  }
+
+  function usePower(){
+    if(state.powerPoints <= 0 || !canUsePower()) return;
+    var item = DECK[state.idx];
+    var optEls = document.querySelectorAll('.card.active .opt');
+    var candidates = [];
+    optEls.forEach(function(el, i){
+      if(i !== item.correct && !el.classList.contains('power-removed')) candidates.push(el);
+    });
+    if(!candidates.length) return;
+    var pick = candidates[Math.floor(Math.random() * candidates.length)];
+    pick.classList.add('power-removed');
+    pick.disabled = true;
+    state.powerPoints--;
+    saveState(); updateStatsUI();
+    showToast('⚡ Power-up used — wrong option removed.');
+  }
+  document.getElementById('powerStat').onclick = usePower;
+
+  function registerGraded(idx, correct, userAnswer){
+    clearInterval(timerInterval);
+    if('speechSynthesis' in window) window.speechSynthesis.cancel();
+    state.resolved[idx] = true;
+    state.answers[idx] = userAnswer;
+    state.correctFlags[idx] = correct;
+    if(correct){
+      state.streak++;
+      if(state.streak > state.bestStreak) state.bestStreak = state.streak;
+      state.points += 10; state.correctCount++;
+      floatText('+10', document.getElementById('pointsVal'));
+      playTone(587.33, 0.15, 'sine');
+      if(state.streak % 3 === 0){
+        state.powerPoints++;
+        showToast('⚡ ' + state.streak + ' in a row! Power-up earned.');
+      } else if(state.streak === 5 || state.streak === 10 || state.streak === 15){
+        showToast('🔥 ' + state.streak + '-streak! Amazing work!');
+      }
+    } else {
+      if(state.streak >= 3) showToast('Streak broken — ' + state.streak + ' in a row ended.');
+      state.streak = 0;
+      playTone(220, 0.25, 'sawtooth');
+    }
+    updateStatsUI(); saveState();
+  }
+
+  function autoAdvance(dir){
+    var activeCard = document.querySelector('.card.active');
+    if(!activeCard) return;
+    var wasCorrect = state.correctFlags[state.idx];
+    var delay = wasCorrect === false ? 1700 : 750;
+    setTimeout(function(){
+      if(state.idx < TOTAL - 1){
+        flyOut(activeCard, dir || -1, function(){
+          state.idx++;
+          saveState();
+          render();
+        });
+      } else {
+        showComplete();
+      }
+    }, delay);
+  }
+
+  var CHECK_SVG = '<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+  function correctHintHTML(answerText){
+    return '<span class="wah-icon">' + CHECK_SVG + '</span><span class="wah-text"><span class="wah-label">Correct answer</span><span class="wah-answer">' + answerText + '</span></span>';
+  }
+
+  function flyOut(cardEl, dir, cb){
+    cardEl.style.transition = 'transform .35s cubic-bezier(.16,1,.3,1), opacity .3s';
+    if(dir === 'up') cardEl.style.transform = 'translateY(-520px)';
+    else if(dir === 'down') cardEl.style.transform = 'translateY(520px)';
+    else cardEl.style.transform = 'translateX('+(dir*520)+'px) rotate('+(dir*14)+'deg)';
+    cardEl.style.opacity = '0';
+    setTimeout(cb, 300);
+  }
+
+  function buildCard(idx){
+    var item = DECK[idx];
+    var wrap = document.createElement('div'); wrap.className = 'card active';
+    var resolved = state.resolved[idx];
+
+    var headerRow = document.createElement('div'); headerRow.className = 'card-header-row';
+    var tag = document.createElement('div'); tag.className = 'card-tag';
+    tag.innerHTML = '<span class="tag-dot" style="background:' + ACCENTS[item.type] + '"></span><span>' + item.section + ' · Q' + item.qNo + '</span>';
+
+    var playPauseBtn = document.createElement('button'); playPauseBtn.className = 'play-pause-btn';
+    playPauseBtn.setAttribute('aria-label', 'Listen');
+    playPauseBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>';
+    playPauseBtn.onclick = function(){ togglePlayPauseText(item.q, playPauseBtn); };
+
+    headerRow.appendChild(tag);
+    headerRow.appendChild(playPauseBtn);
+    wrap.appendChild(headerRow);
+
+    var qt = document.createElement('p'); qt.className='card-qtext'; qt.textContent = item.q; wrap.appendChild(qt);
+    var body = document.createElement('div'); body.className='card-body';
+
+    if(item.type==='mcq'){
+      item.options.forEach(function(optText, i){
+        var optWrap = document.createElement('div'); optWrap.className = 'opt-wrap';
+        var b = document.createElement('button'); b.className = 'opt';
+        b.innerHTML = '<span class="opt-letter">' + ['A','B','C','D'][i] + '</span><span>' + optText + '</span>';
+        optWrap.appendChild(b);
+
+        if(resolved){
+          b.classList.add('locked');
+          if(i === item.correct) {
+            b.classList.add('correct');
+          } else if(state.answers[idx] === i) {
+            b.classList.add('wrong');
+            var wrongHint = document.createElement('div'); wrongHint.className = 'wrong-ans-hint';
+            wrongHint.innerHTML = correctHintHTML(item.options[item.correct]);
+            optWrap.appendChild(wrongHint);
+          }
+        } else {
+          b.onclick = function(){
+            registerGraded(idx, i === item.correct, i);
+            render();
+            autoAdvance(-1);
+          };
+        }
+        body.appendChild(optWrap);
+      });
+    } else if(item.type==='tf'){
+      var grid = document.createElement('div'); grid.className='tf-grid';
+      [true,false].forEach(function(val){
+        var tfWrap = document.createElement('div'); tfWrap.className = 'tf-wrap';
+        var b = document.createElement('button'); b.className = 'tf-opt';
+        b.innerHTML = '<span class="tf-emoji">'+(val?'✅':'❌')+'</span>' + (val?'True':'False');
+        tfWrap.appendChild(b);
+
+        if(resolved){
+          b.classList.add('locked');
+          if(val === item.answer) {
+            b.classList.add('correct');
+          } else if(state.answers[idx] === val) {
+            b.classList.add('wrong');
+            var wrongHint = document.createElement('div'); wrongHint.className = 'wrong-ans-hint';
+            wrongHint.innerHTML = correctHintHTML(item.answer ? 'True' : 'False');
+            tfWrap.appendChild(wrongHint);
+          }
+        } else {
+          b.onclick = function(){
+            registerGraded(idx, val === item.answer, val);
+            render();
+            autoAdvance(-1);
+          };
+        }
+        grid.appendChild(tfWrap);
+      });
+      body.appendChild(grid);
+    } else if(item.type==='fill'){
+      var fillContainer = document.createElement('div'); fillContainer.className='fill-input-container';
+      var input = document.createElement('input'); input.type = 'text'; input.className='fill-input'; input.placeholder='Type answer or tap mic...';
+      
+      var micBtn = document.createElement('button'); micBtn.className='input-mic-btn';
+      micBtn.innerHTML = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line></svg>';
+      
+      var isCorrect = state.answers[idx]?.toLowerCase() === item.answer;
+      if(resolved){
+        input.value = state.answers[idx] || ''; input.disabled = true;
+        input.classList.add(isCorrect ? 'correct' : 'wrong');
+        micBtn.style.display = 'none';
+      } else {
+        micBtn.onclick = function(){ triggerInputMicVoice(input, micBtn); };
+      }
+      fillContainer.appendChild(input);
+      fillContainer.appendChild(micBtn);
+      body.appendChild(fillContainer);
+
+      if(resolved && !isCorrect){
+        var wrongHint = document.createElement('div'); wrongHint.className = 'wrong-ans-hint';
+        wrongHint.innerHTML = correctHintHTML(item.answer);
+        body.appendChild(wrongHint);
+      }
+
+      if(!resolved){
+        var checkBtn = document.createElement('button'); checkBtn.className='fill-check-btn'; checkBtn.textContent='Check Answer';
+        checkBtn.onclick = function(){
+          var val = input.value.trim(); if(!val) return;
+          registerGraded(idx, val.toLowerCase() === item.answer, val);
+          render();
+          autoAdvance(-1);
+        };
+        body.appendChild(checkBtn);
+      }
+    } else if(item.type==='match1' || item.type==='match2'){
+      var opts = item.type==='match1' ? MATCH_SECTION_1 : MATCH_SECTION_2;
+      opts.forEach(function(optText, i){
+        var optWrap = document.createElement('div'); optWrap.className = 'opt-wrap';
+        var b = document.createElement('button'); b.className = 'opt match-opt'; b.innerHTML = '<span>' + optText + '</span>';
+        optWrap.appendChild(b);
+
+        if(resolved){
+          b.classList.add('locked');
+          if(i === item.correct) {
+            b.classList.add('correct');
+          } else if(state.answers[idx] === i) {
+            b.classList.add('wrong');
+            var wrongHint = document.createElement('div'); wrongHint.className = 'wrong-ans-hint';
+            wrongHint.innerHTML = correctHintHTML(opts[item.correct]);
+            optWrap.appendChild(wrongHint);
+          }
+        } else {
+          b.onclick = function(){
+            registerGraded(idx, i === item.correct, i);
+            render();
+            autoAdvance(-1);
+          };
+        }
+        body.appendChild(optWrap);
+      });
+    } else if(item.type==='sa'){
+      /* Digitally Viable Interactive Selectable Key Points */
+      var selectContainer = document.createElement('div'); selectContainer.className = 'sa-select-container';
+      var instruct = document.createElement('div'); instruct.className = 'sa-instruction';
+      instruct.textContent = 'Select all key points you understand:';
+      selectContainer.appendChild(instruct);
+
+      var selectedList = state.selectedBullets[idx] || [];
+
+      item.bullets.forEach(function(bText, bulletIdx){
+        var chip = document.createElement('div'); chip.className = 'sa-chip';
+        if(selectedList.includes(bulletIdx)) chip.classList.add('selected');
+
+        chip.innerHTML = '<span>' + bText + '</span><span class="sa-chip-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>';
+        
+        if(!resolved){
+          chip.onclick = function(){
+            var curr = state.selectedBullets[idx] ? [...state.selectedBullets[idx]] : [];
+            var pos = curr.indexOf(bulletIdx);
+            if(pos >= 0) curr.splice(pos, 1);
+            else curr.push(bulletIdx);
+            state.selectedBullets[idx] = curr;
+            chip.classList.toggle('selected', curr.includes(bulletIdx));
+            saveState();
+          };
+        } else {
+          chip.style.pointerEvents = 'none';
+        }
+        selectContainer.appendChild(chip);
+      });
+
+      body.appendChild(selectContainer);
+
+      if(!resolved){
+        var confirmBtn = document.createElement('button'); confirmBtn.className='fill-check-btn'; confirmBtn.textContent='Submit Selected Key Points';
+        confirmBtn.onclick = function(){
+          if('speechSynthesis' in window) window.speechSynthesis.cancel();
+          state.resolved[idx] = true;
+          state.points += 5;
+          saveState();
+          render();
+          autoAdvance(-1);
+        };
+        body.appendChild(confirmBtn);
+      }
+    }
+
+    wrap.appendChild(body); return wrap;
+  }
+
+  function render(){
+    if('speechSynthesis' in window) window.speechSynthesis.cancel();
+    isAudioPlaying = false;
+    var slot = document.getElementById('cardSlot'); slot.innerHTML = '';
+    if(state.idx < TOTAL - 1){
+      var behind = document.createElement('div'); behind.className = 'card behind'; slot.appendChild(behind);
+    }
+    var active = buildCard(state.idx); slot.appendChild(active);
+    updateStatsUI();
+    if(lastSpokenIdx !== state.idx && !state.resolved[state.idx]){
+      speakAuto(DECK[state.idx].q);
+      lastSpokenIdx = state.idx;
+    }
+    startCardTimer();
+  }
+
+  /* 2D Touch Gesture & Keyboard Swipe Handling (Up, Down, Left, Right) */
+  var touchStartX = 0, touchStartY = 0;
+  var stageEl = document.getElementById('stage');
+
+  stageEl.onpointerdown = function(e){
+    touchStartX = e.clientX;
+    touchStartY = e.clientY;
+  };
+
+  stageEl.onpointerup = function(e){
+    var diffX = e.clientX - touchStartX;
+    var diffY = e.clientY - touchStartY;
+
+    if(Math.abs(diffX) > 50 || Math.abs(diffY) > 50){
+      if(Math.abs(diffX) > Math.abs(diffY)){
+        // Horizontal Swipe (Left/Right)
+        if(diffX < 0 && state.resolved[state.idx] && state.idx < TOTAL - 1){
+          // Swipe Left -> Next
+          state.idx++; saveState(); render();
+        } else if(diffX > 0 && state.idx > 0 && state.settings.allowBack){
+          // Swipe Right -> Prev
+          state.idx--; saveState(); render();
+        }
+      } else {
+        // Vertical Swipe (Up/Down)
+        if(diffY < 0 && state.resolved[state.idx] && state.idx < TOTAL - 1){
+          // Swipe Up -> Next
+          state.idx++; saveState(); render();
+        } else if(diffY > 0 && state.idx > 0 && state.settings.allowBack){
+          // Swipe Down -> Prev
+          state.idx--; saveState(); render();
+        }
+      }
+    }
+  };
+
+  // Keyboard Arrow Key Navigation Support
+  window.addEventListener('keydown', function(e){
+    if(e.key === 'ArrowRight' || e.key === 'ArrowDown'){
+      if(state.resolved[state.idx] && state.idx < TOTAL - 1){ state.idx++; saveState(); render(); }
+    } else if(e.key === 'ArrowLeft' || e.key === 'ArrowUp'){
+      if(state.idx > 0 && state.settings.allowBack){ state.idx--; saveState(); render(); }
+    }
+  });
+
+  document.getElementById('prevBtn').onclick = function(){
+    if(state.idx > 0 && state.settings.allowBack){ state.idx--; saveState(); render(); }
+  };
+  document.getElementById('nextBtn').onclick = function(){
+    if(!state.resolved[state.idx]) return;
+    if(state.idx < TOTAL - 1){ state.idx++; saveState(); render(); }
+    else { showComplete(); }
+  };
+
+  function setActiveTab(tabId){
+    document.querySelectorAll('.tabbar .tab-btn').forEach(function(b){ b.classList.remove('active'); });
+    if(tabId === 'tabQuiz' || tabId === 'rtabQuiz'){
+      var t1 = document.getElementById('tabQuiz'); if(t1) t1.classList.add('active');
+      var t2 = document.getElementById('rtabQuiz'); if(t2) t2.classList.add('active');
+    } else if(tabId === 'tabRevision' || tabId === 'rtabRevision'){
+      var r1 = document.getElementById('tabRevision'); if(r1) r1.classList.add('active');
+      var r2 = document.getElementById('rtabRevision'); if(r2) r2.classList.add('active');
+    }
+  }
+
+  document.getElementById('tabQuiz').onclick = document.getElementById('rtabQuiz').onclick = function(){
+    document.getElementById('reviewScreen').classList.remove('show');
+    setActiveTab('tabQuiz');
+  };
+
+  document.getElementById('tabRevision').onclick = document.getElementById('rtabRevision').onclick = function(){
+    openReviewScreen();
+  };
+
+  function openConfirmModal(){ document.getElementById('confirmModal').classList.add('show'); }
+  function closeConfirmModal(){ document.getElementById('confirmModal').classList.remove('show'); }
+
+  document.getElementById('tabReset').onclick = document.getElementById('rtabReset').onclick = document.getElementById('resetBtn').onclick = openConfirmModal;
+  document.getElementById('btnCancelReset').onclick = closeConfirmModal;
+  document.getElementById('btnConfirmReset').onclick = function(){
+    closeConfirmModal();
+    state.idx = 0; state.resolved.fill(false); state.answers.fill(null);
+    state.selectedBullets.fill([]);
+    state.points = 0; state.streak = 0; state.correctCount = 0;
+    lastSpokenIdx = -1;
+    saveState(); closeSettings(); document.getElementById('reviewScreen').classList.remove('show');
+    render(); showToast('Progress reset.');
+  };
+
+  function openSettings(){
+    document.getElementById('sheetBackdrop').classList.add('show');
+    document.getElementById('settingsSheet').classList.add('show');
+  }
+  function closeSettings(){
+    document.getElementById('sheetBackdrop').classList.remove('show');
+    document.getElementById('settingsSheet').classList.remove('show');
+  }
+  document.getElementById('topSettingsBtn').onclick = document.getElementById('reviewSettingsBtn').onclick = openSettings;
+  document.getElementById('sheetBackdrop').onclick = closeSettings;
+
+  var toggleBack = document.getElementById('toggleBack');
+  toggleBack.onclick = function(){
+    state.settings.allowBack = !state.settings.allowBack;
+    toggleBack.classList.toggle('on', state.settings.allowBack);
+    saveState(); updateStatsUI();
+  };
+
+  var toggleSfx = document.getElementById('toggleSfx');
+  toggleSfx.onclick = function(){
+    state.settings.sfx = !state.settings.sfx;
+    toggleSfx.classList.toggle('on', state.settings.sfx);
+    saveState();
+  };
+
+  var toggleSound = document.getElementById('toggleSound');
+  toggleSound.onclick = function(){
+    state.settings.sound = !state.settings.sound;
+    toggleSound.classList.toggle('on', state.settings.sound);
+    saveState();
+  };
+
+  var toggleTimer = document.getElementById('toggleTimer');
+  var timerSecRow = document.getElementById('timerSecRow');
+  toggleTimer.onclick = function(){
+    state.settings.timerEnabled = !state.settings.timerEnabled;
+    toggleTimer.classList.toggle('on', state.settings.timerEnabled);
+    timerSecRow.style.display = state.settings.timerEnabled ? 'flex' : 'none';
+    saveState();
+    startCardTimer();
+  };
+  toggleTimer.classList.toggle('on', state.settings.timerEnabled);
+  timerSecRow.style.display = state.settings.timerEnabled ? 'flex' : 'none';
+
+  var timerSecSelect = document.getElementById('timerSecSelect');
+  if(state.settings.timerSec) timerSecSelect.value = state.settings.timerSec;
+  timerSecSelect.onchange = function(){
+    state.settings.timerSec = parseInt(this.value, 10);
+    saveState(); startCardTimer();
+  };
+
+  document.getElementById('openPrintBtnModal').onclick = function(){
+    closeSettings();
+    document.getElementById('printModal').classList.add('show');
+  };
+  document.getElementById('btnPrintCancel').onclick = function(){
+    document.getElementById('printModal').classList.remove('show');
+  };
+  document.getElementById('btnPrintWithAns').onclick = function(){ triggerPrint(true); };
+  document.getElementById('btnPrintBlank').onclick = function(){ triggerPrint(false); };
+
+  // PRINT GENERATION (EXPLICIT MATCH TO HTML TITLES)
+  function triggerPrint(withAnswers){
+    document.getElementById('printModal').classList.remove('show');
+    var container = document.getElementById('printSheet');
+    var html = '<div class="ps-title">Human Circulatory System — Science Learning Suite</div>';
+    html += '<div class="ps-sub">Theme 1 · The Human Body — ' + (withAnswers ? 'Answer Key Included' : 'Blank Practice Sheet') + '</div>';
+    
+    var currentSec = '';
+    DECK.forEach(function(item, i){
+      if(item.section !== currentSec){
+        currentSec = item.section;
+        html += '<div class="ps-section-head">' + currentSec + '</div>';
+      }
+      html += '<div class="ps-item"><p class="ps-q"><span class="ps-num">Q' + (i+1) + '.</span> ' + item.q + '</p>';
+      
+      if(item.type === 'match1'){
+        html += '<div class="ps-options"><b>Choices:</b> ' + MATCH_SECTION_1.join(' | ') + '</div>';
+      } else if(item.type === 'match2'){
+        html += '<div class="ps-options"><b>Choices:</b> ' + MATCH_SECTION_2.join(' | ') + '</div>';
+      }
+
+      if(withAnswers){
+        var ans = '';
+        if(item.type==='mcq') ans = item.options[item.correct];
+        else if(item.type==='tf') ans = item.answer ? 'True' : 'False';
+        else if(item.type==='fill') ans = item.answer;
+        else if(item.type==='match1') ans = MATCH_SECTION_1[item.correct];
+        else if(item.type==='match2') ans = MATCH_SECTION_2[item.correct];
+        else if(item.type==='sa') {
+          ans = '<ul>';
+          item.bullets.forEach(function(bText){ ans += '<li>' + bText + '</li>'; });
+          ans += '</ul>';
+        }
+        html += '<div class="ps-ans">Answer: ' + ans + '</div>';
+      } else {
+        html += '<div class="ps-line">Answer: ________________________________________________</div>';
+      }
+      html += '</div>';
+    });
+    container.innerHTML = html;
+    setTimeout(function(){ window.print(); }, 50);
+  }
+
+  var reviewPlayIndex = 0;
+  var isReviewPlaying = false;
+
+  function updateListenAllBtnUI(){
+    var icon = document.getElementById('rplayIcon');
+    var text = document.getElementById('rplayText');
+    if(isReviewPlaying){
+      icon.innerHTML = '<rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect>';
+      text.textContent = 'Pause';
+    } else {
+      icon.innerHTML = '<polygon points="5 3 19 12 5 21 5 3"></polygon>';
+      text.textContent = 'Listen All';
+    }
+  }
+
+  function updateRevisionAnsToggleUI(){
+    var btn = document.getElementById('revAnsToggleBtn');
+    var text = document.getElementById('revAnsText');
+    var body = document.getElementById('reviewBody');
+
+    if(showRevisionAnswers){
+      body.classList.remove('answers-hidden');
+      btn.classList.remove('hidden-mode');
+      document.getElementById('revAnsIcon').innerHTML = EYE_OPEN_SVG;
+      text.textContent = 'Hide Answers';
+    } else {
+      body.classList.add('answers-hidden');
+      btn.classList.add('hidden-mode');
+      document.getElementById('revAnsIcon').innerHTML = EYE_OFF_SVG;
+      text.textContent = 'Show Answers';
+    }
+  }
+
+  document.getElementById('revAnsToggleBtn').onclick = function(){
+    showRevisionAnswers = !showRevisionAnswers;
+    updateRevisionAnsToggleUI();
+  };
+
+  function openReviewScreen(){
+    if(isReviewPlaying){
+      window.speechSynthesis.cancel();
+      isReviewPlaying = false;
+      updateListenAllBtnUI();
+    }
+    setActiveTab('tabRevision');
+    var body = document.getElementById('reviewBody'); body.innerHTML = '';
+    
+    DECK.forEach(function(item, i){
+      var card = document.createElement('div'); card.className = 'review-item'; card.id = 'rev-item-' + i;
+      var qEl = document.createElement('div'); qEl.className = 'ri-q';
+      qEl.innerHTML = '<span class="ri-num">' + (i+1) + '</span><span>' + item.q + '</span>';
+      
+      var speakBtn = document.createElement('button'); speakBtn.className = 'ri-speak';
+      speakBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon></svg>';
+      speakBtn.onclick = function(){
+        var t = item.q;
+        if(showRevisionAnswers){
+          var ansText = '';
+          if(item.type==='mcq') ansText = item.options[item.correct];
+          else if(item.type==='tf') ansText = item.answer ? 'True' : 'False';
+          else if(item.type==='fill') ansText = item.answer;
+          else if(item.type==='match1') ansText = item.term + ' matches ' + MATCH_SECTION_1[item.correct];
+          else if(item.type==='match2') ansText = item.term + ' matches ' + MATCH_SECTION_2[item.correct];
+          else if(item.type==='sa') ansText = item.bullets.join('. ');
+          t += '. Answer: ' + ansText;
+        }
+        togglePlayPauseText(t, speakBtn);
+      };
+      qEl.appendChild(speakBtn);
+
+      var revealHint = document.createElement('div');
+      revealHint.className = 'ri-reveal-hint';
+      revealHint.innerHTML = '👁️ Tap to reveal answer';
+      revealHint.onclick = function(){ card.classList.toggle('revealed'); };
+      
+      var ansEl = document.createElement('div'); ansEl.className = 'ri-ans';
+      var ansText = '';
+      if(item.type==='mcq') ansText = item.options[item.correct];
+      else if(item.type==='tf') ansText = item.answer ? 'True' : 'False';
+      else if(item.type==='fill') ansText = item.answer;
+      else if(item.type==='match1') ansText = item.term + ' → ' + MATCH_SECTION_1[item.correct];
+      else if(item.type==='match2') ansText = item.term + ' → ' + MATCH_SECTION_2[item.correct];
+      else if(item.type==='sa') {
+        ansText = '<ul>';
+        item.bullets.forEach(function(bText){ ansText += '<li>' + bText + '</li>'; });
+        ansText += '</ul>';
+      }
+
+      ansEl.innerHTML = '<span>✔️ <b>Answer:</b></span> ' + ansText;
+      card.appendChild(qEl);
+      card.appendChild(revealHint);
+      card.appendChild(ansEl);
+      body.appendChild(card);
+    });
+
+    updateRevisionAnsToggleUI();
+    document.getElementById('reviewScreen').classList.add('show');
+  }
+
+  document.getElementById('rtabPlay').onclick = function(){
+    if(isReviewPlaying){
+      window.speechSynthesis.cancel();
+      isReviewPlaying = false;
+      updateListenAllBtnUI();
+    } else {
+      isReviewPlaying = true;
+      reviewPlayIndex = 0;
+      updateListenAllBtnUI();
+      playNextReviewItem();
+    }
+  };
+
+  function playNextReviewItem(){
+    if(!isReviewPlaying || reviewPlayIndex >= TOTAL){
+      isReviewPlaying = false;
+      updateListenAllBtnUI();
+      return;
+    }
+    var item = DECK[reviewPlayIndex];
+    var el = document.getElementById('rev-item-' + reviewPlayIndex);
+    if(el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    
+    var textToSpeak = item.q;
+    if(showRevisionAnswers){
+      var ansText = '';
+      if(item.type==='mcq') ansText = item.options[item.correct];
+      else if(item.type==='tf') ansText = item.answer ? 'True' : 'False';
+      else if(item.type==='fill') ansText = item.answer;
+      else if(item.type==='match1') ansText = item.term + ' matches ' + MATCH_SECTION_1[item.correct];
+      else if(item.type==='match2') ansText = item.term + ' matches ' + MATCH_SECTION_2[item.correct];
+      else if(item.type==='sa') ansText = item.bullets.join('. ');
+      textToSpeak += '. Answer: ' + ansText;
+    }
+
+    var u = new SpeechSynthesisUtterance(textToSpeak);
+    var activeV = getActiveVoice();
+    if(activeV) u.voice = activeV;
+    u.onend = u.onerror = function(){
+      if(!isReviewPlaying) return;
+      reviewPlayIndex++;
+      setTimeout(playNextReviewItem, 400);
+    };
+    window.speechSynthesis.speak(u);
+  }
+
+  // FULL SCREEN CANVAS HANDWRITING PAD LOGIC
+  var hwCanvas = document.getElementById('hwCanvas');
+  var hwCtx = null;
+  var isDrawing = false; var lastX = 0, lastY = 0;
+  var hwUndoStack = [];
+  var hwRedoStack = [];
+
+  function saveCanvasState(){
+    if(!hwCtx) return;
+    hwUndoStack.push(hwCtx.getImageData(0, 0, hwCanvas.width, hwCanvas.height));
+    if(hwUndoStack.length > 25) hwUndoStack.shift();
+  }
+
+  function resizeCanvasToFullScreen(){
+    var wrap = document.getElementById('hwCanvasWrap');
+    hwCanvas.width = wrap.clientWidth || window.innerWidth;
+    hwCanvas.height = wrap.clientHeight || window.innerHeight;
+    if(hwCtx){
+      hwCtx.strokeStyle = '#1c1c1e';
+      hwCtx.lineWidth = 3.5;
+      hwCtx.lineCap = 'round';
+      hwCtx.lineJoin = 'round';
+    }
+  }
+
+  function openHwPad(){
+    document.getElementById('hwOverlay').classList.add('show');
+    resizeCanvasToFullScreen();
+    hwCtx = hwCanvas.getContext('2d');
+    hwCtx.strokeStyle = '#1c1c1e'; hwCtx.lineWidth = 3.5; hwCtx.lineCap = 'round'; hwCtx.lineJoin = 'round';
+    hwUndoStack = []; hwRedoStack = [];
+    saveCanvasState();
+  }
+
+  document.getElementById('floatingPadBtn').onclick = openHwPad;
+  document.getElementById('hwClose').onclick = function(){ document.getElementById('hwOverlay').classList.remove('show'); };
+  
+  document.getElementById('hwClear').onclick = function(){
+    if(!hwCtx) return;
+    saveCanvasState();
+    hwCtx.clearRect(0, 0, hwCanvas.width, hwCanvas.height);
+    hwRedoStack = [];
+  };
+
+  document.getElementById('hwUndo').onclick = function(){
+    if(!hwCtx || hwUndoStack.length <= 1) return;
+    var currentState = hwUndoStack.pop();
+    hwRedoStack.push(currentState);
+    var prevState = hwUndoStack[hwUndoStack.length - 1];
+    hwCtx.putImageData(prevState, 0, 0);
+  };
+
+  document.getElementById('hwRedo').onclick = function(){
+    if(!hwCtx || hwRedoStack.length === 0) return;
+    var nextState = hwRedoStack.pop();
+    hwUndoStack.push(nextState);
+    hwCtx.putImageData(nextState, 0, 0);
+  };
+
+  document.getElementById('hwSave').onclick = function(){
+    if(!hwCtx) return;
+    showToast('Handwriting saved!');
+    document.getElementById('hwOverlay').classList.remove('show');
+  };
+
+  hwCanvas.onpointerdown = function(e){
+    isDrawing = true; var rect = hwCanvas.getBoundingClientRect();
+    lastX = e.clientX - rect.left; lastY = e.clientY - rect.top;
+    saveCanvasState();
+    hwRedoStack = [];
+  };
+  hwCanvas.onpointermove = function(e){
+    if(!isDrawing) return;
+    var rect = hwCanvas.getBoundingClientRect();
+    var x = e.clientX - rect.left, y = e.clientY - rect.top;
+    hwCtx.beginPath(); hwCtx.moveTo(lastX, lastY); hwCtx.lineTo(x, y); hwCtx.stroke();
+    lastX = x; lastY = y;
+  };
+  hwCanvas.onpointerup = function(){ isDrawing = false; };
+
+  document.querySelectorAll('.hw-color').forEach(function(btn){
+    btn.onclick = function(){
+      document.querySelectorAll('.hw-color').forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active'); hwCtx.strokeStyle = btn.dataset.color;
+    };
+  });
+
+  function showComplete(){
+    clearInterval(timerInterval);
+    var pct = Math.round((state.correctCount/GRADED_TOTAL)*100);
+    document.getElementById('csScore').textContent = state.correctCount + '/' + GRADED_TOTAL;
+    document.getElementById('csAccuracy').textContent = pct + '%';
+    document.getElementById('csPoints').textContent = state.points;
+    document.getElementById('csStreak').textContent = state.bestStreak;
+
+    var emoji, title, sub;
+    if(pct >= 90){ emoji = '🏆'; title = 'Outstanding Work!'; sub = 'Mastery level! Excellent understanding of blood circulation.'; }
+    else if(pct >= 70){ emoji = '🎉'; title = 'Great Job!'; sub = 'Solid score — a quick review will make it perfect!'; }
+    else if(pct >= 50){ emoji = '💪'; title = 'Good Progress!'; sub = 'Keep practicing to boost your high score and streak!'; }
+    else { emoji = '📘'; title = 'Keep Learning!'; sub = 'Review the cards in Revision Mode and try again.'; }
+    document.getElementById('completeEmoji').textContent = emoji;
+    document.getElementById('completeTitle').textContent = title;
+    document.getElementById('completeSub').textContent = sub;
+
+    document.getElementById('completeScreen').classList.add('show');
+  }
+  document.getElementById('replayBtn').onclick = function(){
+    document.getElementById('completeScreen').classList.remove('show');
+    document.getElementById('tabReset').click();
+  };
+
+  render();
+
+})();
+</script>
+</body>
+</html>
