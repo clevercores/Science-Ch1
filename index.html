@@ -20,7 +20,7 @@
     --text-secondary: #8E8E93;
     --text-tertiary: #C7C7CC;
     
-    /* Blue Scheme Replacing Green Accent */
+    /* Blue Accent Theme */
     --apple-blue: #007AFF;
     --apple-blue-deep: #0056B3;
     --apple-blue-soft: rgba(0, 122, 255, 0.12);
@@ -136,7 +136,6 @@
   .stat.streak.hot .stat-icon { animation: flamePulse 1.2s infinite ease-in-out alternate; }
   @keyframes flamePulse { 0% { transform: scale(1); } 100% { transform: scale(1.22); } }
   
-  /* Top Timer Default Active */
   .stat.timer-stat { border-color: var(--apple-blue); background: var(--apple-blue-soft); display: flex; }
   .stat.timer-stat.warning { border-color: var(--apple-red); background: var(--apple-red-soft); animation: timerPulse 0.8s infinite ease-in-out alternate; }
   @keyframes timerPulse { 0% { transform: scale(1); } 100% { transform: scale(1.05); } }
@@ -148,7 +147,7 @@
   .progress-track { margin-top: 10px; height: 4px; border-radius: var(--radius-pill); background: var(--system-grouped-bg); overflow: hidden; }
   .progress-fill { height: 100%; width: 0%; background: var(--apple-blue); border-radius: var(--radius-pill); transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
 
-  /* Main Interactive Stage with Vertical/Horizontal Gestures */
+  /* Main Stage & 2D Gestures */
   .stage {
     flex: 1; position: relative; padding: 10px 10px 4px;
     display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden;
@@ -187,9 +186,9 @@
   .play-pause-btn svg { width: 14px; height: 14px; fill: currentColor; }
 
   .card-qtext { font-size: 15px; font-weight: 700; line-height: 1.35; letter-spacing: -0.015em; color: var(--text-primary); margin: 0 0 8px; flex-shrink: 0; }
-  .card-body { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 5px; overflow-y: auto; padding-right: 2px; }
+  .card-body { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 6px; overflow-y: auto; padding-right: 2px; }
 
-  /* Options Buttons - Pure Blue Accents */
+  /* Options Styling */
   .opt-wrap { display: flex; flex-direction: column; gap: 3px; width: 100%; }
   .opt {
     border: 0.5px solid var(--card-border); background: var(--system-bg); text-align: left; padding: 8px 10px;
@@ -231,17 +230,18 @@
   .tf-opt.correct { background: var(--apple-blue-soft); border-color: var(--apple-blue); color: var(--apple-blue-deep); }
   .tf-opt.wrong { background: var(--apple-red-soft); border-color: var(--apple-red); color: var(--apple-red-deep); }
 
+  /* Mobile Voice & Interactive Answer Model */
   .fill-input-container { position: relative; width: 100%; display: flex; align-items: center; }
   .fill-input {
     border: 1px solid var(--card-border); border-radius: var(--radius-md); background: var(--system-bg); font-size: 13px;
-    padding: 9px 36px 9px 10px; color: var(--text-primary); outline: none; width: 100%; transition: border-color 0.2s;
+    padding: 9px 38px 9px 10px; color: var(--text-primary); outline: none; width: 100%; transition: border-color 0.2s;
   }
   .fill-input:focus { border-color: var(--apple-blue); background: var(--card-bg); }
   .fill-input.correct { border-color: var(--apple-blue); background: var(--apple-blue-soft); color: var(--apple-blue-deep); font-weight: 600; }
   .fill-input.wrong { border-color: var(--apple-red); background: var(--apple-red-soft); color: var(--apple-red-deep); font-weight: 600; }
   
   .input-mic-btn {
-    position: absolute; right: 6px; width: 26px; height: 26px; border-radius: 50%;
+    position: absolute; right: 6px; width: 28px; height: 28px; border-radius: 50%;
     background: var(--apple-blue-soft); color: var(--apple-blue);
     display: flex; align-items: center; justify-content: center; cursor: pointer;
     transition: transform 0.15s, background 0.2s, color 0.2s;
@@ -252,29 +252,35 @@
 
   .fill-check-btn {
     background: var(--apple-blue); color: #FFFFFF; border: none; font-weight: 600; font-size: 13px;
-    padding: 9px; border-radius: var(--radius-md); cursor: pointer; transition: background 0.2s; margin-top: 4px;
+    padding: 9px; border-radius: var(--radius-md); cursor: pointer; transition: background 0.2s; margin-top: 4px; width: 100%;
   }
   .fill-check-btn:active { opacity: 0.88; }
 
-  .opt.match-opt { padding: 8px 10px; font-size: 12px; border-radius: var(--radius-md); }
+  /* Digitally Viable Short Answer Cards with Interactive Options */
+  .sa-mode-selector { display: flex; gap: 6px; margin-bottom: 6px; }
+  .sa-mode-btn {
+    flex: 1; padding: 6px 8px; border-radius: var(--radius-md); border: 0.5px solid var(--card-border);
+    background: var(--system-bg); font-size: 11px; font-weight: 700; color: var(--text-secondary);
+    display: flex; align-items: center; justify-content: center; gap: 4px; cursor: pointer;
+  }
+  .sa-mode-btn.active { background: var(--apple-blue-soft); border-color: var(--apple-blue); color: var(--apple-blue); }
 
-  /* Short Answers - Digitally Viable Interactive Bullet Selection Chips */
-  .sa-select-container { display: flex; flex-direction: column; gap: 8px; width: 100%; margin-top: 4px; }
-  .sa-instruction { font-size: 11.5px; font-weight: 700; color: var(--apple-blue); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 2px; }
+  .sa-select-container { display: flex; flex-direction: column; gap: 6px; width: 100%; margin-top: 2px; }
+  .sa-instruction { font-size: 11px; font-weight: 700; color: var(--apple-blue); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 2px; }
   .sa-chip {
-    border: 1px solid var(--card-border); background: var(--system-bg); padding: 10px 12px;
-    border-radius: var(--radius-md); cursor: pointer; font-size: 12.5px; line-height: 1.4;
-    color: var(--text-primary); display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    border: 1px solid var(--card-border); background: var(--system-bg); padding: 9px 11px;
+    border-radius: var(--radius-md); cursor: pointer; font-size: 12px; line-height: 1.4;
+    color: var(--text-primary); display: flex; align-items: center; justify-content: space-between; gap: 8px;
     transition: border-color 0.2s, background 0.2s, transform 0.12s;
   }
   .sa-chip:active { transform: scale(0.98); }
   .sa-chip.selected { border-color: var(--apple-blue); background: var(--apple-blue-soft); color: var(--apple-blue-deep); font-weight: 600; }
   .sa-chip-icon {
-    width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid var(--text-tertiary);
+    width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid var(--text-tertiary);
     display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: var(--card-bg);
   }
   .sa-chip.selected .sa-chip-icon { border-color: var(--apple-blue); background: var(--apple-blue); color: #FFFFFF; }
-  .sa-chip-icon svg { width: 12px; height: 12px; stroke: currentColor; stroke-width: 3; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .sa-chip-icon svg { width: 11px; height: 11px; stroke: currentColor; stroke-width: 3; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 
   /* Writing Pad Floating ICON ONLY Trigger */
   .floating-pad-trigger {
@@ -413,7 +419,7 @@
   .modal-btn.danger { background: var(--apple-red); color: #FFFFFF; }
   .modal-btn.cancel { background: none; color: var(--text-secondary); }
 
-  /* Deck Completion Screen */
+  /* Deck Complete View */
   .complete-screen {
     position: fixed; inset: 0; z-index: 80; display: none; align-items: center; justify-content: center;
     background: var(--system-bg); padding: 30px 24px; text-align: center; overflow: hidden;
@@ -510,7 +516,7 @@
   .hw-color.active { border-color: var(--text-primary); transform: scale(1.1); }
   .hw-actions { display: flex; gap: 10px; align-items: center; }
 
-  /* Printable Sheet Styles (Explicit Match to HTML Titles) */
+  /* Printable Sheet Styles */
   .print-sheet { display: none; }
   @media print {
     body { background: #FFFFFF !important; color: #000000 !important; position: static !important; height: auto !important; overflow: visible !important; }
@@ -1053,13 +1059,14 @@
   var GRADED_TOTAL = DECK.filter(function(d){ return d.type!=='sa'; }).length;
   var ACCENTS = { mcq:'var(--apple-blue)', fill:'var(--apple-blue)', tf:'var(--apple-red-deep)', match1:'var(--apple-indigo)', match2:'var(--apple-indigo)', sa:'var(--apple-blue)' };
 
-  var STORAGE_KEY = 'hcs_streak_state_v3';
+  var STORAGE_KEY = 'hcs_streak_state_v4';
   var state = {
     idx: 0,
     resolved: new Array(TOTAL).fill(false),
     answers: new Array(TOTAL).fill(null),
     correctFlags: new Array(TOTAL).fill(null),
     selectedBullets: new Array(TOTAL).fill([]),
+    saModes: new Array(TOTAL).fill('select'), // 'select', 'voice', or 'self'
     points: 0,
     powerPoints: 0,
     streak: 0,
@@ -1149,8 +1156,18 @@
     state.settings.voiceURI = this.value; saveState();
   };
 
+  /* Mobile Audio & Speech Synthesis Warmup */
+  function warmUpMobileAudio(){
+    if('speechSynthesis' in window){
+      window.speechSynthesis.resume();
+    }
+  }
+  window.addEventListener('touchstart', warmUpMobileAudio, { once: true });
+  window.addEventListener('click', warmUpMobileAudio, { once: true });
+
   function togglePlayPauseText(text, buttonEl){
     if(!('speechSynthesis' in window)) return;
+    warmUpMobileAudio();
     if(isAudioPlaying){
       window.speechSynthesis.cancel();
       isAudioPlaying = false;
@@ -1203,18 +1220,50 @@
     }catch(e){}
   }
 
+  /* Reliable Mobile Web Speech Input Handler */
   function startVoiceRecognition(callback, onEndCallback){
     var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if(!SR){ showToast('Voice input is not supported in this browser.'); return; }
-    var rec = new SR(); rec.lang = 'en-US'; rec.interimResults = false;
-    rec.onresult = function(e){ callback(e.results[0][0].transcript); };
-    if(onEndCallback) rec.onend = onEndCallback;
-    rec.start();
+    if(!SR){
+      showToast('⚠️ Voice input not supported on this mobile browser. Try typing.');
+      if(onEndCallback) onEndCallback();
+      return;
+    }
+    
+    try {
+      var rec = new SR();
+      rec.lang = 'en-US';
+      rec.interimResults = false;
+      rec.maxAlternatives = 1;
+
+      rec.onstart = function(){
+        showToast('🎙️ Listening... speak now!');
+      };
+
+      rec.onresult = function(e){
+        if(e.results && e.results[0] && e.results[0][0]){
+          var text = e.results[0][0].transcript;
+          callback(text);
+        }
+      };
+
+      rec.onerror = function(e){
+        showToast('🎙️ Speech recognition paused or not allowed.');
+        if(onEndCallback) onEndCallback();
+      };
+
+      rec.onend = function(){
+        if(onEndCallback) onEndCallback();
+      };
+
+      rec.start();
+    } catch(err) {
+      showToast('⚠️ Tap microhphone permission allowed in mobile browser settings.');
+      if(onEndCallback) onEndCallback();
+    }
   }
 
   function triggerInputMicVoice(inputEl, micBtnEl){
     micBtnEl.classList.add('recording');
-    showToast('🎙️ Listening for input...');
     startVoiceRecognition(function(transcript){
       inputEl.value = transcript;
       micBtnEl.classList.remove('recording');
@@ -1442,7 +1491,7 @@
       body.appendChild(grid);
     } else if(item.type==='fill'){
       var fillContainer = document.createElement('div'); fillContainer.className='fill-input-container';
-      var input = document.createElement('input'); input.type = 'text'; input.className='fill-input'; input.placeholder='Type answer or tap mic...';
+      var input = document.createElement('input'); input.type = 'text'; input.className='fill-input'; input.placeholder='Type or tap mic...';
       
       var micBtn = document.createElement('button'); micBtn.className='input-mic-btn';
       micBtn.innerHTML = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line></svg>';
@@ -1502,49 +1551,95 @@
         body.appendChild(optWrap);
       });
     } else if(item.type==='sa'){
-      /* Digitally Viable Interactive Selectable Key Points */
-      var selectContainer = document.createElement('div'); selectContainer.className = 'sa-select-container';
-      var instruct = document.createElement('div'); instruct.className = 'sa-instruction';
-      instruct.textContent = 'Select all key points you understand:';
-      selectContainer.appendChild(instruct);
+      /* MULTI-MODE DIGITALLY VIABLE SHORT ANSWER CARD */
+      var saMode = state.saModes[idx] || 'select';
 
-      var selectedList = state.selectedBullets[idx] || [];
+      var modeBar = document.createElement('div'); modeBar.className = 'sa-mode-selector';
+      var modeSelectBtn = document.createElement('button'); modeSelectBtn.className = 'sa-mode-btn' + (saMode==='select'?' active':'');
+      modeSelectBtn.innerHTML = '<span>☑️ Key Points</span>';
+      var modeVoiceBtn = document.createElement('button'); modeVoiceBtn.className = 'sa-mode-btn' + (saMode==='voice'?' active':'');
+      modeVoiceBtn.innerHTML = '<span>🎙️ Voice Dictate</span>';
 
-      item.bullets.forEach(function(bText, bulletIdx){
-        var chip = document.createElement('div'); chip.className = 'sa-chip';
-        if(selectedList.includes(bulletIdx)) chip.classList.add('selected');
-
-        chip.innerHTML = '<span>' + bText + '</span><span class="sa-chip-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>';
-        
-        if(!resolved){
-          chip.onclick = function(){
-            var curr = state.selectedBullets[idx] ? [...state.selectedBullets[idx]] : [];
-            var pos = curr.indexOf(bulletIdx);
-            if(pos >= 0) curr.splice(pos, 1);
-            else curr.push(bulletIdx);
-            state.selectedBullets[idx] = curr;
-            chip.classList.toggle('selected', curr.includes(bulletIdx));
-            saveState();
-          };
-        } else {
-          chip.style.pointerEvents = 'none';
-        }
-        selectContainer.appendChild(chip);
-      });
-
-      body.appendChild(selectContainer);
+      modeSelectBtn.onclick = function(){ state.saModes[idx] = 'select'; saveState(); render(); };
+      modeVoiceBtn.onclick = function(){ state.saModes[idx] = 'voice'; saveState(); render(); };
 
       if(!resolved){
-        var confirmBtn = document.createElement('button'); confirmBtn.className='fill-check-btn'; confirmBtn.textContent='Submit Selected Key Points';
-        confirmBtn.onclick = function(){
-          if('speechSynthesis' in window) window.speechSynthesis.cancel();
-          state.resolved[idx] = true;
-          state.points += 5;
-          saveState();
-          render();
-          autoAdvance(-1);
-        };
-        body.appendChild(confirmBtn);
+        modeBar.appendChild(modeSelectBtn);
+        modeBar.appendChild(modeVoiceBtn);
+        body.appendChild(modeBar);
+      }
+
+      if(saMode === 'voice'){
+        var voiceContainer = document.createElement('div'); voiceContainer.className='fill-input-container';
+        var voiceInput = document.createElement('input'); voiceInput.type = 'text'; voiceInput.className='fill-input'; voiceInput.placeholder='Tap mic and speak answer...';
+        
+        var voiceMicBtn = document.createElement('button'); voiceMicBtn.className='input-mic-btn';
+        voiceMicBtn.innerHTML = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line></svg>';
+
+        if(resolved){
+          voiceInput.value = state.answers[idx] || ''; voiceInput.disabled = true;
+          voiceMicBtn.style.display = 'none';
+        } else {
+          voiceMicBtn.onclick = function(){ triggerInputMicVoice(voiceInput, voiceMicBtn); };
+        }
+        voiceContainer.appendChild(voiceInput);
+        voiceContainer.appendChild(voiceMicBtn);
+        body.appendChild(voiceContainer);
+
+        if(!resolved){
+          var submitVoiceBtn = document.createElement('button'); submitVoiceBtn.className='fill-check-btn'; submitVoiceBtn.textContent='Submit Voice Answer';
+          submitVoiceBtn.onclick = function(){
+            var val = voiceInput.value.trim();
+            if(!val){ showToast('Tap microphone to speak your answer first.'); return; }
+            state.resolved[idx] = true; state.answers[idx] = val; state.points += 10;
+            saveState(); render(); autoAdvance(-1);
+          };
+          body.appendChild(submitVoiceBtn);
+        }
+      } else {
+        /* Default Interactive Bullet Selection Chips */
+        var selectContainer = document.createElement('div'); selectContainer.className = 'sa-select-container';
+        var instruct = document.createElement('div'); instruct.className = 'sa-instruction';
+        instruct.textContent = 'Select all key points you understand:';
+        selectContainer.appendChild(instruct);
+
+        var selectedList = state.selectedBullets[idx] || [];
+
+        item.bullets.forEach(function(bText, bulletIdx){
+          var chip = document.createElement('div'); chip.className = 'sa-chip';
+          if(selectedList.includes(bulletIdx)) chip.classList.add('selected');
+
+          chip.innerHTML = '<span>' + bText + '</span><span class="sa-chip-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>';
+          
+          if(!resolved){
+            chip.onclick = function(){
+              var curr = state.selectedBullets[idx] ? [...state.selectedBullets[idx]] : [];
+              var pos = curr.indexOf(bulletIdx);
+              if(pos >= 0) curr.splice(pos, 1);
+              else curr.push(bulletIdx);
+              state.selectedBullets[idx] = curr;
+              chip.classList.toggle('selected', curr.includes(bulletIdx));
+              saveState();
+            };
+          } else {
+            chip.style.pointerEvents = 'none';
+          }
+          selectContainer.appendChild(chip);
+        });
+
+        body.appendChild(selectContainer);
+
+        if(!resolved){
+          var confirmBtn = document.createElement('button'); confirmBtn.className='fill-check-btn'; confirmBtn.textContent='Submit Selected Key Points';
+          confirmBtn.onclick = function(){
+            var curr = state.selectedBullets[idx] || [];
+            if(curr.length === 0){ showToast('Select at least one key point to submit.'); return; }
+            if('speechSynthesis' in window) window.speechSynthesis.cancel();
+            state.resolved[idx] = true; state.points += (curr.length * 3);
+            saveState(); render(); autoAdvance(-1);
+          };
+          body.appendChild(confirmBtn);
+        }
       }
     }
 
