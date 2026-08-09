@@ -1059,14 +1059,14 @@
   var GRADED_TOTAL = DECK.filter(function(d){ return d.type!=='sa'; }).length;
   var ACCENTS = { mcq:'var(--apple-blue)', fill:'var(--apple-blue)', tf:'var(--apple-red-deep)', match1:'var(--apple-indigo)', match2:'var(--apple-indigo)', sa:'var(--apple-blue)' };
 
-  var STORAGE_KEY = 'hcs_streak_state_v4';
+  var STORAGE_KEY = 'hcs_streak_state_v5';
   var state = {
     idx: 0,
     resolved: new Array(TOTAL).fill(false),
     answers: new Array(TOTAL).fill(null),
     correctFlags: new Array(TOTAL).fill(null),
     selectedBullets: new Array(TOTAL).fill([]),
-    saModes: new Array(TOTAL).fill('select'), // 'select', 'voice', or 'self'
+    saModes: new Array(TOTAL).fill('select'), // 'select' or 'voice'
     points: 0,
     powerPoints: 0,
     streak: 0,
@@ -1122,31 +1122,59 @@
   var voicesList = [];
   var isAudioPlaying = false;
 
+  /* Universal Default Voice Logic: Explicitly Selects Google English US Voice */
   function getActiveVoice(){
     if(!('speechSynthesis' in window)) return null;
     var voices = window.speechSynthesis.getVoices() || [];
+    
+    // 1. Check user selected preference if saved
     if(state.settings.voiceURI){
       var match = voices.find(function(v){ return v.voiceURI === state.settings.voiceURI; });
       if(match) return match;
     }
-    return voices.find(function(v){
+
+    // 2. Universal High Priority Search for Google English US Voice (Android, Chrome, iOS)
+    var googleUS = voices.find(function(v){
       return (v.name.includes('Google') || v.name.includes('US English')) && (v.lang === 'en-US' || v.lang === 'en_US');
-    }) || voices[0] || null;
+    });
+    if(googleUS) return googleUS;
+
+    // 3. Fallback to any Google English Voice
+    var googleEn = voices.find(function(v){
+      return v.name.includes('Google') && v.lang.startsWith('en');
+    });
+    if(googleEn) return googleEn;
+
+    // 4. Fallback to standard en-US Voice (Safari iOS / Edge / Firefox)
+    var standardUS = voices.find(function(v){
+      return v.lang === 'en-US' || v.lang === 'en_US' || v.lang.startsWith('en');
+    });
+    if(standardUS) return standardUS;
+
+    return voices[0] || null;
   }
 
   function populateVoices(){
     if(!('speechSynthesis' in window)) return;
     voicesList = window.speechSynthesis.getVoices() || [];
     var sel = document.getElementById('voiceSelect');
-    sel.innerHTML = '<option value="">Default Voice</option>';
+    sel.innerHTML = '<option value="">Google US English (Default)</option>';
+    
+    var activeV = getActiveVoice();
+
     voicesList.forEach(function(v){
       var opt = document.createElement('option');
       opt.value = v.voiceURI;
       opt.textContent = v.name + ' (' + v.lang + ')';
+      if(activeV && v.voiceURI === activeV.voiceURI && !state.settings.voiceURI){
+        opt.selected = true;
+      }
       sel.appendChild(opt);
     });
+
     if(state.settings.voiceURI) sel.value = state.settings.voiceURI;
   }
+
   if('speechSynthesis' in window){
     populateVoices();
     window.speechSynthesis.onvoiceschanged = populateVoices;
@@ -1224,7 +1252,7 @@
   function startVoiceRecognition(callback, onEndCallback){
     var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
     if(!SR){
-      showToast('⚠️ Voice input not supported on this mobile browser. Try typing.');
+      showToast('⚠️ Voice input not supported on this browser. Try typing.');
       if(onEndCallback) onEndCallback();
       return;
     }
@@ -1257,7 +1285,7 @@
 
       rec.start();
     } catch(err) {
-      showToast('⚠️ Tap microhphone permission allowed in mobile browser settings.');
+      showToast('⚠️ Tap microphone permission allowed in mobile browser settings.');
       if(onEndCallback) onEndCallback();
     }
   }
