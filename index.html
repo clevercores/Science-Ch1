@@ -47,7 +47,7 @@
   }
 
   [data-theme="dark"] {
-    /* Dark Grey Surface instead of Black */
+    /* Dark Grey Surface */
     --system-bg: #1C1C1E;
     --system-bg-secondary: #2C2C2E;
     --system-grouped-bg: #3A3A3C;
@@ -101,7 +101,7 @@
 
   /* Top Navigation Bar */
   .topbar {
-    padding: calc(10px + env(safe-area-inset-top, 0px)) 16px 10px;
+    padding: calc(10px + env(safe-area-inset-top, 0px)) 16px 8px;
     background: var(--glass-bg);
     backdrop-filter: blur(28px) saturate(1.8);
     -webkit-backdrop-filter: blur(28px) saturate(1.8);
@@ -123,8 +123,8 @@
   .icon-btn:active { transform: scale(0.92); opacity: 0.8; }
   .icon-btn svg { width: 17px; height: 17px; stroke: currentColor; stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 
-  /* Gamified HUD & Timer Bar */
-  .stat-row { display: flex; gap: 6px; margin-top: 10px; }
+  /* Gamified HUD */
+  .stat-row { display: flex; gap: 6px; margin-top: 8px; }
   .stat {
     flex: 1; display: flex; align-items: center; justify-content: center; gap: 4px;
     background: var(--card-bg); border: 0.5px solid var(--card-border);
@@ -145,7 +145,19 @@
   .stat.power:not(.usable) { opacity: 0.55; }
   .opt.power-removed { opacity: 0.35; text-decoration: line-through; pointer-events: none; }
 
-  .progress-track { margin-top: 10px; height: 4px; border-radius: var(--radius-pill); background: var(--system-grouped-bg); overflow: hidden; }
+  /* SECTION TABS WITH LIVE SCORES FOR NAVIGATION */
+  .section-nav-tabs { display: flex; gap: 4px; margin-top: 8px; background: var(--system-grouped-bg); padding: 3px; border-radius: var(--radius-lg); }
+  .sec-tab-btn {
+    flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 5px 2px; border-radius: 12px; background: transparent; color: var(--text-secondary);
+    transition: background 0.2s, color 0.2s, transform 0.1s; cursor: pointer;
+  }
+  .sec-tab-btn:active { transform: scale(0.97); }
+  .sec-tab-btn.active { background: var(--card-bg); color: var(--apple-teal-deep); box-shadow: var(--shadow-subtle); }
+  .sec-tab-label { font-size: 10px; font-weight: 700; letter-spacing: 0.02em; }
+  .sec-tab-score { font-size: 9.5px; font-weight: 700; font-family: 'JetBrains Mono', monospace; opacity: 0.85; margin-top: 1px; }
+
+  .progress-track { margin-top: 8px; height: 4px; border-radius: var(--radius-pill); background: var(--system-grouped-bg); overflow: hidden; }
   .progress-fill { height: 100%; width: 0%; background: var(--apple-teal); border-radius: var(--radius-pill); transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
 
   /* Stage Container */
@@ -189,18 +201,18 @@
   .card-qtext { font-size: 15px; font-weight: 700; line-height: 1.35; letter-spacing: -0.015em; color: var(--text-primary); margin: 0 0 8px; flex-shrink: 0; }
   .card-body { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 6px; overflow-y: auto; padding-right: 2px; }
 
-  /* Option Buttons Styling */
+  /* Option Buttons Styling - SINGLE CORRECT HIGHLIGHT CLEANUP */
   .opt-wrap { display: flex; flex-direction: column; gap: 3px; width: 100%; }
   .opt {
-    border: 0.5px solid var(--card-border); background: var(--system-bg); text-align: left; padding: 8px 10px;
+    border: 0.5px solid var(--card-border); background: var(--system-bg); text-align: left; padding: 9px 12px;
     border-radius: var(--radius-lg); cursor: pointer; font-size: 13px; font-weight: 500;
-    color: var(--text-primary); width: 100%; display: flex; align-items: center; gap: 8px;
-    transition: transform 0.15s, border-color 0.2s, background 0.2s;
+    color: var(--text-primary); width: 100%; display: flex; align-items: center; gap: 10px;
+    transition: transform 0.15s, border-color 0.2s, background 0.2s; position: relative;
   }
   .opt:hover { border-color: var(--apple-teal); }
   .opt-letter {
-    width: 20px; height: 20px; border-radius: var(--radius-pill); background: var(--system-grouped-bg); color: var(--text-secondary);
-    font-weight: 700; font-size: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    width: 22px; height: 22px; border-radius: var(--radius-pill); background: var(--system-grouped-bg); color: var(--text-secondary);
+    font-weight: 700; font-size: 11px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
   }
   .opt:active { transform: scale(0.98); }
   .opt.correct { background: var(--apple-teal-soft); border-color: var(--apple-teal); color: var(--apple-teal-deep); font-weight: 700; }
@@ -208,20 +220,6 @@
   .opt.wrong { background: var(--apple-red-soft); border-color: var(--apple-red); color: var(--apple-red-deep); font-weight: 700; }
   .opt.wrong .opt-letter { background: var(--apple-red); color: #FFFFFF; }
   .opt:disabled, .opt.locked { pointer-events: none; }
-
-  .wrong-ans-hint {
-    font-size: 12px; line-height: 1.4; color: var(--apple-teal-deep); background: var(--apple-teal-soft);
-    border: 0.5px solid var(--apple-teal); border-radius: var(--radius-md); padding: 8px 10px; margin-top: 4px;
-    display: flex; align-items: flex-start; gap: 8px;
-  }
-  .wrong-ans-hint .wah-icon {
-    flex-shrink: 0; width: 16px; height: 16px; border-radius: 50%; background: var(--apple-teal); color: #FFFFFF;
-    display: flex; align-items: center; justify-content: center; margin-top: 1px;
-  }
-  .wrong-ans-hint .wah-icon svg { width: 10px; height: 10px; stroke: currentColor; stroke-width: 3; fill: none; stroke-linecap: round; stroke-linejoin: round; }
-  .wrong-ans-hint .wah-text { flex: 1; min-width: 0; }
-  .wrong-ans-hint .wah-label { display: block; font-weight: 600; font-size: 10px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--apple-teal-deep); opacity: 0.8; margin-bottom: 1px; }
-  .wrong-ans-hint .wah-answer { font-weight: 700; }
 
   .tf-grid { display: flex; gap: 8px; margin-top: 2px; }
   .tf-wrap { flex: 1; display: flex; flex-direction: column; gap: 3px; }
@@ -336,7 +334,7 @@
   .qcounter {
     font-weight: 700; font-size: 11.5px; color: var(--text-primary);
     background: var(--card-bg); border: 0.5px solid var(--card-border); border-radius: var(--radius-pill);
-    padding: 4px 12px; box-shadow: var(--shadow-subtle); font-family: 'JetBrains Mono', monospace; cursor: pointer;
+    padding: 4px 12px; box-shadow: var(--shadow-subtle); font-family: 'JetBrains Mono', monospace;
   }
 
   .tabbar {
@@ -366,7 +364,7 @@
   .float-pt { position: absolute; font-weight: 800; font-size: 14px; animation: floatUp 0.9s ease forwards; }
   @keyframes floatUp { 0% { opacity: 0; transform: translateY(6px) scale(0.8); } 15% { opacity: 1; transform: translateY(0) scale(1); } 100% { opacity: 0; transform: translateY(-34px) scale(1); } }
 
-  /* Section Menu & Settings Sheets */
+  /* Settings Sheets */
   .sheet-backdrop { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.4); opacity: 0; pointer-events: none; transition: opacity 0.25s; z-index: 98; }
   .sheet-backdrop.show { opacity: 1; pointer-events: auto; }
   .settings-sheet {
@@ -380,15 +378,6 @@
   .sheet-handle { width: 36px; height: 5px; background: var(--text-tertiary); border-radius: var(--radius-pill); margin: 6px auto 16px; }
   .sheet-title { font-weight: 700; font-size: 18px; margin: 0 0 2px; }
   .sheet-sub { font-size: 12px; color: var(--text-secondary); margin: 0 0 16px; }
-
-  .section-menu-btn {
-    width: 100%; padding: 12px 14px; border-radius: var(--radius-lg); border: 0.5px solid var(--card-border);
-    background: var(--system-bg); margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between;
-    font-size: 13px; font-weight: 600; color: var(--text-primary); transition: background 0.15s, border-color 0.15s;
-  }
-  .section-menu-btn:active { background: var(--apple-teal-soft); border-color: var(--apple-teal); }
-  .section-menu-btn.active { background: var(--apple-teal-soft); border-color: var(--apple-teal); color: var(--apple-teal-deep); font-weight: 700; }
-  .section-badge { font-size: 10.5px; font-family: 'JetBrains Mono', monospace; background: var(--card-bg); padding: 3px 8px; border-radius: var(--radius-pill); border: 0.5px solid var(--card-border); }
 
   .settings-group {
     background: var(--system-bg); border-radius: var(--radius-lg); border: 0.5px solid var(--card-border);
@@ -574,10 +563,6 @@
         <div class="app-title" id="moduleTitle">Human Circulatory System</div>
       </div>
       <div class="icon-group">
-        <!-- Section Menu Icon Button -->
-        <button class="icon-btn" id="topMenuBtn" aria-label="Open Section Menu">
-          <svg viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-        </button>
         <button class="icon-btn" id="topPrintBtn" aria-label="Print Worksheet">
           <svg viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
         </button>
@@ -597,6 +582,22 @@
       <div class="stat power" id="powerStat" role="button" aria-label="Use power-up to remove a wrong option" tabindex="0"><span class="stat-icon">⚡</span><span id="powerVal">0</span></div>
       <div class="stat timer-stat" id="timerStat"><span class="stat-icon">⏱️</span><span id="timerVal">30s</span></div>
     </div>
+
+    <!-- SECTION NAVIGATION TABS WITH ATTEMPTED SCORES -->
+    <nav class="section-nav-tabs" id="sectionNavTabs">
+      <button class="sec-tab-btn active" id="secTab0" onclick="switchModule(0)">
+        <span class="sec-tab-label">Module 1</span>
+        <span class="sec-tab-score" id="secScore0">0/23</span>
+      </button>
+      <button class="sec-tab-btn" id="secTab1" onclick="switchModule(1)">
+        <span class="sec-tab-label">Module 2</span>
+        <span class="sec-tab-score" id="secScore1">0/23</span>
+      </button>
+      <button class="sec-tab-btn" id="secTab2" onclick="switchModule(2)">
+        <span class="sec-tab-label">Module 3</span>
+        <span class="sec-tab-score" id="secScore2">0/23</span>
+      </button>
+    </nav>
 
     <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
   </header>
@@ -638,27 +639,6 @@
       </button>
     </nav>
   </div>
-</div>
-
-<!-- Section Module Menu Sheet -->
-<div class="sheet-backdrop" id="menuSheetBackdrop"></div>
-<div class="settings-sheet" id="sectionMenuSheet" role="dialog" aria-label="Section Navigation Menu">
-  <div class="sheet-handle"></div>
-  <p class="sheet-title">Select Module Section</p>
-  <p class="sheet-sub">Worksheets are split into 20–25 bite-sized questions.</p>
-
-  <button class="section-menu-btn active" id="secBtn1" data-sec="0">
-    <span>Module 1: Circulation &amp; Vessels</span>
-    <span class="section-badge">Q1 – Q23</span>
-  </button>
-  <button class="section-menu-btn" id="secBtn2" data-sec="1">
-    <span>Module 2: Heart Chambers &amp; Blood</span>
-    <span class="section-badge">Q24 – Q46</span>
-  </button>
-  <button class="section-menu-btn" id="secBtn3" data-sec="2">
-    <span>Module 3: Case Studies &amp; Health</span>
-    <span class="section-badge">Q47 – Q69</span>
-  </button>
 </div>
 
 <!-- Revision Screen -->
@@ -1122,7 +1102,7 @@
   ];
   saN.forEach(function(s,i){ RAW.push({type:'sa', section:'Heart Health', qNo:i+1, q:s[0], bulletOptions:s[1]}); });
 
-  /* SPLIT DATASET INTO THREE BALANCED MODULE SECTIONS (20–25 QUESTIONS EACH) */
+  /* THREE MODULE SECTIONS (20–25 QUESTIONS EACH) */
   var ALL_DECK = RAW;
   var MODULES = [
     { title: "Module 1: Circulation & Vessels", start: 0, end: 23 },
@@ -1136,7 +1116,7 @@
   var GRADED_TOTAL = DECK.filter(function(d){ return d.type!=='sa'; }).length;
   var ACCENTS = { mcq:'var(--apple-teal)', fill:'var(--apple-teal)', tf:'var(--apple-red-deep)', match1:'var(--apple-indigo)', match2:'var(--apple-indigo)', sa:'var(--apple-teal)' };
 
-  var STORAGE_KEY = 'hcs_streak_state_v7';
+  var STORAGE_KEY = 'hcs_streak_state_v8';
   var state = {
     moduleIdx: 0,
     idx: 0,
@@ -1327,7 +1307,7 @@
     }catch(e){}
   }
 
-  /* RESOLVED MOBILE VOICE INPUT & ERROR HANDLING ("Paused or not allowed") */
+  /* RESOLVED VOICE RECOGNITION HANDLER */
   function startVoiceRecognition(callback, onEndCallback){
     var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
     if(!SR){
@@ -1442,6 +1422,19 @@
     setTimeout(function(){ span.remove(); }, 900);
   }
 
+  /* UPDATE TAB MODULE SCORES DIRECTLY */
+  function updateModuleTabScores(){
+    MODULES.forEach(function(mod, mIdx){
+      var attemptedCount = 0;
+      for(var i = mod.start; i < mod.end; i++){
+        if(state.resolved[i]) attemptedCount++;
+      }
+      var totalInMod = mod.end - mod.start;
+      var el = document.getElementById('secScore' + mIdx);
+      if(el) el.textContent = attemptedCount + '/' + totalInMod;
+    });
+  }
+
   function updateStatsUI(){
     var modStart = MODULES[currentModuleIdx].start;
     var modEnd = MODULES[currentModuleIdx].end;
@@ -1462,6 +1455,8 @@
     document.getElementById('nextBtn').classList.toggle('ready', !!state.resolved[globalIdx]);
     document.getElementById('streakStat').classList.toggle('hot', state.streak >= 3);
     document.getElementById('powerStat').classList.toggle('usable', state.powerPoints > 0 && canUsePower());
+
+    updateModuleTabScores();
   }
 
   function canUsePower(){
@@ -1534,11 +1529,6 @@
     }, delay);
   }
 
-  var CHECK_SVG = '<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>';
-  function correctHintHTML(answerText){
-    return '<span class="wah-icon">' + CHECK_SVG + '</span><span class="wah-text"><span class="wah-label">Correct answer</span><span class="wah-answer">' + answerText + '</span></span>';
-  }
-
   function flyOut(cardEl, dir, cb){
     cardEl.style.transition = 'transform .35s cubic-bezier(.16,1,.3,1), opacity .3s';
     if(dir === 'up') cardEl.style.transform = 'translateY(-520px)';
@@ -1548,6 +1538,7 @@
     setTimeout(cb, 300);
   }
 
+  /* DEDUPLICATED ANSWER RENDERER FIXED FOR ALL MCQ / NON-MCQ CARDS */
   function buildCard(localIdx){
     var item = DECK[localIdx];
     var globalIdx = MODULES[currentModuleIdx].start + localIdx;
@@ -1579,13 +1570,11 @@
 
         if(resolved){
           b.classList.add('locked');
+          /* EXACT SINGLE ANSWER HIGHLIGHT FIX: Converts the real option directly to correct state */
           if(i === item.correct) {
             b.classList.add('correct');
           } else if(state.answers[globalIdx] === i) {
             b.classList.add('wrong');
-            var wrongHint = document.createElement('div'); wrongHint.className = 'wrong-ans-hint';
-            wrongHint.innerHTML = correctHintHTML(item.options[item.correct]);
-            optWrap.appendChild(wrongHint);
           }
         } else {
           b.onclick = function(){
@@ -1610,9 +1599,6 @@
             b.classList.add('correct');
           } else if(state.answers[globalIdx] === val) {
             b.classList.add('wrong');
-            var wrongHint = document.createElement('div'); wrongHint.className = 'wrong-ans-hint';
-            wrongHint.innerHTML = correctHintHTML(item.answer ? 'True' : 'False');
-            tfWrap.appendChild(wrongHint);
           }
         } else {
           b.onclick = function(){
@@ -1643,11 +1629,11 @@
       fillContainer.appendChild(micBtn);
       body.appendChild(fillContainer);
 
-      /* CLEAN SINGLE ANSWER DISPLAY */
+      /* DEDUPLICATED SINGLE ANSWER REVEAL */
       if(resolved && !isCorrect){
-        var wrongHint = document.createElement('div'); wrongHint.className = 'wrong-ans-hint';
-        wrongHint.innerHTML = correctHintHTML(item.answer);
-        body.appendChild(wrongHint);
+        var wrongBox = document.createElement('div'); wrongBox.className = 'sa-revealed-box show';
+        wrongBox.innerHTML = '<b>Correct Answer:</b> ' + item.answer;
+        body.appendChild(wrongBox);
       }
 
       if(!resolved){
@@ -1673,9 +1659,6 @@
             b.classList.add('correct');
           } else if(state.answers[globalIdx] === i) {
             b.classList.add('wrong');
-            var wrongHint = document.createElement('div'); wrongHint.className = 'wrong-ans-hint';
-            wrongHint.innerHTML = correctHintHTML(opts[item.correct]);
-            optWrap.appendChild(wrongHint);
           }
         } else {
           b.onclick = function(){
@@ -1687,7 +1670,7 @@
         body.appendChild(optWrap);
       });
     } else if(item.type==='sa'){
-      /* DEFAULT TYPE / VOICE INPUT MODE (Answers hidden by default) */
+      /* DEFAULT TYPE / VOICE INPUT MODE */
       var saMode = state.saModes[globalIdx] || 'type';
 
       var modeBar = document.createElement('div'); modeBar.className = 'sa-mode-selector';
@@ -1722,7 +1705,7 @@
         fillContainer.appendChild(voiceMicBtn);
         body.appendChild(fillContainer);
 
-        /* SINGLE CLEAN ANSWER BOX DISPLAY UPON SUBMISSION */
+        /* SINGLE CLEAN REVEALED BOX */
         var revBox = document.createElement('div'); revBox.className = 'sa-revealed-box' + (resolved ? ' show' : '');
         var revHtml = '<b>Correct Key Points:</b><ul>';
         item.bulletOptions.filter(function(b){ return b.isCorrect; }).forEach(function(b){
@@ -1822,7 +1805,7 @@
     startCardTimer();
   }
 
-  /* Section Module Switching Logic */
+  /* Section Module Switching */
   function switchModule(modIdx){
     currentModuleIdx = modIdx;
     state.moduleIdx = modIdx;
@@ -1831,34 +1814,17 @@
     TOTAL = DECK.length;
     GRADED_TOTAL = DECK.filter(function(d){ return d.type!=='sa'; }).length;
     
-    document.querySelectorAll('.section-menu-btn').forEach(function(btn, i){
+    document.querySelectorAll('.sec-tab-btn').forEach(function(btn, i){
       btn.classList.toggle('active', i === modIdx);
     });
 
-    closeSectionMenu();
     saveState();
     render();
     showToast('Switched to ' + MODULES[currentModuleIdx].title);
   }
+  window.switchModule = switchModule;
 
-  function openSectionMenu(){
-    document.getElementById('menuSheetBackdrop').classList.add('show');
-    document.getElementById('sectionMenuSheet').classList.add('show');
-  }
-  function closeSectionMenu(){
-    document.getElementById('menuSheetBackdrop').classList.remove('show');
-    document.getElementById('sectionMenuSheet').classList.remove('show');
-  }
-
-  document.getElementById('topMenuBtn').onclick = openSectionMenu;
-  document.getElementById('qCounter').onclick = openSectionMenu;
-  document.getElementById('menuSheetBackdrop').onclick = closeSectionMenu;
-
-  document.getElementById('secBtn1').onclick = function(){ switchModule(0); };
-  document.getElementById('secBtn2').onclick = function(){ switchModule(1); };
-  document.getElementById('secBtn3').onclick = function(){ switchModule(2); };
-
-  /* 2D Touch Gesture & Keyboard Swipe */
+  /* Touch Gesture Navigation */
   var touchStartX = 0, touchStartY = 0;
   var stageEl = document.getElementById('stage');
 
@@ -2191,7 +2157,7 @@
     window.speechSynthesis.speak(u);
   }
 
-  // FULL SCREEN CANVAS HANDWRITING PAD LOGIC
+  // CANVAS HANDWRITING PAD
   var hwCanvas = document.getElementById('hwCanvas');
   var hwCtx = null;
   var isDrawing = false; var lastX = 0, lastY = 0;
