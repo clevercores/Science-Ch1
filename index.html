@@ -14,19 +14,19 @@
     --system-bg: #F2F2F7;
     --system-bg-secondary: #FFFFFF;
     --system-grouped-bg: #E5E5EA;
-    --glass-bg: rgba(255, 255, 255, 0.85);
+    --glass-bg: rgba(255, 255, 255, 0.88);
     --glass-border: rgba(0, 0, 0, 0.08);
     --text-primary: #1C1C1E;
     --text-secondary: #8E8E93;
     --text-tertiary: #C7C7CC;
     
-    /* Blue Accent Theme */
-    --apple-blue: #007AFF;
-    --apple-blue-deep: #0056B3;
-    --apple-blue-soft: rgba(0, 122, 255, 0.12);
-    --success: #007AFF;
-    --success-deep: #0056B3;
-    --success-soft: rgba(0, 122, 255, 0.12);
+    /* Apple SF Teal Palette */
+    --apple-teal: #30B0C7;
+    --apple-teal-deep: #008299;
+    --apple-teal-soft: rgba(48, 176, 199, 0.14);
+    --success: #30B0C7;
+    --success-deep: #008299;
+    --success-soft: rgba(48, 176, 199, 0.14);
     --apple-red: #FF3B30;
     --apple-red-deep: #C42B1C;
     --apple-red-soft: rgba(255, 59, 48, 0.12);
@@ -47,32 +47,33 @@
   }
 
   [data-theme="dark"] {
-    --system-bg: #000000;
-    --system-bg-secondary: #1C1C1E;
-    --system-grouped-bg: #2C2C2E;
-    --glass-bg: rgba(28, 28, 30, 0.85);
+    /* Dark Grey Surface instead of Black */
+    --system-bg: #1C1C1E;
+    --system-bg-secondary: #2C2C2E;
+    --system-grouped-bg: #3A3A3C;
+    --glass-bg: rgba(44, 44, 46, 0.88);
     --glass-border: rgba(255, 255, 255, 0.12);
     --text-primary: #F2F2F7;
     --text-secondary: #8E8E93;
     --text-tertiary: #48484A;
 
-    --apple-blue: #0A84FF;
-    --apple-blue-deep: #409CFF;
-    --apple-blue-soft: rgba(10, 132, 255, 0.2);
-    --success: #0A84FF;
-    --success-deep: #409CFF;
-    --success-soft: rgba(10, 132, 255, 0.2);
+    --apple-teal: #40C8E0;
+    --apple-teal-deep: #64D8EC;
+    --apple-teal-soft: rgba(64, 200, 224, 0.22);
+    --success: #40C8E0;
+    --success-deep: #64D8EC;
+    --success-soft: rgba(64, 200, 224, 0.22);
     --apple-red: #FF453A;
     --apple-red-deep: #FF6961;
-    --apple-red-soft: rgba(255, 69, 58, 0.2);
+    --apple-red-soft: rgba(255, 69, 58, 0.22);
     --apple-orange: #FF9F0A;
     --apple-indigo: #5E5CE6;
 
-    --card-bg: #1C1C1E;
-    --card-border: rgba(255, 255, 255, 0.1);
-    --shadow-subtle: 0 4px 16px rgba(0, 0, 0, 0.4);
-    --shadow-elevated: 0 12px 32px rgba(0, 0, 0, 0.6);
-    --shadow-modal: 0 24px 48px rgba(0, 0, 0, 0.8);
+    --card-bg: #2C2C2E;
+    --card-border: rgba(255, 255, 255, 0.12);
+    --shadow-subtle: 0 4px 16px rgba(0, 0, 0, 0.3);
+    --shadow-elevated: 0 12px 32px rgba(0, 0, 0, 0.5);
+    --shadow-modal: 0 24px 48px rgba(0, 0, 0, 0.7);
   }
 
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; user-select: none; }
@@ -107,22 +108,22 @@
     border-bottom: 0.5px solid var(--glass-border);
     position: relative; z-index: 30;
   }
-  .topbar-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .topbar-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
   .topbar-title-wrap { flex: 1; min-width: 0; }
-  .app-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--apple-blue); margin: 0 0 2px; }
-  .app-title { font-size: 16px; font-weight: 700; letter-spacing: -0.022em; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .app-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--apple-teal); margin: 0 0 2px; }
+  .app-title { font-size: 15.5px; font-weight: 700; letter-spacing: -0.022em; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
   .icon-group { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
   .icon-btn {
     width: 34px; height: 34px; border-radius: var(--radius-pill);
-    background: var(--apple-blue-soft); color: var(--apple-blue);
+    background: var(--apple-teal-soft); color: var(--apple-teal);
     display: flex; align-items: center; justify-content: center;
     cursor: pointer; transition: transform 0.15s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.2s;
   }
   .icon-btn:active { transform: scale(0.92); opacity: 0.8; }
   .icon-btn svg { width: 17px; height: 17px; stroke: currentColor; stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 
-  /* Gamified HUD & Timer Bar (Active Default) */
+  /* Gamified HUD & Timer Bar */
   .stat-row { display: flex; gap: 6px; margin-top: 10px; }
   .stat {
     flex: 1; display: flex; align-items: center; justify-content: center; gap: 4px;
@@ -136,7 +137,7 @@
   .stat.streak.hot .stat-icon { animation: flamePulse 1.2s infinite ease-in-out alternate; }
   @keyframes flamePulse { 0% { transform: scale(1); } 100% { transform: scale(1.22); } }
   
-  .stat.timer-stat { border-color: var(--apple-blue); background: var(--apple-blue-soft); display: flex; }
+  .stat.timer-stat { border-color: var(--apple-teal); background: var(--apple-teal-soft); display: flex; }
   .stat.timer-stat.warning { border-color: var(--apple-red); background: var(--apple-red-soft); animation: timerPulse 0.8s infinite ease-in-out alternate; }
   @keyframes timerPulse { 0% { transform: scale(1); } 100% { transform: scale(1.05); } }
   .stat.power.usable { border-color: var(--apple-indigo); background: rgba(88, 86, 214, 0.08); cursor: pointer; }
@@ -145,9 +146,9 @@
   .opt.power-removed { opacity: 0.35; text-decoration: line-through; pointer-events: none; }
 
   .progress-track { margin-top: 10px; height: 4px; border-radius: var(--radius-pill); background: var(--system-grouped-bg); overflow: hidden; }
-  .progress-fill { height: 100%; width: 0%; background: var(--apple-blue); border-radius: var(--radius-pill); transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+  .progress-fill { height: 100%; width: 0%; background: var(--apple-teal); border-radius: var(--radius-pill); transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
 
-  /* Main Stage & 2D Gestures */
+  /* Stage Container */
   .stage {
     flex: 1; position: relative; padding: 10px 10px 4px;
     display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden;
@@ -177,18 +178,18 @@
   
   .play-pause-btn {
     width: 32px; height: 32px; border-radius: var(--radius-pill);
-    background: var(--apple-blue-soft); color: var(--apple-blue);
+    background: var(--apple-teal-soft); color: var(--apple-teal);
     display: flex; align-items: center; justify-content: center;
     cursor: pointer; transition: transform 0.15s, background 0.2s, color 0.2s;
   }
   .play-pause-btn:active { transform: scale(0.92); }
-  .play-pause-btn.playing { background: var(--apple-blue); color: #FFFFFF; }
+  .play-pause-btn.playing { background: var(--apple-teal); color: #FFFFFF; }
   .play-pause-btn svg { width: 14px; height: 14px; fill: currentColor; }
 
   .card-qtext { font-size: 15px; font-weight: 700; line-height: 1.35; letter-spacing: -0.015em; color: var(--text-primary); margin: 0 0 8px; flex-shrink: 0; }
   .card-body { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 6px; overflow-y: auto; padding-right: 2px; }
 
-  /* Options Styling */
+  /* Option Buttons Styling */
   .opt-wrap { display: flex; flex-direction: column; gap: 3px; width: 100%; }
   .opt {
     border: 0.5px solid var(--card-border); background: var(--system-bg); text-align: left; padding: 8px 10px;
@@ -196,30 +197,30 @@
     color: var(--text-primary); width: 100%; display: flex; align-items: center; gap: 8px;
     transition: transform 0.15s, border-color 0.2s, background 0.2s;
   }
-  .opt:hover { border-color: var(--apple-blue); }
+  .opt:hover { border-color: var(--apple-teal); }
   .opt-letter {
     width: 20px; height: 20px; border-radius: var(--radius-pill); background: var(--system-grouped-bg); color: var(--text-secondary);
     font-weight: 700; font-size: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
   }
   .opt:active { transform: scale(0.98); }
-  .opt.correct { background: var(--apple-blue-soft); border-color: var(--apple-blue); color: var(--apple-blue-deep); font-weight: 700; }
-  .opt.correct .opt-letter { background: var(--apple-blue); color: #FFFFFF; }
+  .opt.correct { background: var(--apple-teal-soft); border-color: var(--apple-teal); color: var(--apple-teal-deep); font-weight: 700; }
+  .opt.correct .opt-letter { background: var(--apple-teal); color: #FFFFFF; }
   .opt.wrong { background: var(--apple-red-soft); border-color: var(--apple-red); color: var(--apple-red-deep); font-weight: 700; }
   .opt.wrong .opt-letter { background: var(--apple-red); color: #FFFFFF; }
   .opt:disabled, .opt.locked { pointer-events: none; }
 
   .wrong-ans-hint {
-    font-size: 12px; line-height: 1.4; color: var(--apple-blue-deep); background: var(--apple-blue-soft);
-    border: 0.5px solid var(--apple-blue); border-radius: var(--radius-md); padding: 8px 10px; margin-top: 4px;
+    font-size: 12px; line-height: 1.4; color: var(--apple-teal-deep); background: var(--apple-teal-soft);
+    border: 0.5px solid var(--apple-teal); border-radius: var(--radius-md); padding: 8px 10px; margin-top: 4px;
     display: flex; align-items: flex-start; gap: 8px;
   }
   .wrong-ans-hint .wah-icon {
-    flex-shrink: 0; width: 16px; height: 16px; border-radius: 50%; background: var(--apple-blue); color: #FFFFFF;
+    flex-shrink: 0; width: 16px; height: 16px; border-radius: 50%; background: var(--apple-teal); color: #FFFFFF;
     display: flex; align-items: center; justify-content: center; margin-top: 1px;
   }
   .wrong-ans-hint .wah-icon svg { width: 10px; height: 10px; stroke: currentColor; stroke-width: 3; fill: none; stroke-linecap: round; stroke-linejoin: round; }
   .wrong-ans-hint .wah-text { flex: 1; min-width: 0; }
-  .wrong-ans-hint .wah-label { display: block; font-weight: 600; font-size: 10px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--apple-blue-deep); opacity: 0.8; margin-bottom: 1px; }
+  .wrong-ans-hint .wah-label { display: block; font-weight: 600; font-size: 10px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--apple-teal-deep); opacity: 0.8; margin-bottom: 1px; }
   .wrong-ans-hint .wah-answer { font-weight: 700; }
 
   .tf-grid { display: flex; gap: 8px; margin-top: 2px; }
@@ -227,7 +228,7 @@
   .tf-opt { width: 100%; padding: 10px 8px; border-radius: var(--radius-lg); border: 0.5px solid var(--card-border); background: var(--system-bg); font-weight: 600; font-size: 13px; color: var(--text-primary); cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 3px; }
   .tf-opt span.tf-emoji { font-size: 15px; }
   .tf-opt:active { transform: scale(0.97); }
-  .tf-opt.correct { background: var(--apple-blue-soft); border-color: var(--apple-blue); color: var(--apple-blue-deep); }
+  .tf-opt.correct { background: var(--apple-teal-soft); border-color: var(--apple-teal); color: var(--apple-teal-deep); }
   .tf-opt.wrong { background: var(--apple-red-soft); border-color: var(--apple-red); color: var(--apple-red-deep); }
 
   /* Mobile Voice & Type Input Area */
@@ -236,20 +237,20 @@
     border: 1px solid var(--card-border); border-radius: var(--radius-md); background: var(--system-bg); font-size: 13px;
     padding: 9px 38px 9px 10px; color: var(--text-primary); outline: none; width: 100%; transition: border-color 0.2s;
   }
-  .fill-input:focus { border-color: var(--apple-blue); background: var(--card-bg); }
-  .fill-input.correct { border-color: var(--apple-blue); background: var(--apple-blue-soft); color: var(--apple-blue-deep); font-weight: 600; }
+  .fill-input:focus { border-color: var(--apple-teal); background: var(--card-bg); }
+  .fill-input.correct { border-color: var(--apple-teal); background: var(--apple-teal-soft); color: var(--apple-teal-deep); font-weight: 600; }
   .fill-input.wrong { border-color: var(--apple-red); background: var(--apple-red-soft); color: var(--apple-red-deep); font-weight: 600; }
   
   .sa-textarea {
     width: 100%; min-height: 72px; border: 1px solid var(--card-border); border-radius: var(--radius-md);
-    background: var(--system-bg); font-size: 12.5px; padding: 8px 36px 8px 8px; color: var(--text-primary);
+    background: var(--system-bg); font-size: 12.5px; padding: 8px 38px 8px 8px; color: var(--text-primary);
     outline: none; resize: none; transition: border-color 0.2s;
   }
-  .sa-textarea:focus { border-color: var(--apple-blue); background: var(--card-bg); }
+  .sa-textarea:focus { border-color: var(--apple-teal); background: var(--card-bg); }
 
   .input-mic-btn {
     position: absolute; right: 6px; width: 28px; height: 28px; border-radius: 50%;
-    background: var(--apple-blue-soft); color: var(--apple-blue);
+    background: var(--apple-teal-soft); color: var(--apple-teal);
     display: flex; align-items: center; justify-content: center; cursor: pointer;
     transition: transform 0.15s, background 0.2s, color 0.2s;
   }
@@ -258,22 +259,21 @@
   @keyframes micPulse { 0% { transform: scale(1); } 50% { transform: scale(1.15); } 100% { transform: scale(1); } }
 
   .fill-check-btn {
-    background: var(--apple-blue); color: #FFFFFF; border: none; font-weight: 600; font-size: 13px;
+    background: var(--apple-teal); color: #FFFFFF; border: none; font-weight: 600; font-size: 13px;
     padding: 9px; border-radius: var(--radius-md); cursor: pointer; transition: background 0.2s; margin-top: 4px; width: 100%;
   }
   .fill-check-btn:active { opacity: 0.88; }
 
-  /* Non-MCQ Mode Selector & Options with Distractors */
   .sa-mode-selector { display: flex; gap: 6px; margin-bottom: 6px; }
   .sa-mode-btn {
     flex: 1; padding: 6px 8px; border-radius: var(--radius-md); border: 0.5px solid var(--card-border);
     background: var(--system-bg); font-size: 11px; font-weight: 700; color: var(--text-secondary);
     display: flex; align-items: center; justify-content: center; gap: 4px; cursor: pointer;
   }
-  .sa-mode-btn.active { background: var(--apple-blue-soft); border-color: var(--apple-blue); color: var(--apple-blue); }
+  .sa-mode-btn.active { background: var(--apple-teal-soft); border-color: var(--apple-teal); color: var(--apple-teal); }
 
   .sa-select-container { display: flex; flex-direction: column; gap: 6px; width: 100%; margin-top: 2px; }
-  .sa-instruction { font-size: 11px; font-weight: 700; color: var(--apple-blue); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 2px; }
+  .sa-instruction { font-size: 11px; font-weight: 700; color: var(--apple-teal); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 2px; }
   .sa-chip {
     border: 1px solid var(--card-border); background: var(--system-bg); padding: 9px 11px;
     border-radius: var(--radius-md); cursor: pointer; font-size: 12px; line-height: 1.4;
@@ -281,21 +281,21 @@
     transition: border-color 0.2s, background 0.2s, transform 0.12s;
   }
   .sa-chip:active { transform: scale(0.98); }
-  .sa-chip.selected { border-color: var(--apple-blue); background: var(--apple-blue-soft); color: var(--apple-blue-deep); font-weight: 600; }
-  .sa-chip.correct { border-color: var(--apple-blue); background: var(--apple-blue-soft); color: var(--apple-blue-deep); font-weight: 700; }
+  .sa-chip.selected { border-color: var(--apple-teal); background: var(--apple-teal-soft); color: var(--apple-teal-deep); font-weight: 600; }
+  .sa-chip.correct { border-color: var(--apple-teal); background: var(--apple-teal-soft); color: var(--apple-teal-deep); font-weight: 700; }
   .sa-chip.wrong { border-color: var(--apple-red); background: var(--apple-red-soft); color: var(--apple-red-deep); font-weight: 700; }
   
   .sa-chip-icon {
     width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid var(--text-tertiary);
     display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: var(--card-bg);
   }
-  .sa-chip.selected .sa-chip-icon, .sa-chip.correct .sa-chip-icon { border-color: var(--apple-blue); background: var(--apple-blue); color: #FFFFFF; }
+  .sa-chip.selected .sa-chip-icon, .sa-chip.correct .sa-chip-icon { border-color: var(--apple-teal); background: var(--apple-teal); color: #FFFFFF; }
   .sa-chip.wrong .sa-chip-icon { border-color: var(--apple-red); background: var(--apple-red); color: #FFFFFF; }
   .sa-chip-icon svg { width: 11px; height: 11px; stroke: currentColor; stroke-width: 3; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 
   .sa-revealed-box {
-    background: var(--apple-blue-soft); border-left: 3.5px solid var(--apple-blue); border-radius: var(--radius-md);
-    padding: 10px 12px; font-size: 12px; color: var(--apple-blue-deep); line-height: 1.45; margin-top: 6px; display: none;
+    background: var(--apple-teal-soft); border-left: 3.5px solid var(--apple-teal); border-radius: var(--radius-md);
+    padding: 10px 12px; font-size: 12px; color: var(--apple-teal-deep); line-height: 1.45; margin-top: 6px; display: none;
   }
   .sa-revealed-box.show { display: block; }
   .sa-revealed-box ul { margin: 4px 0 0; padding-left: 18px; }
@@ -331,12 +331,12 @@
   }
   .nav-fab svg { width: 16px; height: 16px; }
   .nav-fab:active { transform: scale(0.92); }
-  .nav-fab.next.ready { background: var(--apple-blue); color: #FFFFFF; border-color: var(--apple-blue); box-shadow: 0 4px 14px rgba(0, 122, 255, 0.32); }
+  .nav-fab.next.ready { background: var(--apple-teal); color: #FFFFFF; border-color: var(--apple-teal); box-shadow: 0 4px 14px rgba(48, 176, 199, 0.32); }
   .nav-fab.locked { opacity: 0.35; pointer-events: none; }
   .qcounter {
     font-weight: 700; font-size: 11.5px; color: var(--text-primary);
     background: var(--card-bg); border: 0.5px solid var(--card-border); border-radius: var(--radius-pill);
-    padding: 4px 12px; box-shadow: var(--shadow-subtle); font-family: 'JetBrains Mono', monospace;
+    padding: 4px 12px; box-shadow: var(--shadow-subtle); font-family: 'JetBrains Mono', monospace; cursor: pointer;
   }
 
   .tabbar {
@@ -350,9 +350,9 @@
   }
   .tab-btn svg { width: 18px; height: 18px; stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
   .tab-btn:active { transform: scale(0.92); }
-  .tab-btn.active { color: var(--apple-blue); }
+  .tab-btn.active { color: var(--apple-teal); }
 
-  /* Toast Notification Overlay */
+  /* Toast Overlay */
   .toast {
     position: fixed; left: 50%; bottom: 95px; transform: translateX(-50%) translateY(10px);
     background: var(--text-primary); color: var(--system-bg); font-size: 12px; font-weight: 600;
@@ -366,7 +366,7 @@
   .float-pt { position: absolute; font-weight: 800; font-size: 14px; animation: floatUp 0.9s ease forwards; }
   @keyframes floatUp { 0% { opacity: 0; transform: translateY(6px) scale(0.8); } 15% { opacity: 1; transform: translateY(0) scale(1); } 100% { opacity: 0; transform: translateY(-34px) scale(1); } }
 
-  /* Settings Sheet Modal */
+  /* Section Menu & Settings Sheets */
   .sheet-backdrop { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.4); opacity: 0; pointer-events: none; transition: opacity 0.25s; z-index: 98; }
   .sheet-backdrop.show { opacity: 1; pointer-events: auto; }
   .settings-sheet {
@@ -380,6 +380,15 @@
   .sheet-handle { width: 36px; height: 5px; background: var(--text-tertiary); border-radius: var(--radius-pill); margin: 6px auto 16px; }
   .sheet-title { font-weight: 700; font-size: 18px; margin: 0 0 2px; }
   .sheet-sub { font-size: 12px; color: var(--text-secondary); margin: 0 0 16px; }
+
+  .section-menu-btn {
+    width: 100%; padding: 12px 14px; border-radius: var(--radius-lg); border: 0.5px solid var(--card-border);
+    background: var(--system-bg); margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between;
+    font-size: 13px; font-weight: 600; color: var(--text-primary); transition: background 0.15s, border-color 0.15s;
+  }
+  .section-menu-btn:active { background: var(--apple-teal-soft); border-color: var(--apple-teal); }
+  .section-menu-btn.active { background: var(--apple-teal-soft); border-color: var(--apple-teal); color: var(--apple-teal-deep); font-weight: 700; }
+  .section-badge { font-size: 10.5px; font-family: 'JetBrains Mono', monospace; background: var(--card-bg); padding: 3px 8px; border-radius: var(--radius-pill); border: 0.5px solid var(--card-border); }
 
   .settings-group {
     background: var(--system-bg); border-radius: var(--radius-lg); border: 0.5px solid var(--card-border);
@@ -399,7 +408,7 @@
     width: 46px; height: 26px; border-radius: var(--radius-pill); background: var(--system-grouped-bg); position: relative; cursor: pointer; flex-shrink: 0; border: none; transition: background 0.25s;
   }
   .toggle::after { content: ''; position: absolute; top: 2px; left: 2px; width: 22px; height: 22px; border-radius: 50%; background: #FFFFFF; box-shadow: 0 2px 4px rgba(0,0,0,0.2); transition: left 0.2s cubic-bezier(0.16, 1, 0.3, 1); }
-  .toggle.on { background: var(--apple-blue); }
+  .toggle.on { background: var(--apple-teal); }
   .toggle.on::after { left: 22px; }
 
   .voice-select {
@@ -414,7 +423,7 @@
     font-weight: 600; font-size: 12.5px; color: var(--text-secondary); transition: all 0.2s;
   }
   .theme-opt svg { width: 15px; height: 15px; stroke: currentColor; stroke-width: 2; fill: none; }
-  .theme-opt.active { border-color: var(--apple-blue); color: var(--apple-blue); background: var(--apple-blue-soft); }
+  .theme-opt.active { border-color: var(--apple-teal); color: var(--apple-teal); background: var(--apple-teal-soft); }
 
   .reset-btn {
     width: 100%; margin-top: 4px; background: none; border: 1px dashed var(--apple-red); color: var(--apple-red);
@@ -432,7 +441,7 @@
   .modal-btn {
     width: 100%; padding: 12px; border-radius: var(--radius-md); font-weight: 600; font-size: 13.5px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;
   }
-  .modal-btn.primary { background: var(--apple-blue); color: #FFFFFF; }
+  .modal-btn.primary { background: var(--apple-teal); color: #FFFFFF; }
   .modal-btn.secondary { background: var(--system-bg); color: var(--text-primary); border: 0.5px solid var(--card-border); }
   .modal-btn.danger { background: var(--apple-red); color: #FFFFFF; }
   .modal-btn.cancel { background: none; color: var(--text-secondary); }
@@ -449,11 +458,11 @@
   .complete-sub { font-size: 13.5px; color: var(--text-secondary); margin: 0 0 20px; }
   .complete-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
   .complete-stat { background: var(--card-bg); border: 0.5px solid var(--card-border); border-radius: var(--radius-lg); padding: 12px 10px; box-shadow: var(--shadow-subtle); }
-  .complete-stat .cs-val { font-weight: 700; font-size: 18px; color: var(--apple-blue); font-family: 'JetBrains Mono', monospace; }
+  .complete-stat .cs-val { font-weight: 700; font-size: 18px; color: var(--apple-teal); font-family: 'JetBrains Mono', monospace; }
   .complete-stat .cs-label { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-secondary); margin-top: 2px; }
   .replay-btn {
-    background: var(--apple-blue); color: #FFFFFF; border: none; font-weight: 700; font-size: 14.5px;
-    padding: 13px 26px; border-radius: var(--radius-pill); cursor: pointer; box-shadow: 0 4px 16px rgba(0, 122, 255, 0.32);
+    background: var(--apple-teal); color: #FFFFFF; border: none; font-weight: 700; font-size: 14.5px;
+    padding: 13px 26px; border-radius: var(--radius-pill); cursor: pointer; box-shadow: 0 4px 16px rgba(48, 176, 199, 0.32);
   }
 
   /* Revision Screen */
@@ -479,8 +488,8 @@
   .review-body.answers-hidden .ri-ans { display: none; }
   .review-item.revealed .ri-ans { display: flex !important; }
   .ri-reveal-hint {
-    display: none; font-size: 11.5px; font-weight: 600; color: var(--apple-blue); cursor: pointer;
-    padding: 6px 10px; background: var(--apple-blue-soft); border-radius: var(--radius-md); margin-top: 6px; text-align: center;
+    display: none; font-size: 11.5px; font-weight: 600; color: var(--apple-teal); cursor: pointer;
+    padding: 6px 10px; background: var(--apple-teal-soft); border-radius: var(--radius-md); margin-top: 6px; text-align: center;
   }
   .review-body.answers-hidden .ri-reveal-hint { display: block; }
   .review-item.revealed .ri-reveal-hint { display: none; }
@@ -495,8 +504,8 @@
     font-size: 10.5px; font-weight: 700; display: flex; align-items: center; justify-content: center;
   }
   .review-item .ri-ans {
-    font-size: 12.5px; line-height: 1.4; background: var(--apple-blue-soft); border-left: 3px solid var(--apple-blue); border-radius: var(--radius-md);
-    padding: 8px 10px; color: var(--apple-blue-deep); display: flex; flex-direction: column; gap: 4px;
+    font-size: 12.5px; line-height: 1.4; background: var(--apple-teal-soft); border-left: 3px solid var(--apple-teal); border-radius: var(--radius-md);
+    padding: 8px 10px; color: var(--apple-teal-deep); display: flex; flex-direction: column; gap: 4px;
   }
 
   /* FULL-SCREEN HANDWRITING PAD OVERLAY */
@@ -517,7 +526,7 @@
     cursor: pointer; transition: transform 0.12s, background 0.15s; flex-shrink: 0;
   }
   .hw-icon-btn:active { transform: scale(0.9); }
-  .hw-icon-btn.primary { background: var(--apple-blue); color: #FFFFFF; border-color: var(--apple-blue); }
+  .hw-icon-btn.primary { background: var(--apple-teal); color: #FFFFFF; border-color: var(--apple-teal); }
   .hw-icon-btn svg { width: 18px; height: 18px; stroke: currentColor; stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 
   .hw-canvas-wrap {
@@ -542,12 +551,12 @@
     body > .print-sheet { display: block !important; }
     .print-sheet { max-width: 720px; margin: 0 auto; padding: 20px; font-family: sans-serif; color: #111111; }
     .ps-title { font-weight: 800; font-size: 22px; margin: 0 0 4px; text-transform: uppercase; letter-spacing: -0.01em; }
-    .ps-sub { font-weight: 700; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #007AFF; margin: 0 0 24px; border-bottom: 2px solid #007AFF; padding-bottom: 6px; }
+    .ps-sub { font-weight: 700; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #30B0C7; margin: 0 0 24px; border-bottom: 2px solid #30B0C7; padding-bottom: 6px; }
     .ps-section-head { font-weight: 700; font-size: 14px; margin: 18px 0 8px; color: #1C1C1E; background: #F2F2F7; padding: 6px 10px; border-radius: 6px; }
     .ps-item { break-inside: avoid; margin-bottom: 12px; }
     .ps-q { font-weight: 600; font-size: 13px; line-height: 1.4; margin: 0; }
-    .ps-num { color: #007AFF; font-weight: 700; margin-right: 4px; }
-    .ps-ans { font-size: 12px; color: #0056B3; margin-top: 4px; font-weight: 600; }
+    .ps-num { color: #30B0C7; font-weight: 700; margin-right: 4px; }
+    .ps-ans { font-size: 12px; color: #008299; margin-top: 4px; font-weight: 600; }
     .ps-ans ul { margin: 2px 0; padding-left: 18px; }
     .ps-line { font-size: 12px; color: #8E8E93; margin-top: 6px; }
     .ps-options { margin-top: 4px; padding-left: 14px; font-size: 12px; color: #444; }
@@ -562,9 +571,13 @@
     <div class="topbar-row">
       <div class="topbar-title-wrap">
         <p class="app-eyebrow">Theme 1 · The Human Body</p>
-        <div class="app-title">Human Circulatory System</div>
+        <div class="app-title" id="moduleTitle">Human Circulatory System</div>
       </div>
       <div class="icon-group">
+        <!-- Section Menu Icon Button -->
+        <button class="icon-btn" id="topMenuBtn" aria-label="Open Section Menu">
+          <svg viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
         <button class="icon-btn" id="topPrintBtn" aria-label="Print Worksheet">
           <svg viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
         </button>
@@ -577,7 +590,7 @@
       </div>
     </div>
 
-    <!-- Gamified HUD & Timer Bar (Active Default) -->
+    <!-- Gamified HUD & Timer Bar -->
     <div class="stat-row">
       <div class="stat streak" id="streakStat"><span class="stat-icon">🔥</span><span id="streakVal">0</span></div>
       <div class="stat points" id="pointsStat"><span class="stat-icon">⭐</span><span id="pointsVal">0</span></div>
@@ -602,7 +615,7 @@
       <button class="nav-fab prev" id="prevBtn" aria-label="Previous question">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg>
       </button>
-      <div class="qcounter" id="qCounter">Q1 / 31</div>
+      <div class="qcounter" id="qCounter">Q1 / 23</div>
       <button class="nav-fab next" id="nextBtn" aria-label="Next question">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg>
       </button>
@@ -625,6 +638,27 @@
       </button>
     </nav>
   </div>
+</div>
+
+<!-- Section Module Menu Sheet -->
+<div class="sheet-backdrop" id="menuSheetBackdrop"></div>
+<div class="settings-sheet" id="sectionMenuSheet" role="dialog" aria-label="Section Navigation Menu">
+  <div class="sheet-handle"></div>
+  <p class="sheet-title">Select Module Section</p>
+  <p class="sheet-sub">Worksheets are split into 20–25 bite-sized questions.</p>
+
+  <button class="section-menu-btn active" id="secBtn1" data-sec="0">
+    <span>Module 1: Circulation &amp; Vessels</span>
+    <span class="section-badge">Q1 – Q23</span>
+  </button>
+  <button class="section-menu-btn" id="secBtn2" data-sec="1">
+    <span>Module 2: Heart Chambers &amp; Blood</span>
+    <span class="section-badge">Q24 – Q46</span>
+  </button>
+  <button class="section-menu-btn" id="secBtn3" data-sec="2">
+    <span>Module 3: Case Studies &amp; Health</span>
+    <span class="section-badge">Q47 – Q69</span>
+  </button>
 </div>
 
 <!-- Revision Screen -->
@@ -699,7 +733,7 @@
       </button>
       <button class="theme-opt" id="themeOptDark" data-theme-opt="dark">
         <svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-        Dark
+        Dark Grey
       </button>
     </div>
   </div>
@@ -795,16 +829,16 @@
 <div class="complete-screen" id="completeScreen">
   <div class="complete-inner">
     <div class="complete-emoji" id="completeEmoji">🏆</div>
-    <h2 class="complete-title" id="completeTitle">Worksheet Complete!</h2>
+    <h2 class="complete-title" id="completeTitle">Module Complete!</h2>
     <p class="complete-sub" id="completeSub">Fantastic performance on Human Circulation.</p>
     <div class="complete-grid">
-      <div class="complete-stat"><div class="cs-val" id="csScore">0/26</div><div class="cs-label">Correct</div></div>
+      <div class="complete-stat"><div class="cs-val" id="csScore">0/23</div><div class="cs-label">Correct</div></div>
       <div class="complete-stat"><div class="cs-val" id="csAccuracy">0%</div><div class="cs-label">Accuracy</div></div>
       <div class="complete-stat"><div class="cs-val" id="csPoints">0</div><div class="cs-label">Points</div></div>
       <div class="complete-stat"><div class="cs-val" id="csStreak">0</div><div class="cs-label">Best Streak</div></div>
     </div>
     <div class="complete-actions">
-      <button class="replay-btn" id="replayBtn">Play Again</button>
+      <button class="replay-btn" id="replayBtn">Play Next Module</button>
     </div>
   </div>
 </div>
@@ -831,7 +865,7 @@
     <div class="hw-tools">
       <div class="hw-colors">
         <button class="hw-color active" data-color="#1c1c1e" style="background:#1c1c1e" aria-label="Black ink"></button>
-        <button class="hw-color" data-color="#007aff" style="background:#007aff" aria-label="Blue ink"></button>
+        <button class="hw-color" data-color="#30b0c7" style="background:#30b0c7" aria-label="Teal ink"></button>
         <button class="hw-color" data-color="#5856d6" style="background:#5856d6" aria-label="Indigo ink"></button>
         <button class="hw-color" data-color="#ff3b30" style="background:#ff3b30" aria-label="Red ink"></button>
       </div>
@@ -862,7 +896,6 @@
   function setVh(){ document.documentElement.style.setProperty('--vh', (window.innerHeight*0.01)+'px'); }
   setVh(); window.addEventListener('resize', setVh);
 
-  // MATCHING OPTIONS SPLIT INTO TWO CLEAN 5-OPTION SECTIONS
   var MATCH_SECTION_1 = [
     "Carries oxygen to all body cells",
     "Fights germs and protects the body",
@@ -987,7 +1020,7 @@
   ];
   matchI.forEach(function(m,i){ RAW.push({type:'match2', section:'Match Part 2 (Heart & Circulation)', qNo:i+1, q:m[0], term:m[0], correct:m[1]}); });
 
-  // DIGITALLY VIABLE SHORT ANSWERS WITH CORRECT STATEMENTS & DISTRACTORS (WRONG ANSWERS)
+  // DIGITALLY VIABLE SHORT ANSWERS WITH DISTRACTORS
   var saC = [
     ["What are the different parts of the human circulatory system?", [
       { text: "🫀 Heart: Muscular organ that pumps blood", isCorrect: true },
@@ -1037,7 +1070,6 @@
   ];
   saC.forEach(function(s,i){ RAW.push({type:'sa', section:'Answer the Following', qNo:i+1, q:s[0], bulletOptions:s[1]}); });
 
-  // Section E: Give Reasons with Distractors
   var saE = [
     ["Why is the heart called a living pump?", [
       { text: "💓 Continuous Beat: Beats nonstop every minute of life", isCorrect: true },
@@ -1052,7 +1084,6 @@
   ];
   saE.forEach(function(s,i){ RAW.push({type:'sa', section:'Give Reasons', qNo:i+1, q:s[0], bulletOptions:s[1]}); });
 
-  // Section D: Rewrite Correctly with Distractors
   var saD = [
     ["Rewrite correctly: Veins carry oxygenated blood from the heart to various parts of the body.", [
       { text: "✅ Arteries carry oxygenated blood away from the heart to body parts.", isCorrect: true },
@@ -1079,7 +1110,6 @@
   ];
   saD.forEach(function(s,i){ RAW.push({type:'sa', section:'Rewrite Correctly', qNo:i+1, q:s[0], bulletOptions:s[1]}); });
 
-  // Section N: Life Skills with Distractors
   var saN = [
     ["The heart keeps pumping blood all the time. Write a few ways to keep it healthy.", [
       { text: "🏃 Daily Exercise: Active play, running, or swimming", isCorrect: true },
@@ -1092,19 +1122,29 @@
   ];
   saN.forEach(function(s,i){ RAW.push({type:'sa', section:'Heart Health', qNo:i+1, q:s[0], bulletOptions:s[1]}); });
 
-  var DECK = RAW;
+  /* SPLIT DATASET INTO THREE BALANCED MODULE SECTIONS (20–25 QUESTIONS EACH) */
+  var ALL_DECK = RAW;
+  var MODULES = [
+    { title: "Module 1: Circulation & Vessels", start: 0, end: 23 },
+    { title: "Module 2: Heart Chambers & Blood", start: 23, end: 46 },
+    { title: "Module 3: Case Studies & Health", start: 46, end: ALL_DECK.length }
+  ];
+
+  var currentModuleIdx = 0;
+  var DECK = ALL_DECK.slice(MODULES[currentModuleIdx].start, MODULES[currentModuleIdx].end);
   var TOTAL = DECK.length;
   var GRADED_TOTAL = DECK.filter(function(d){ return d.type!=='sa'; }).length;
-  var ACCENTS = { mcq:'var(--apple-blue)', fill:'var(--apple-blue)', tf:'var(--apple-red-deep)', match1:'var(--apple-indigo)', match2:'var(--apple-indigo)', sa:'var(--apple-blue)' };
+  var ACCENTS = { mcq:'var(--apple-teal)', fill:'var(--apple-teal)', tf:'var(--apple-red-deep)', match1:'var(--apple-indigo)', match2:'var(--apple-indigo)', sa:'var(--apple-teal)' };
 
-  var STORAGE_KEY = 'hcs_streak_state_v6';
+  var STORAGE_KEY = 'hcs_streak_state_v7';
   var state = {
+    moduleIdx: 0,
     idx: 0,
-    resolved: new Array(TOTAL).fill(false),
-    answers: new Array(TOTAL).fill(null),
-    correctFlags: new Array(TOTAL).fill(null),
-    selectedBullets: new Array(TOTAL).fill([]),
-    saModes: new Array(TOTAL).fill('type'), // DEFAULT MODE: 'type' or 'voice' (Answers hidden by default)
+    resolved: new Array(ALL_DECK.length).fill(false),
+    answers: new Array(ALL_DECK.length).fill(null),
+    correctFlags: new Array(ALL_DECK.length).fill(null),
+    selectedBullets: new Array(ALL_DECK.length).fill([]),
+    saModes: new Array(ALL_DECK.length).fill('type'),
     points: 0,
     powerPoints: 0,
     streak: 0,
@@ -1118,13 +1158,18 @@
       var raw = window.localStorage.getItem(STORAGE_KEY);
       if(!raw) return;
       var s = JSON.parse(raw);
-      if(s && typeof s.idx === 'number' && s.resolved.length === TOTAL) state = s;
+      if(s && typeof s.idx === 'number' && s.resolved.length === ALL_DECK.length) state = s;
     }catch(e){}
   }
   function saveState(){
     try{ window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }catch(e){}
   }
   loadState();
+
+  currentModuleIdx = state.moduleIdx || 0;
+  DECK = ALL_DECK.slice(MODULES[currentModuleIdx].start, MODULES[currentModuleIdx].end);
+  TOTAL = DECK.length;
+  GRADED_TOTAL = DECK.filter(function(d){ return d.type!=='sa'; }).length;
 
   var SUN_SVG = '<circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"></path>';
   var MOON_SVG = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
@@ -1136,6 +1181,7 @@
   var timerInterval = null;
   var timerSecondsLeft = 0;
   var lastSpokenIdx = -1;
+  var activeRecognition = null;
 
   document.getElementById('topPrintBtn').onclick = document.getElementById('reviewPrintBtn').onclick = function(){
     document.getElementById('printModal').classList.add('show');
@@ -1160,7 +1206,6 @@
   var voicesList = [];
   var isAudioPlaying = false;
 
-  /* Universal Default Voice Logic: Explicitly Selects Google English US Voice */
   function getActiveVoice(){
     if(!('speechSynthesis' in window)) return null;
     var voices = window.speechSynthesis.getVoices() || [];
@@ -1218,7 +1263,7 @@
     state.settings.voiceURI = this.value; saveState();
   };
 
-  /* Mobile Audio Warmup */
+  /* Mobile Speech Warmup */
   function warmUpMobileAudio(){
     if('speechSynthesis' in window){
       window.speechSynthesis.resume();
@@ -1282,7 +1327,7 @@
     }catch(e){}
   }
 
-  /* Reliable Mobile Web Speech Input Handler */
+  /* RESOLVED MOBILE VOICE INPUT & ERROR HANDLING ("Paused or not allowed") */
   function startVoiceRecognition(callback, onEndCallback){
     var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
     if(!SR){
@@ -1290,9 +1335,15 @@
       if(onEndCallback) onEndCallback();
       return;
     }
+
+    if(activeRecognition){
+      try { activeRecognition.stop(); } catch(e){}
+      activeRecognition = null;
+    }
     
     try {
       var rec = new SR();
+      activeRecognition = rec;
       rec.lang = 'en-US';
       rec.interimResults = false;
       rec.maxAlternatives = 1;
@@ -1309,17 +1360,24 @@
       };
 
       rec.onerror = function(e){
-        showToast('🎙️ Speech recognition paused or not allowed.');
+        if(e.error === 'not-allowed'){
+          showToast('🎙️ Mic permission denied. Allow mic in browser settings.');
+        } else if(e.error === 'no-speech'){
+          showToast('🎙️ No speech heard. Tap mic and try again.');
+        } else {
+          showToast('🎙️ Listening reset. Tap mic to retry.');
+        }
         if(onEndCallback) onEndCallback();
       };
 
       rec.onend = function(){
+        activeRecognition = null;
         if(onEndCallback) onEndCallback();
       };
 
       rec.start();
     } catch(err) {
-      showToast('⚠️ Tap microphone permission allowed in mobile browser settings.');
+      showToast('🎙️ Tap mic permission allowed in mobile settings.');
       if(onEndCallback) onEndCallback();
     }
   }
@@ -1335,13 +1393,14 @@
     });
   }
 
-  /* Default Timer Countdown Logic */
+  /* Default Timer Countdown */
   function startCardTimer(){
     clearInterval(timerInterval);
     var timerStatEl = document.getElementById('timerStat');
     var timerValEl = document.getElementById('timerVal');
     
-    if(!state.settings.timerEnabled || state.resolved[state.idx]){
+    var globalIdx = MODULES[currentModuleIdx].start + state.idx;
+    if(!state.settings.timerEnabled || state.resolved[globalIdx]){
       timerStatEl.style.display = 'none';
       return;
     }
@@ -1376,7 +1435,7 @@
     var rect = anchorEl.getBoundingClientRect();
     var span = document.createElement('span');
     span.className = 'float-pt'; span.textContent = text;
-    span.style.color = 'var(--apple-blue)';
+    span.style.color = 'var(--apple-teal)';
     span.style.left = (rect.left + rect.width/2 - 12) + 'px';
     span.style.top = (rect.top - 4) + 'px';
     document.getElementById('floatLayer').appendChild(span);
@@ -1384,20 +1443,31 @@
   }
 
   function updateStatsUI(){
+    var modStart = MODULES[currentModuleIdx].start;
+    var modEnd = MODULES[currentModuleIdx].end;
+    var resolvedInMod = 0;
+    for(var i = modStart; i < modEnd; i++){
+      if(state.resolved[i]) resolvedInMod++;
+    }
+
     document.getElementById('streakVal').textContent = state.streak;
     document.getElementById('pointsVal').textContent = state.points;
     document.getElementById('powerVal').textContent = state.powerPoints;
-    document.getElementById('progressFill').style.width = Math.round((state.resolved.filter(Boolean).length/TOTAL)*100) + '%';
+    document.getElementById('progressFill').style.width = Math.round((resolvedInMod/TOTAL)*100) + '%';
     document.getElementById('qCounter').textContent = 'Q' + (state.idx+1) + ' / ' + TOTAL;
+    document.getElementById('moduleTitle').textContent = MODULES[currentModuleIdx].title;
     document.getElementById('prevBtn').classList.toggle('locked', state.idx === 0 || !state.settings.allowBack);
-    document.getElementById('nextBtn').classList.toggle('ready', !!state.resolved[state.idx]);
+    
+    var globalIdx = modStart + state.idx;
+    document.getElementById('nextBtn').classList.toggle('ready', !!state.resolved[globalIdx]);
     document.getElementById('streakStat').classList.toggle('hot', state.streak >= 3);
     document.getElementById('powerStat').classList.toggle('usable', state.powerPoints > 0 && canUsePower());
   }
 
   function canUsePower(){
     var item = DECK[state.idx];
-    return item && !state.resolved[state.idx] && (item.type === 'mcq' || item.type.startsWith('match'));
+    var globalIdx = MODULES[currentModuleIdx].start + state.idx;
+    return item && !state.resolved[globalIdx] && (item.type === 'mcq' || item.type.startsWith('match'));
   }
 
   function usePower(){
@@ -1418,12 +1488,13 @@
   }
   document.getElementById('powerStat').onclick = usePower;
 
-  function registerGraded(idx, correct, userAnswer){
+  function registerGraded(localIdx, correct, userAnswer){
     clearInterval(timerInterval);
     if('speechSynthesis' in window) window.speechSynthesis.cancel();
-    state.resolved[idx] = true;
-    state.answers[idx] = userAnswer;
-    state.correctFlags[idx] = correct;
+    var globalIdx = MODULES[currentModuleIdx].start + localIdx;
+    state.resolved[globalIdx] = true;
+    state.answers[globalIdx] = userAnswer;
+    state.correctFlags[globalIdx] = correct;
     if(correct){
       state.streak++;
       if(state.streak > state.bestStreak) state.bestStreak = state.streak;
@@ -1447,7 +1518,8 @@
   function autoAdvance(dir){
     var activeCard = document.querySelector('.card.active');
     if(!activeCard) return;
-    var wasCorrect = state.correctFlags[state.idx];
+    var globalIdx = MODULES[currentModuleIdx].start + state.idx;
+    var wasCorrect = state.correctFlags[globalIdx];
     var delay = wasCorrect === false ? 1700 : 750;
     setTimeout(function(){
       if(state.idx < TOTAL - 1){
@@ -1476,14 +1548,15 @@
     setTimeout(cb, 300);
   }
 
-  function buildCard(idx){
-    var item = DECK[idx];
+  function buildCard(localIdx){
+    var item = DECK[localIdx];
+    var globalIdx = MODULES[currentModuleIdx].start + localIdx;
     var wrap = document.createElement('div'); wrap.className = 'card active';
-    var resolved = state.resolved[idx];
+    var resolved = state.resolved[globalIdx];
 
     var headerRow = document.createElement('div'); headerRow.className = 'card-header-row';
     var tag = document.createElement('div'); tag.className = 'card-tag';
-    tag.innerHTML = '<span class="tag-dot" style="background:' + ACCENTS[item.type] + '"></span><span>' + item.section + ' · Q' + item.qNo + '</span>';
+    tag.innerHTML = '<span class="tag-dot" style="background:' + ACCENTS[item.type] + '"></span><span>' + item.section + ' · Q' + (localIdx+1) + '</span>';
 
     var playPauseBtn = document.createElement('button'); playPauseBtn.className = 'play-pause-btn';
     playPauseBtn.setAttribute('aria-label', 'Listen');
@@ -1508,7 +1581,7 @@
           b.classList.add('locked');
           if(i === item.correct) {
             b.classList.add('correct');
-          } else if(state.answers[idx] === i) {
+          } else if(state.answers[globalIdx] === i) {
             b.classList.add('wrong');
             var wrongHint = document.createElement('div'); wrongHint.className = 'wrong-ans-hint';
             wrongHint.innerHTML = correctHintHTML(item.options[item.correct]);
@@ -1516,7 +1589,7 @@
           }
         } else {
           b.onclick = function(){
-            registerGraded(idx, i === item.correct, i);
+            registerGraded(localIdx, i === item.correct, i);
             render();
             autoAdvance(-1);
           };
@@ -1535,7 +1608,7 @@
           b.classList.add('locked');
           if(val === item.answer) {
             b.classList.add('correct');
-          } else if(state.answers[idx] === val) {
+          } else if(state.answers[globalIdx] === val) {
             b.classList.add('wrong');
             var wrongHint = document.createElement('div'); wrongHint.className = 'wrong-ans-hint';
             wrongHint.innerHTML = correctHintHTML(item.answer ? 'True' : 'False');
@@ -1543,7 +1616,7 @@
           }
         } else {
           b.onclick = function(){
-            registerGraded(idx, val === item.answer, val);
+            registerGraded(localIdx, val === item.answer, val);
             render();
             autoAdvance(-1);
           };
@@ -1558,9 +1631,9 @@
       var micBtn = document.createElement('button'); micBtn.className='input-mic-btn';
       micBtn.innerHTML = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line></svg>';
       
-      var isCorrect = state.answers[idx]?.toLowerCase() === item.answer;
+      var isCorrect = state.answers[globalIdx]?.toLowerCase() === item.answer;
       if(resolved){
-        input.value = state.answers[idx] || ''; input.disabled = true;
+        input.value = state.answers[globalIdx] || ''; input.disabled = true;
         input.classList.add(isCorrect ? 'correct' : 'wrong');
         micBtn.style.display = 'none';
       } else {
@@ -1570,6 +1643,7 @@
       fillContainer.appendChild(micBtn);
       body.appendChild(fillContainer);
 
+      /* CLEAN SINGLE ANSWER DISPLAY */
       if(resolved && !isCorrect){
         var wrongHint = document.createElement('div'); wrongHint.className = 'wrong-ans-hint';
         wrongHint.innerHTML = correctHintHTML(item.answer);
@@ -1580,7 +1654,7 @@
         var checkBtn = document.createElement('button'); checkBtn.className='fill-check-btn'; checkBtn.textContent='Check Answer';
         checkBtn.onclick = function(){
           var val = input.value.trim(); if(!val) return;
-          registerGraded(idx, val.toLowerCase() === item.answer, val);
+          registerGraded(localIdx, val.toLowerCase() === item.answer, val);
           render();
           autoAdvance(-1);
         };
@@ -1597,7 +1671,7 @@
           b.classList.add('locked');
           if(i === item.correct) {
             b.classList.add('correct');
-          } else if(state.answers[idx] === i) {
+          } else if(state.answers[globalIdx] === i) {
             b.classList.add('wrong');
             var wrongHint = document.createElement('div'); wrongHint.className = 'wrong-ans-hint';
             wrongHint.innerHTML = correctHintHTML(opts[item.correct]);
@@ -1605,7 +1679,7 @@
           }
         } else {
           b.onclick = function(){
-            registerGraded(idx, i === item.correct, i);
+            registerGraded(localIdx, i === item.correct, i);
             render();
             autoAdvance(-1);
           };
@@ -1613,8 +1687,8 @@
         body.appendChild(optWrap);
       });
     } else if(item.type==='sa'){
-      /* NON-MCQ DEFAULT: TYPE / VOICE INPUT (ANSWERS HIDDEN BY DEFAULT) */
-      var saMode = state.saModes[idx] || 'type';
+      /* DEFAULT TYPE / VOICE INPUT MODE (Answers hidden by default) */
+      var saMode = state.saModes[globalIdx] || 'type';
 
       var modeBar = document.createElement('div'); modeBar.className = 'sa-mode-selector';
       var modeTypeBtn = document.createElement('button'); modeTypeBtn.className = 'sa-mode-btn' + (saMode==='type'?' active':'');
@@ -1622,8 +1696,8 @@
       var modeSelectBtn = document.createElement('button'); modeSelectBtn.className = 'sa-mode-btn' + (saMode==='select'?' active':'');
       modeSelectBtn.innerHTML = '<span>☑️ Key Concepts</span>';
 
-      modeTypeBtn.onclick = function(){ state.saModes[idx] = 'type'; saveState(); render(); };
-      modeSelectBtn.onclick = function(){ state.saModes[idx] = 'select'; saveState(); render(); };
+      modeTypeBtn.onclick = function(){ state.saModes[globalIdx] = 'type'; saveState(); render(); };
+      modeSelectBtn.onclick = function(){ state.saModes[globalIdx] = 'select'; saveState(); render(); };
 
       if(!resolved){
         modeBar.appendChild(modeTypeBtn);
@@ -1632,7 +1706,6 @@
       }
 
       if(saMode === 'type'){
-        /* TYPE / VOICE INPUT DEFAULT MODE */
         var fillContainer = document.createElement('div'); fillContainer.className='fill-input-container';
         var saTextarea = document.createElement('textarea'); saTextarea.className='sa-textarea'; saTextarea.placeholder='Type or tap microphone to dictate...';
         
@@ -1640,7 +1713,7 @@
         voiceMicBtn.innerHTML = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line></svg>';
 
         if(resolved){
-          saTextarea.value = state.answers[idx] || ''; saTextarea.disabled = true;
+          saTextarea.value = state.answers[globalIdx] || ''; saTextarea.disabled = true;
           voiceMicBtn.style.display = 'none';
         } else {
           voiceMicBtn.onclick = function(){ triggerInputMicVoice(saTextarea, voiceMicBtn); };
@@ -1649,6 +1722,7 @@
         fillContainer.appendChild(voiceMicBtn);
         body.appendChild(fillContainer);
 
+        /* SINGLE CLEAN ANSWER BOX DISPLAY UPON SUBMISSION */
         var revBox = document.createElement('div'); revBox.className = 'sa-revealed-box' + (resolved ? ' show' : '');
         var revHtml = '<b>Correct Key Points:</b><ul>';
         item.bulletOptions.filter(function(b){ return b.isCorrect; }).forEach(function(b){
@@ -1663,20 +1737,19 @@
             var val = saTextarea.value.trim();
             if(!val){ showToast('Write or dictate your answer first.'); return; }
             if('speechSynthesis' in window) window.speechSynthesis.cancel();
-            state.resolved[idx] = true; state.answers[idx] = val; state.points += 10;
+            state.resolved[globalIdx] = true; state.answers[globalIdx] = val; state.points += 10;
             saveState(); render(); autoAdvance(-1);
           };
           body.appendChild(submitTextBtn);
         }
         body.appendChild(revBox);
       } else {
-        /* OPTIONAL CONCEPT SELECTOR WITH INCORRECT DISTRACTORS */
         var selectContainer = document.createElement('div'); selectContainer.className = 'sa-select-container';
         var instruct = document.createElement('div'); instruct.className = 'sa-instruction';
         instruct.textContent = 'Select ONLY the correct science facts:';
         selectContainer.appendChild(instruct);
 
-        var selectedList = state.selectedBullets[idx] || [];
+        var selectedList = state.selectedBullets[globalIdx] || [];
 
         item.bulletOptions.forEach(function(optObj, bulletIdx){
           var chip = document.createElement('div'); chip.className = 'sa-chip';
@@ -1691,11 +1764,11 @@
           
           if(!resolved){
             chip.onclick = function(){
-              var curr = state.selectedBullets[idx] ? [...state.selectedBullets[idx]] : [];
+              var curr = state.selectedBullets[globalIdx] ? [...state.selectedBullets[globalIdx]] : [];
               var pos = curr.indexOf(bulletIdx);
               if(pos >= 0) curr.splice(pos, 1);
               else curr.push(bulletIdx);
-              state.selectedBullets[idx] = curr;
+              state.selectedBullets[globalIdx] = curr;
               chip.classList.toggle('selected', curr.includes(bulletIdx));
               saveState();
             };
@@ -1710,7 +1783,7 @@
         if(!resolved){
           var confirmBtn = document.createElement('button'); confirmBtn.className='fill-check-btn'; confirmBtn.textContent='Submit Selected Facts';
           confirmBtn.onclick = function(){
-            var curr = state.selectedBullets[idx] || [];
+            var curr = state.selectedBullets[globalIdx] || [];
             if(curr.length === 0){ showToast('Select at least one fact to submit.'); return; }
             if('speechSynthesis' in window) window.speechSynthesis.cancel();
             
@@ -1719,7 +1792,7 @@
               if(item.bulletOptions[bIdx] && item.bulletOptions[bIdx].isCorrect) correctPicks++;
             });
 
-            state.resolved[idx] = true;
+            state.resolved[globalIdx] = true;
             state.points += (correctPicks * 4);
             saveState(); render(); autoAdvance(-1);
           };
@@ -1740,14 +1813,52 @@
     }
     var active = buildCard(state.idx); slot.appendChild(active);
     updateStatsUI();
-    if(lastSpokenIdx !== state.idx && !state.resolved[state.idx]){
+    
+    var globalIdx = MODULES[currentModuleIdx].start + state.idx;
+    if(lastSpokenIdx !== globalIdx && !state.resolved[globalIdx]){
       speakAuto(DECK[state.idx].q);
-      lastSpokenIdx = state.idx;
+      lastSpokenIdx = globalIdx;
     }
     startCardTimer();
   }
 
-  /* 2D Touch Gesture & Keyboard Swipe Handling (Up, Down, Left, Right) */
+  /* Section Module Switching Logic */
+  function switchModule(modIdx){
+    currentModuleIdx = modIdx;
+    state.moduleIdx = modIdx;
+    state.idx = 0;
+    DECK = ALL_DECK.slice(MODULES[currentModuleIdx].start, MODULES[currentModuleIdx].end);
+    TOTAL = DECK.length;
+    GRADED_TOTAL = DECK.filter(function(d){ return d.type!=='sa'; }).length;
+    
+    document.querySelectorAll('.section-menu-btn').forEach(function(btn, i){
+      btn.classList.toggle('active', i === modIdx);
+    });
+
+    closeSectionMenu();
+    saveState();
+    render();
+    showToast('Switched to ' + MODULES[currentModuleIdx].title);
+  }
+
+  function openSectionMenu(){
+    document.getElementById('menuSheetBackdrop').classList.add('show');
+    document.getElementById('sectionMenuSheet').classList.add('show');
+  }
+  function closeSectionMenu(){
+    document.getElementById('menuSheetBackdrop').classList.remove('show');
+    document.getElementById('sectionMenuSheet').classList.remove('show');
+  }
+
+  document.getElementById('topMenuBtn').onclick = openSectionMenu;
+  document.getElementById('qCounter').onclick = openSectionMenu;
+  document.getElementById('menuSheetBackdrop').onclick = closeSectionMenu;
+
+  document.getElementById('secBtn1').onclick = function(){ switchModule(0); };
+  document.getElementById('secBtn2').onclick = function(){ switchModule(1); };
+  document.getElementById('secBtn3').onclick = function(){ switchModule(2); };
+
+  /* 2D Touch Gesture & Keyboard Swipe */
   var touchStartX = 0, touchStartY = 0;
   var stageEl = document.getElementById('stage');
 
@@ -1759,16 +1870,17 @@
   stageEl.onpointerup = function(e){
     var diffX = e.clientX - touchStartX;
     var diffY = e.clientY - touchStartY;
+    var globalIdx = MODULES[currentModuleIdx].start + state.idx;
 
     if(Math.abs(diffX) > 50 || Math.abs(diffY) > 50){
       if(Math.abs(diffX) > Math.abs(diffY)){
-        if(diffX < 0 && state.resolved[state.idx] && state.idx < TOTAL - 1){
+        if(diffX < 0 && state.resolved[globalIdx] && state.idx < TOTAL - 1){
           state.idx++; saveState(); render();
         } else if(diffX > 0 && state.idx > 0 && state.settings.allowBack){
           state.idx--; saveState(); render();
         }
       } else {
-        if(diffY < 0 && state.resolved[state.idx] && state.idx < TOTAL - 1){
+        if(diffY < 0 && state.resolved[globalIdx] && state.idx < TOTAL - 1){
           state.idx++; saveState(); render();
         } else if(diffY > 0 && state.idx > 0 && state.settings.allowBack){
           state.idx--; saveState(); render();
@@ -1778,8 +1890,9 @@
   };
 
   window.addEventListener('keydown', function(e){
+    var globalIdx = MODULES[currentModuleIdx].start + state.idx;
     if(e.key === 'ArrowRight' || e.key === 'ArrowDown'){
-      if(state.resolved[state.idx] && state.idx < TOTAL - 1){ state.idx++; saveState(); render(); }
+      if(state.resolved[globalIdx] && state.idx < TOTAL - 1){ state.idx++; saveState(); render(); }
     } else if(e.key === 'ArrowLeft' || e.key === 'ArrowUp'){
       if(state.idx > 0 && state.settings.allowBack){ state.idx--; saveState(); render(); }
     }
@@ -1789,7 +1902,8 @@
     if(state.idx > 0 && state.settings.allowBack){ state.idx--; saveState(); render(); }
   };
   document.getElementById('nextBtn').onclick = function(){
-    if(!state.resolved[state.idx]) return;
+    var globalIdx = MODULES[currentModuleIdx].start + state.idx;
+    if(!state.resolved[globalIdx]) return;
     if(state.idx < TOTAL - 1){ state.idx++; saveState(); render(); }
     else { showComplete(); }
   };
@@ -1890,7 +2004,6 @@
   document.getElementById('btnPrintWithAns').onclick = function(){ triggerPrint(true); };
   document.getElementById('btnPrintBlank').onclick = function(){ triggerPrint(false); };
 
-  // PRINT GENERATION (EXPLICIT MATCH TO HTML TITLES)
   function triggerPrint(withAnswers){
     document.getElementById('printModal').classList.remove('show');
     var container = document.getElementById('printSheet');
@@ -1898,7 +2011,7 @@
     html += '<div class="ps-sub">Theme 1 · The Human Body — ' + (withAnswers ? 'Answer Key Included' : 'Blank Practice Sheet') + '</div>';
     
     var currentSec = '';
-    DECK.forEach(function(item, i){
+    ALL_DECK.forEach(function(item, i){
       if(item.section !== currentSec){
         currentSec = item.section;
         html += '<div class="ps-section-head">' + currentSec + '</div>';
@@ -2167,27 +2280,45 @@
 
   function showComplete(){
     clearInterval(timerInterval);
-    var pct = Math.round((state.correctCount/GRADED_TOTAL)*100);
-    document.getElementById('csScore').textContent = state.correctCount + '/' + GRADED_TOTAL;
+    var modStart = MODULES[currentModuleIdx].start;
+    var modEnd = MODULES[currentModuleIdx].end;
+    var correctInMod = 0;
+    for(var i = modStart; i < modEnd; i++){
+      if(state.correctFlags[i]) correctInMod++;
+    }
+
+    var pct = Math.round((correctInMod/GRADED_TOTAL)*100);
+    document.getElementById('csScore').textContent = correctInMod + '/' + GRADED_TOTAL;
     document.getElementById('csAccuracy').textContent = pct + '%';
     document.getElementById('csPoints').textContent = state.points;
     document.getElementById('csStreak').textContent = state.bestStreak;
 
     var emoji, title, sub;
-    if(pct >= 90){ emoji = '🏆'; title = 'Outstanding Work!'; sub = 'Mastery level! Excellent understanding of blood circulation.'; }
-    else if(pct >= 70){ emoji = '🎉'; title = 'Great Job!'; sub = 'Solid score — a quick review will make it perfect!'; }
-    else if(pct >= 50){ emoji = '💪'; title = 'Good Progress!'; sub = 'Keep practicing to boost your high score and streak!'; }
-    else { emoji = '📘'; title = 'Keep Learning!'; sub = 'Review the cards in Revision Mode and try again.'; }
+    if(pct >= 90){ emoji = '🏆'; title = 'Module Mastered!'; sub = 'Outstanding job! You are ready for the next module.'; }
+    else if(pct >= 70){ emoji = '🎉'; title = 'Great Performance!'; sub = 'Solid score — review tricky questions in Revision mode.'; }
+    else if(pct >= 50){ emoji = '💪'; title = 'Good Progress!'; sub = 'Keep practicing to boost your accuracy and streak!'; }
+    else { emoji = '📘'; title = 'Keep Learning!'; sub = 'Try reviewing the revision guide and run this module back.'; }
     document.getElementById('completeEmoji').textContent = emoji;
     document.getElementById('completeTitle').textContent = title;
     document.getElementById('completeSub').textContent = sub;
 
+    var replayBtn = document.getElementById('replayBtn');
+    if(currentModuleIdx < MODULES.length - 1){
+      replayBtn.textContent = 'Play Next Module (' + (currentModuleIdx + 2) + '/3)';
+      replayBtn.onclick = function(){
+        document.getElementById('completeScreen').classList.remove('show');
+        switchModule(currentModuleIdx + 1);
+      };
+    } else {
+      replayBtn.textContent = 'Play Module 1 Again';
+      replayBtn.onclick = function(){
+        document.getElementById('completeScreen').classList.remove('show');
+        switchModule(0);
+      };
+    }
+
     document.getElementById('completeScreen').classList.add('show');
   }
-  document.getElementById('replayBtn').onclick = function(){
-    document.getElementById('completeScreen').classList.remove('show');
-    document.getElementById('tabReset').click();
-  };
 
   render();
 
