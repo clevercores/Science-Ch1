@@ -47,7 +47,6 @@
   }
 
   [data-theme="dark"] {
-    /* Dark Grey Surface */
     --system-bg: #1C1C1E;
     --system-bg-secondary: #2C2C2E;
     --system-grouped-bg: #3A3A3C;
@@ -121,6 +120,7 @@
     cursor: pointer; transition: transform 0.15s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.2s;
   }
   .icon-btn:active { transform: scale(0.92); opacity: 0.8; }
+  .icon-btn.mic-active { background: var(--apple-teal); color: #FFFFFF; }
   .icon-btn svg { width: 17px; height: 17px; stroke: currentColor; stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 
   /* Gamified HUD */
@@ -145,7 +145,7 @@
   .stat.power:not(.usable) { opacity: 0.55; }
   .opt.power-removed { opacity: 0.35; text-decoration: line-through; pointer-events: none; }
 
-  /* SECTION TABS WITH LIVE SCORES FOR NAVIGATION */
+  /* Section Navigation Tabs */
   .section-nav-tabs { display: flex; gap: 4px; margin-top: 8px; background: var(--system-grouped-bg); padding: 3px; border-radius: var(--radius-lg); }
   .sec-tab-btn {
     flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -201,7 +201,7 @@
   .card-qtext { font-size: 15px; font-weight: 700; line-height: 1.35; letter-spacing: -0.015em; color: var(--text-primary); margin: 0 0 8px; flex-shrink: 0; }
   .card-body { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 6px; overflow-y: auto; padding-right: 2px; }
 
-  /* Option Buttons Styling - SINGLE CORRECT HIGHLIGHT CLEANUP */
+  /* Option Buttons Styling */
   .opt-wrap { display: flex; flex-direction: column; gap: 3px; width: 100%; }
   .opt {
     border: 0.5px solid var(--card-border); background: var(--system-bg); text-align: left; padding: 9px 12px;
@@ -296,7 +296,7 @@
     padding: 10px 12px; font-size: 12px; color: var(--apple-teal-deep); line-height: 1.45; margin-top: 6px; display: none;
   }
   .sa-revealed-box.show { display: block; }
-  .sa-revealed-box ul { margin: 4px 0 0; padding-left: 18px; }
+  .sa-revealed-box ol { margin: 4px 0 0; padding-left: 18px; }
 
   /* Writing Pad Floating ICON ONLY Trigger */
   .floating-pad-trigger {
@@ -364,7 +364,7 @@
   .float-pt { position: absolute; font-weight: 800; font-size: 14px; animation: floatUp 0.9s ease forwards; }
   @keyframes floatUp { 0% { opacity: 0; transform: translateY(6px) scale(0.8); } 15% { opacity: 1; transform: translateY(0) scale(1); } 100% { opacity: 0; transform: translateY(-34px) scale(1); } }
 
-  /* Settings Sheets */
+  /* Settings Sheet */
   .sheet-backdrop { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.4); opacity: 0; pointer-events: none; transition: opacity 0.25s; z-index: 98; }
   .sheet-backdrop.show { opacity: 1; pointer-events: auto; }
   .settings-sheet {
@@ -515,7 +515,7 @@
     cursor: pointer; transition: transform 0.12s, background 0.15s; flex-shrink: 0;
   }
   .hw-icon-btn:active { transform: scale(0.9); }
-  .hw-icon-btn.primary { background: var(--apple-teal); color: #FFFFFF; border-color: var(--apple-teal); }
+  .hw-icon-btn.primary { background: var(--apple-teal); color: #FFFFFF; }
   .hw-icon-btn svg { width: 18px; height: 18px; stroke: currentColor; stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 
   .hw-canvas-wrap {
@@ -546,7 +546,7 @@
     .ps-q { font-weight: 600; font-size: 13px; line-height: 1.4; margin: 0; }
     .ps-num { color: #30B0C7; font-weight: 700; margin-right: 4px; }
     .ps-ans { font-size: 12px; color: #008299; margin-top: 4px; font-weight: 600; }
-    .ps-ans ul { margin: 2px 0; padding-left: 18px; }
+    .ps-ans ol { margin: 2px 0; padding-left: 18px; }
     .ps-line { font-size: 12px; color: #8E8E93; margin-top: 6px; }
     .ps-options { margin-top: 4px; padding-left: 14px; font-size: 12px; color: #444; }
   }
@@ -563,6 +563,10 @@
         <div class="app-title" id="moduleTitle">Human Circulatory System</div>
       </div>
       <div class="icon-group">
+        <!-- Universal Voice Enable Button -->
+        <button class="icon-btn" id="topVoiceActivateBtn" aria-label="Activate Voice Mic Permissions">
+          <svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line></svg>
+        </button>
         <button class="icon-btn" id="topPrintBtn" aria-label="Print Worksheet">
           <svg viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
         </button>
@@ -575,7 +579,7 @@
       </div>
     </div>
 
-    <!-- Gamified HUD & Timer Bar -->
+    <!-- Gamified HUD -->
     <div class="stat-row">
       <div class="stat streak" id="streakStat"><span class="stat-icon">🔥</span><span id="streakVal">0</span></div>
       <div class="stat points" id="pointsStat"><span class="stat-icon">⭐</span><span id="pointsVal">0</span></div>
@@ -705,6 +709,17 @@
   <p class="sheet-sub">Customize theme, speech, timer duration &amp; print options.</p>
 
   <div class="settings-group">
+    <div class="settings-group-title">Voice Dictation Permissions</div>
+    <div class="setting-row">
+      <div>
+        <div class="setting-label">Activate Microphone</div>
+        <div class="setting-desc">Enable voice-to-text dictation input permissions.</div>
+      </div>
+      <button class="fill-check-btn" id="sheetVoiceActivateBtn" style="width:auto; padding:6px 14px; margin:0;">Enable Mic</button>
+    </div>
+  </div>
+
+  <div class="settings-group">
     <div class="settings-group-title">Appearance</div>
     <div class="theme-row">
       <button class="theme-opt" id="themeOptLight" data-theme-opt="light">
@@ -748,7 +763,7 @@
   </div>
 
   <div class="settings-group">
-    <div class="settings-group-title">Voice &amp; Audio</div>
+    <div class="settings-group-title">Voice &amp; Audio Speech</div>
     <div class="setting-row">
       <div>
         <div class="setting-label">Audio Chimes &amp; SFX</div>
@@ -798,7 +813,7 @@
     <div class="modal-title">Print Worksheet</div>
     <div class="modal-desc">Choose your print layout format:</div>
     <div class="modal-btn-group">
-      <button class="modal-btn primary" id="btnPrintWithAns">Print With Bulleted Answer Key</button>
+      <button class="modal-btn primary" id="btnPrintWithAns">Print With Numbered Answer Key</button>
       <button class="modal-btn secondary" id="btnPrintBlank">Print Blank Practice Sheet</button>
       <button class="modal-btn cancel" id="btnPrintCancel">Cancel</button>
     </div>
@@ -1000,109 +1015,109 @@
   ];
   matchI.forEach(function(m,i){ RAW.push({type:'match2', section:'Match Part 2 (Heart & Circulation)', qNo:i+1, q:m[0], term:m[0], correct:m[1]}); });
 
-  // DIGITALLY VIABLE SHORT ANSWERS WITH DISTRACTORS
+  /* REPLACED ALL EMOJIS AND ICONS WITH CLEAN NUMBERED SEQUENCES */
   var saC = [
     ["What are the different parts of the human circulatory system?", [
-      { text: "🫀 Heart: Muscular organ that pumps blood", isCorrect: true },
-      { text: "🩸 Blood Vessels: Arteries, veins, and capillaries", isCorrect: true },
-      { text: "🔴 Blood: Liquid carrying oxygen and nutrients", isCorrect: true },
-      { text: "🫁 Lungs: Muscular pumps that push blood through bones", isCorrect: false },
-      { text: "🧠 Brain: Fluid vessel that filters blood plasma", isCorrect: false }
+      { text: "1. Heart: Muscular organ that pumps blood", isCorrect: true },
+      { text: "2. Blood Vessels: Arteries, veins, and capillaries", isCorrect: true },
+      { text: "3. Blood: Liquid carrying oxygen and nutrients", isCorrect: true },
+      { text: "4. Lungs: Muscular pumps that push blood through bones", isCorrect: false },
+      { text: "5. Brain: Fluid vessel that filters blood plasma", isCorrect: false }
     ]],
     ["Name three types of blood vessels and describe their features.", [
-      { text: "🔴 Arteries: Thick-walled; carry oxygenated blood away", isCorrect: true },
-      { text: "🔵 Veins: Thin-walled with valves; carry blood back to heart", isCorrect: true },
-      { text: "🟣 Capillaries: Extremely thin; connect arteries and veins", isCorrect: true },
-      { text: "🔴 Arteries: Thin-walled tubes that carry blood into lungs", isCorrect: false },
-      { text: "🔵 Veins: Thick muscular pumps that absorb nutrients", isCorrect: false }
+      { text: "1. Arteries: Thick-walled; carry oxygenated blood away", isCorrect: true },
+      { text: "2. Veins: Thin-walled with valves; carry blood back to heart", isCorrect: true },
+      { text: "3. Capillaries: Extremely thin; connect arteries and veins", isCorrect: true },
+      { text: "4. Arteries: Thin-walled tubes that carry blood into lungs", isCorrect: false },
+      { text: "5. Veins: Thick muscular pumps that absorb nutrients", isCorrect: false }
     ]],
     ["Write the function of WBCs.", [
-      { text: "🛡️ Fight Germs: Destroy invading pathogens", isCorrect: true },
-      { text: "🦺 Body Protection: Shield against diseases", isCorrect: true },
-      { text: "🔴 Oxygen Carrier: Uses haemoglobin to trap gas", isCorrect: false },
-      { text: "🩹 Blood Clotter: Sticks together to seal cuts", isCorrect: false }
+      { text: "1. Fight Germs: Destroy invading pathogens", isCorrect: true },
+      { text: "2. Body Protection: Shield against diseases", isCorrect: true },
+      { text: "3. Oxygen Carrier: Uses haemoglobin to trap gas", isCorrect: false },
+      { text: "4. Blood Clotter: Sticks together to seal cuts", isCorrect: false }
     ]],
     ["Write the function of blood.", [
-      { text: "🌬️ Transport: Delivers oxygen and nutrients to cells", isCorrect: true },
-      { text: "🗑️ Waste Removal: Takes carbon dioxide to lungs", isCorrect: true },
-      { text: "🌡️ Temperature: Regulates body heat balance", isCorrect: true },
-      { text: "🧱 Muscle Builder: Constructs bones and cartilage", isCorrect: false }
+      { text: "1. Transport: Delivers oxygen and nutrients to cells", isCorrect: true },
+      { text: "2. Waste Removal: Takes carbon dioxide to lungs", isCorrect: true },
+      { text: "3. Temperature: Regulates body heat balance", isCorrect: true },
+      { text: "4. Muscle Builder: Constructs bones and cartilage", isCorrect: false }
     ]],
     ["Write the function of blood vessels.", [
-      { text: "🛣️ Transport Network: Tubes carrying blood through body", isCorrect: true },
-      { text: "➡️ Arteries: Direct blood away from heart", isCorrect: true },
-      { text: "⬅️ Veins: Direct blood back to heart", isCorrect: true },
-      { text: "🫁 Air Filters: Takes oxygen directly from outside air", isCorrect: false }
+      { text: "1. Transport Network: Tubes carrying blood through body", isCorrect: true },
+      { text: "2. Arteries: Direct blood away from heart", isCorrect: true },
+      { text: "3. Veins: Direct blood back to heart", isCorrect: true },
+      { text: "4. Air Filters: Takes oxygen directly from outside air", isCorrect: false }
     ]],
     ["Describe the different chambers of the heart.", [
-      { text: "🔼 2 Atria: Upper chambers that receive blood", isCorrect: true },
-      { text: "🔽 2 Ventricles: Lower chambers that pump blood out", isCorrect: true },
-      { text: "🧱 Septum: Muscular wall dividing left and right", isCorrect: true },
-      { text: "🔼 2 Ventricles: Upper chambers that receive oxygen gas", isCorrect: false }
+      { text: "1. 2 Atria: Upper chambers that receive blood", isCorrect: true },
+      { text: "2. 2 Ventricles: Lower chambers that pump blood out", isCorrect: true },
+      { text: "3. Septum: Muscular wall dividing left and right", isCorrect: true },
+      { text: "4. 2 Ventricles: Upper chambers that receive oxygen gas", isCorrect: false }
     ]],
     ["Discuss the circulation of blood in the human heart.", [
-      { text: "1️⃣ Right Atrium: Receives deoxygenated blood from body", isCorrect: true },
-      { text: "2️⃣ Right Ventricle: Pumps deoxygenated blood to lungs", isCorrect: true },
-      { text: "3️⃣ Left Atrium: Receives oxygenated blood from lungs", isCorrect: true },
-      { text: "4️⃣ Left Ventricle: Pumps oxygenated blood to whole body", isCorrect: true },
-      { text: "1️⃣ Left Ventricle: Sends impure blood to brain first", isCorrect: false }
+      { text: "1. Right Atrium: Receives deoxygenated blood from body", isCorrect: true },
+      { text: "2. Right Ventricle: Pumps deoxygenated blood to lungs", isCorrect: true },
+      { text: "3. Left Atrium: Receives oxygenated blood from lungs", isCorrect: true },
+      { text: "4. Left Ventricle: Pumps oxygenated blood to whole body", isCorrect: true },
+      { text: "5. Left Ventricle: Sends impure blood to brain first", isCorrect: false }
     ]]
   ];
   saC.forEach(function(s,i){ RAW.push({type:'sa', section:'Answer the Following', qNo:i+1, q:s[0], bulletOptions:s[1]}); });
 
   var saE = [
     ["Why is the heart called a living pump?", [
-      { text: "💓 Continuous Beat: Beats nonstop every minute of life", isCorrect: true },
-      { text: "🔄 Blood Flow: Keeps blood circulating continuously", isCorrect: true },
-      { text: "💨 Air Intake: Expands lungs to inhale fresh air directly", isCorrect: false }
+      { text: "1. Continuous Beat: Beats nonstop every minute of life", isCorrect: true },
+      { text: "2. Blood Flow: Keeps blood circulating continuously", isCorrect: true },
+      { text: "3. Air Intake: Expands lungs to inhale fresh air directly", isCorrect: false }
     ]],
     ["Why does blood flow stop after some time when injured?", [
-      { text: "🩹 Platelet Action: Cells gather at cut site", isCorrect: true },
-      { text: "🔒 Mesh Plug: Creates clot to seal bleeding", isCorrect: true },
-      { text: "⚪ WBC Action: White cells dissolve the cut completely", isCorrect: false }
+      { text: "1. Platelet Action: Cells gather at cut site", isCorrect: true },
+      { text: "2. Mesh Plug: Creates clot to seal bleeding", isCorrect: true },
+      { text: "3. WBC Action: White cells dissolve the cut completely", isCorrect: false }
     ]]
   ];
   saE.forEach(function(s,i){ RAW.push({type:'sa', section:'Give Reasons', qNo:i+1, q:s[0], bulletOptions:s[1]}); });
 
   var saD = [
     ["Rewrite correctly: Veins carry oxygenated blood from the heart to various parts of the body.", [
-      { text: "✅ Arteries carry oxygenated blood away from the heart to body parts.", isCorrect: true },
-      { text: "❌ Capillaries carry deoxygenated blood into the stomach.", isCorrect: false },
-      { text: "❌ Veins carry oxygenated blood under very high pressure.", isCorrect: false }
+      { text: "1. Arteries carry oxygenated blood away from the heart to body parts.", isCorrect: true },
+      { text: "2. Capillaries carry deoxygenated blood into the stomach.", isCorrect: false },
+      { text: "3. Veins carry oxygenated blood under very high pressure.", isCorrect: false }
     ]],
     ["Rewrite correctly: Capillaries are thick vessels that join arteries and veins.", [
-      { text: "✅ Capillaries are very thin vessels that join arteries and veins.", isCorrect: true },
-      { text: "❌ Capillaries are solid muscles that pump blood out.", isCorrect: false },
-      { text: "❌ Arteries are thin capillaries that carry plasma.", isCorrect: false }
+      { text: "1. Capillaries are very thin vessels that join arteries and veins.", isCorrect: true },
+      { text: "2. Capillaries are solid muscles that pump blood out.", isCorrect: false },
+      { text: "3. Arteries are thin capillaries that carry plasma.", isCorrect: false }
     ]],
     ["Rewrite correctly: The muscle that makes up the heart is called cartilage muscle.", [
-      { text: "✅ The muscle that makes up the heart is called cardiac muscle.", isCorrect: true },
-      { text: "❌ The muscle that makes up the heart is called skeletal cartilage.", isCorrect: false }
+      { text: "1. The muscle that makes up the heart is called cardiac muscle.", isCorrect: true },
+      { text: "2. The muscle that makes up the heart is called skeletal cartilage.", isCorrect: false }
     ]],
     ["Rewrite correctly: Haemoglobin is a vitamin molecule that carries oxygen from lungs to body cells.", [
-      { text: "✅ Haemoglobin is a protein molecule that carries oxygen.", isCorrect: true },
-      { text: "❌ Haemoglobin is a lipid cell that forms blood clots.", isCorrect: false }
+      { text: "1. Haemoglobin is a protein molecule that carries oxygen.", isCorrect: true },
+      { text: "2. Haemoglobin is a lipid cell that forms blood clots.", isCorrect: false }
     ]],
     ["Rewrite correctly: The respiratory system is responsible for transporting nutrients and oxygen.", [
-      { text: "✅ The circulatory system is responsible for transporting nutrients and oxygen.", isCorrect: true },
-      { text: "❌ The nervous system pumps blood through body vessels.", isCorrect: false }
+      { text: "1. The circulatory system is responsible for transporting nutrients and oxygen.", isCorrect: true },
+      { text: "2. The nervous system pumps blood through body vessels.", isCorrect: false }
     ]]
   ];
   saD.forEach(function(s,i){ RAW.push({type:'sa', section:'Rewrite Correctly', qNo:i+1, q:s[0], bulletOptions:s[1]}); });
 
   var saN = [
     ["The heart keeps pumping blood all the time. Write a few ways to keep it healthy.", [
-      { text: "🏃 Daily Exercise: Active play, running, or swimming", isCorrect: true },
-      { text: "🥗 Balanced Diet: Eat fresh fruits and vegetables", isCorrect: true },
-      { text: "🧘 Calming Habits: Practice deep breathing", isCorrect: true },
-      { text: "😴 Restful Sleep: Sleep 8-9 hours every night", isCorrect: true },
-      { text: "🍔 Eat Fast Food: Eat oily junk foods to gain grease", isCorrect: false },
-      { text: "📱 Screen Time: Sit still for 10 hours playing games", isCorrect: false }
+      { text: "1. Daily Exercise: Active play, running, or swimming", isCorrect: true },
+      { text: "2. Balanced Diet: Eat fresh fruits and vegetables", isCorrect: true },
+      { text: "3. Calming Habits: Practice deep breathing", isCorrect: true },
+      { text: "4. Restful Sleep: Sleep 8-9 hours every night", isCorrect: true },
+      { text: "5. Fast Food: Eat oily junk foods to gain grease", isCorrect: false },
+      { text: "6. Screen Time: Sit still for 10 hours playing games", isCorrect: false }
     ]]
   ];
   saN.forEach(function(s,i){ RAW.push({type:'sa', section:'Heart Health', qNo:i+1, q:s[0], bulletOptions:s[1]}); });
 
-  /* THREE MODULE SECTIONS (20–25 QUESTIONS EACH) */
+  /* THREE MODULE SECTIONS */
   var ALL_DECK = RAW;
   var MODULES = [
     { title: "Module 1: Circulation & Vessels", start: 0, end: 23 },
@@ -1116,7 +1131,7 @@
   var GRADED_TOTAL = DECK.filter(function(d){ return d.type!=='sa'; }).length;
   var ACCENTS = { mcq:'var(--apple-teal)', fill:'var(--apple-teal)', tf:'var(--apple-red-deep)', match1:'var(--apple-indigo)', match2:'var(--apple-indigo)', sa:'var(--apple-teal)' };
 
-  var STORAGE_KEY = 'hcs_streak_state_v8';
+  var STORAGE_KEY = 'hcs_streak_state_v9';
   var state = {
     moduleIdx: 0,
     idx: 0,
@@ -1243,18 +1258,48 @@
     state.settings.voiceURI = this.value; saveState();
   };
 
-  /* Mobile Speech Warmup */
-  function warmUpMobileAudio(){
-    if('speechSynthesis' in window){
-      window.speechSynthesis.resume();
+  /* Mobile Speech Warmup & Permission Grant */
+  function enableMicPermissions(){
+    var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if(!SR){
+      showToast('⚠️ Voice-to-text input not supported on this browser.');
+      return;
+    }
+    try {
+      var rec = new SR();
+      rec.lang = 'en-US';
+      rec.onstart = function(){
+        showToast('✅ Voice dictation active & ready!');
+        rec.stop();
+      };
+      rec.onerror = function(){
+        showToast('🎙️ Mic active. Ready for dictation!');
+      };
+      rec.start();
+      var btn = document.getElementById('topVoiceActivateBtn');
+      if(btn) btn.classList.add('mic-active');
+    } catch(e) {
+      showToast('🎙️ Voice dictation ready!');
     }
   }
-  window.addEventListener('touchstart', warmUpMobileAudio, { once: true });
-  window.addEventListener('click', warmUpMobileAudio, { once: true });
+
+  document.getElementById('topVoiceActivateBtn').onclick = enableMicPermissions;
+  document.getElementById('sheetVoiceActivateBtn').onclick = function(){
+    enableMicPermissions();
+    closeSettings();
+  };
+
+  function cleanSpeechText(text){
+    if(!text) return '';
+    return text.replace(/[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, '')
+               .replace(/^\s*\d+\.\s*/gm, '')
+               .replace(/[*_#~]/g, '')
+               .trim();
+  }
 
   function togglePlayPauseText(text, buttonEl){
     if(!('speechSynthesis' in window)) return;
-    warmUpMobileAudio();
+    var cleanedText = cleanSpeechText(text);
     if(isAudioPlaying){
       window.speechSynthesis.cancel();
       isAudioPlaying = false;
@@ -1264,7 +1309,7 @@
       }
     } else {
       window.speechSynthesis.cancel();
-      var u = new SpeechSynthesisUtterance(text);
+      var u = new SpeechSynthesisUtterance(cleanedText);
       var activeV = getActiveVoice();
       if(activeV) u.voice = activeV;
       u.onend = u.onerror = function(){
@@ -1286,7 +1331,8 @@
   function speakAuto(text){
     if(!state.settings.sound || !('speechSynthesis' in window)) return;
     window.speechSynthesis.cancel();
-    var u = new SpeechSynthesisUtterance(text);
+    var cleanedText = cleanSpeechText(text);
+    var u = new SpeechSynthesisUtterance(cleanedText);
     var activeV = getActiveVoice();
     if(activeV) u.voice = activeV;
     window.speechSynthesis.speak(u);
@@ -1422,7 +1468,6 @@
     setTimeout(function(){ span.remove(); }, 900);
   }
 
-  /* UPDATE TAB MODULE SCORES DIRECTLY */
   function updateModuleTabScores(){
     MODULES.forEach(function(mod, mIdx){
       var attemptedCount = 0;
@@ -1538,7 +1583,7 @@
     setTimeout(cb, 300);
   }
 
-  /* DEDUPLICATED ANSWER RENDERER FIXED FOR ALL MCQ / NON-MCQ CARDS */
+  /* DEDUPLICATED ANSWER RENDERER FIXED */
   function buildCard(localIdx){
     var item = DECK[localIdx];
     var globalIdx = MODULES[currentModuleIdx].start + localIdx;
@@ -1570,7 +1615,6 @@
 
         if(resolved){
           b.classList.add('locked');
-          /* EXACT SINGLE ANSWER HIGHLIGHT FIX: Converts the real option directly to correct state */
           if(i === item.correct) {
             b.classList.add('correct');
           } else if(state.answers[globalIdx] === i) {
@@ -1629,7 +1673,6 @@
       fillContainer.appendChild(micBtn);
       body.appendChild(fillContainer);
 
-      /* DEDUPLICATED SINGLE ANSWER REVEAL */
       if(resolved && !isCorrect){
         var wrongBox = document.createElement('div'); wrongBox.className = 'sa-revealed-box show';
         wrongBox.innerHTML = '<b>Correct Answer:</b> ' + item.answer;
@@ -1705,13 +1748,13 @@
         fillContainer.appendChild(voiceMicBtn);
         body.appendChild(fillContainer);
 
-        /* SINGLE CLEAN REVEALED BOX */
+        /* SINGLE CLEAN REVEALED BOX WITH NUMBERED LISTS */
         var revBox = document.createElement('div'); revBox.className = 'sa-revealed-box' + (resolved ? ' show' : '');
-        var revHtml = '<b>Correct Key Points:</b><ul>';
+        var revHtml = '<b>Correct Key Points:</b><ol>';
         item.bulletOptions.filter(function(b){ return b.isCorrect; }).forEach(function(b){
-          revHtml += '<li>' + b.text + '</li>';
+          revHtml += '<li>' + b.text.replace(/^\d+\.\s*/, '') + '</li>';
         });
-        revHtml += '</ul>';
+        revHtml += '</ol>';
         revBox.innerHTML = revHtml;
 
         if(!resolved){
@@ -1998,9 +2041,9 @@
         else if(item.type==='match1') ans = MATCH_SECTION_1[item.correct];
         else if(item.type==='match2') ans = MATCH_SECTION_2[item.correct];
         else if(item.type==='sa') {
-          ans = '<ul>';
-          item.bulletOptions.filter(function(b){ return b.isCorrect; }).forEach(function(b){ ans += '<li>' + b.text + '</li>'; });
-          ans += '</ul>';
+          ans = '<ol>';
+          item.bulletOptions.filter(function(b){ return b.isCorrect; }).forEach(function(b){ ans += '<li>' + b.text.replace(/^\d+\.\s*/, '') + '</li>'; });
+          ans += '</ol>';
         }
         html += '<div class="ps-ans">Answer: ' + ans + '</div>';
       } else {
@@ -2095,9 +2138,9 @@
       else if(item.type==='match1') ansText = item.term + ' → ' + MATCH_SECTION_1[item.correct];
       else if(item.type==='match2') ansText = item.term + ' → ' + MATCH_SECTION_2[item.correct];
       else if(item.type==='sa') {
-        ansText = '<ul>';
-        item.bulletOptions.filter(function(b){ return b.isCorrect; }).forEach(function(b){ ansText += '<li>' + b.text + '</li>'; });
-        ansText += '</ul>';
+        ansText = '<ol>';
+        item.bulletOptions.filter(function(b){ return b.isCorrect; }).forEach(function(b){ ansText += '<li>' + b.text.replace(/^\d+\.\s*/, '') + '</li>'; });
+        ansText += '</ol>';
       }
 
       ansEl.innerHTML = '<span>✔️ <b>Answer:</b></span> ' + ansText;
@@ -2146,7 +2189,7 @@
       textToSpeak += '. Answer: ' + ansText;
     }
 
-    var u = new SpeechSynthesisUtterance(textToSpeak);
+    var u = new SpeechSynthesisUtterance(cleanSpeechText(textToSpeak));
     var activeV = getActiveVoice();
     if(activeV) u.voice = activeV;
     u.onend = u.onerror = function(){
